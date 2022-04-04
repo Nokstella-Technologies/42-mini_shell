@@ -1,0 +1,9 @@
+{
+	"cSpell.words": [
+		"libft"
+	],
+	"files.associations": {
+		"history.h": "c",
+		"string.h": "c"
+	}
+}
