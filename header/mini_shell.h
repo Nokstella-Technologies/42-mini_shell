@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/04 15:57:39 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:15:25 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@
 
 # include "../libft/libft.h"
 
+typedef struct s_cmd
+{
+	char	*path_cmd;
+	char	**argv;
+}			t_cmd;
+
+typedef struct s_ms
+{
+	char *line;
+	
+}		t_ms;
+
+extern char **g_enpv;
+
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -23,11 +37,13 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <string.h>
+#  include <dirent.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <fcntl.h>
 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
 
+void mini_shell(void);
 
 #endif
 

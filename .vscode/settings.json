@@ -4,6 +4,7 @@
 	],
 	"files.associations": {
 		"history.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"wait.h": "c"
 	}
 }
