@@ -9,7 +9,7 @@ LIBFT = ./libft/libft.a
 FILES = main.c			\
 		mini_shell.c	\
 
-SRC=$(addprefix src/, $(FILES))
+SRC=$(addprefix src/, $(FILES)) 
 
 OBJ = $(SRC:.c=.o)
 

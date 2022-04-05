@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/05 18:15:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:57:49 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ typedef struct s_cmd
 typedef struct s_ms
 {
 	char *line;
-	
+	t_cmd **cmd;
 }		t_ms;
 
-extern char **g_enpv;
+extern char					**g_enpv;
+
+typedef struct sigaction t_sigaction;
 
 # include <stdio.h>
 # include <unistd.h>
@@ -98,10 +100,7 @@ tputs
 // dup2
 // exit
 // pipe
-// signal
-// sigaction
-// sigemptyset
-// sigaddset
+
 // getenv
 // kill
 // perror
