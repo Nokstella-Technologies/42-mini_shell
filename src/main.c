@@ -6,11 +6,11 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/05 19:03:48 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/05 20:55:58 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/mini_shell.h"
+#include "mini_shell.h"
 
 
 char **g_envp;
@@ -20,10 +20,6 @@ char **g_envp;
 // sigemptyset
 // sigaddset
 
-void init_sigaction(t_sigaction *sa)
-{
-	sigaction();
-}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -32,7 +28,8 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 
 	g_envp = envp;
-	init_sigaction(&sa);
+	init_sigaction(&sa, &handler_sig, SIGINT);
+	init_sigaction(&sa, SIG_IGN, SIGQUIT);
 	while(1)
 	{
 		mini_shell();
@@ -42,7 +39,7 @@ int	main(int argc, char **argv, char **envp)
 
 
 /*
-echo -n
+echo -n "asdkmoasjdnasnd" | grep a > teste
 cd 
 pwd
 export
@@ -52,7 +49,7 @@ exit
 history
 manusear single quotes
 manusear double quotes com do $
-executar ./
+executer ./
 <<
 >>
 <

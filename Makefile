@@ -6,8 +6,11 @@ CFLAGS = -Wall -Wextra -Werror
 
 LIBFT = ./libft/libft.a
 
+SIGNALS = signals.c \
+
 FILES = main.c			\
 		mini_shell.c	\
+		$(addprefix signals/, $(SIGNALS)) 
 
 SRC=$(addprefix src/, $(FILES)) 
 

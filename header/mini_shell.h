@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/05 18:57:49 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:39:30 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 
 # include "../libft/libft.h"
 
+# define WORKSPACE getenv("NAME") ? getenv("NAME") : getenv("WORKSPACE")
 typedef struct s_cmd
 {
+	char 	*line_cmd;
 	char	*path_cmd;
 	char	**argv;
 }			t_cmd;
@@ -28,7 +30,7 @@ typedef struct s_ms
 	t_cmd **cmd;
 }		t_ms;
 
-extern char					**g_enpv;
+extern char					**g_envp;
 
 typedef struct sigaction t_sigaction;
 
@@ -46,6 +48,8 @@ typedef struct sigaction t_sigaction;
 
 
 void mini_shell(void);
+void init_sigaction(t_sigaction *sa, void (*hd)(int), int sig);
+void handler_sig(int sig);
 
 #endif
 
