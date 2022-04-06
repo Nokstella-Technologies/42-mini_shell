@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/05 18:14:35 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:38:21 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,29 @@ void	pwd()
 void mini_shell(void)
 {
 	char s[100];
+	char *prompt;
 	char *r;
 	
-	printf("%s@%s:%s$ ", getenv("LOGNAME"), getenv("NAME"), getcwd(s, 100));
-	r = readline(NULL);
-	if (!ft_strncmp(r, "pwd", 3))
-		pwd();
-	// else if (!ft_strncmp(r, "exit", 4))
-	free(r);
+	while(!r)
+	{
+		getcwd(s, 100);
+		prompt = ft_formatf("%s@%s:%s$ ", getenv("LOGNAME"), WORKSPACE, s);
+		r = readline(prompt);
+		free(prompt);
+		if (r == NULL)
+			printf("\n");
+		else if (!ft_strncmp(r, "pwd", 3))
+		{
+			pwd();
+			free(r);
+		}
+		else if (!ft_strncmp(r, "exit", 4))
+			exit(0);
+		else
+		{
+			printf("ok vamos tentar %s", r);
+			free(r);
+		}
+	}
+	exit(0);
 }
