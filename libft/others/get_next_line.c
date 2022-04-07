@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 17:16:44 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/03/16 20:26:58 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/05 22:23:57 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*concat_all(size_t end, int len, t_list **buffer_lists);
 static char	*read_text(t_list **buffer_lists, t_list *last, int len, int fd);
 static void	lts_to_str(t_list **buffer_lists, int str_len, char *res);
 
-static void	free_ptr(void **ptr)
+void	free_ptr(void **ptr)
 {
 	if (*ptr != NULL)
 	{
