@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 17:16:46 by llima-ce          #+#    #+#             */
-/*   Updated: 2021/09/29 10:25:48 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/05 22:24:17 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@
  * @return returns the next line of the file thts is reading.
  */
 char	*get_next_line(int fd);
+
+void	free_ptr(void **ptr);
 
 #endif
