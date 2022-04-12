@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:58:17 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/04 16:00:06 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/04/07 10:57:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	history(char *r)
-{
-	char	*str;
+// void	history(char *r)
+// {
+// 	char	*str;
 	
-	str = readline()
-}
+// 	str = readline()
+// }

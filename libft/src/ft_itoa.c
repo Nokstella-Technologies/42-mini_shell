@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 21:51:57 by llima-ce          #+#    #+#             */
-/*   Updated: 2021/09/26 18:34:31 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:58:23 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ static size_t	ft_count_size(long int n)
 		return (1 + ft_count_size(n / 10));
 }
 
-static void	ft_populete_loop(char *new, int n, int size)
+static void	ft_populete_loop(char *nw, int n, int size)
 {
 	if (n < 0)
 	{
-		new[0] = '-';
+		nw[0] = '-';
 		n *= -1;
 	}
 	if (n > 9)
-		ft_populete_loop(new, n / 10, size - 1);
-	new[size] = (n % 10) + 48;
+		ft_populete_loop(nw, n / 10, size - 1);
+	nw[size] = (n % 10) + 48;
 }
 
 char	*ft_itoa(int n)
@@ -47,7 +47,7 @@ char	*ft_itoa(int n)
 		flag = 1;
 	}
 	size = ft_count_size(n);
-	int_str = malloc(size + 1 * sizeof(char));
+	int_str = (char *)malloc(size + 1 * sizeof(char));
 	int_str[size] = 0;
 	if (!int_str)
 		return (NULL);

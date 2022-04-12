@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 23:03:35 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/03/28 17:16:22 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:44:32 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -437,5 +437,7 @@ char *ft_itoa_base(size_t number, char *base);
  * @return int number of the string
  */
 int ft_new_atoi(const char *str, int *err);
+
+char	**ft_split_pipe(char const *s);
 
 #endif

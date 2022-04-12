@@ -1,5 +1,4 @@
-#include "gtest/gtest.h"
-#include "mini_shell.h"
+#include "tests.h"
 
 
 TEST(PWD_unitest, test_pwd_unitest) {
@@ -17,14 +16,5 @@ TEST(PWD_unitest, test_pwd_unitest) {
 	close(fd[1]);
 	fgets(res, 1024, fdopen(fd[0], "r"));
 	close(fd[0]);
-	EXPECT_STREQ(res, "/home/luiz/42/minishell/test\n");
-}
-
-TEST(cd_unitest, test_move_to_pp)
-{
-	char	res[1024];
-
-	cd("..")
-	getcwd(res, 1024);
-	EXPECT_STREQ(res, "/home/luiz/42/minishell");
+	EXPECT_STREQ(res, strcat(g_read, "\n"));
 }

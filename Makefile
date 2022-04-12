@@ -19,7 +19,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT)
-	$(CC) $(SRC) $(CFLAGS) -I ./header -L ./libft -lft -lreadline -g3 -o $(NAME)
+	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME)
 
 $(LIBFT):
 	make others -C ./libft

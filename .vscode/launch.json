@@ -17,5 +17,19 @@
 				}
 			],
 			"miDebuggerPath": "/usr/bin/lldb",
-		},]
+		},
+		{
+			"name": "lldb testdebugger",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceRoot}/test/test",
+			"cwd": "${workspaceRoot}/test",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+				}
+			],
+			"miDebuggerPath": "/usr/bin/lldb",
+		}]
 }

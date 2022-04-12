@@ -3,25 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:03:27 by llima-ce          #+#    #+#             */
-/*   Updated: 2021/09/23 14:09:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:06:14 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int n)
+char	*ft_strrchr(const char *str, int n)
 {
 	char	*tmp;
+	int		num;
 
 	tmp = (char *) str;
-	while (*tmp != (char)n)
+	num = ft_strlen(str);
+	while (*(tmp + num) != (char)n)
 	{
-		if (*tmp == 0)
+		if (num == 0)
 			return (NULL);
-		tmp++;
+		num--;
 	}
-	return ((char *)tmp);
+	return ((char *)(tmp + num));
 }

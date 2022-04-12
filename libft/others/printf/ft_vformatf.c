@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:55:18 by luizz             #+#    #+#             */
-/*   Updated: 2022/03/16 15:46:30 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:59:14 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*ft_merge(char *all, t_format *buffer, int *pt_start, int pt_end)
 	if (all == NULL || *pt_start < 0)
 		return (all);
 	len_all = buffer->len_all - pt_end + buffer->len + 1;
-	new1 = malloc(len_all * sizeof(char));
+	new1 = (char *)malloc(len_all * sizeof(char));
 	new1[len_all - 1] = 0;
 	if (new1 == NULL)
 		return (all);

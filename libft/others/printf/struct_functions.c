@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:19:58 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/03/16 15:46:37 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:59:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_format	*ft_start_struct(va_list args)
 	t_format		*new1;
 	t_convert_flags	*cf_now;
 
-	new1 = malloc(1 * sizeof(t_format));
-	cf_now = malloc(1 * sizeof(t_convert_flags));
+	new1 = (t_format *)malloc(1 * sizeof(t_format));
+	cf_now = (t_convert_flags *)malloc(1 * sizeof(t_convert_flags));
 	new1->len = 0;
 	new1->len_all = 0;
 	new1 ->formated_src = NULL;
