@@ -6,13 +6,11 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/06 18:50:19 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:07:25 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "mini_shell.h"
-
-
 
 void mini_shell(void)
 {
@@ -31,12 +29,10 @@ void mini_shell(void)
 		free(prompt);
 		if (!r)
 			printf("\n");
-		else if (!ft_strncmp(r, "pwd", 3))
-			pwd();
 		else if (!ft_strncmp(r, "exit", 4))
 			exit(0);
 		else
-			printf("ok vamos tentar %s\n", r);
+			parse_string()
 	}
 	exit(0);
 }

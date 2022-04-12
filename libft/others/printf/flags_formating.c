@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags_formating.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luizz <luizz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:19:14 by llima-ce          #+#    #+#             */
-/*   Updated: 2021/11/05 15:40:01 by luizz            ###   ########.fr       */
+/*   Updated: 2022/04/12 18:58:32 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	min_width_flag(t_format *buffer, int *len, t_bool flag)
 
 	if (buffer->cf_now->min_width > *len)
 	{
-		tmp = malloc(buffer->cf_now->min_width + 1 * sizeof(char));
+		tmp = (char *)malloc(buffer->cf_now->min_width + 1 * sizeof(char));
 		tmp[buffer->cf_now->min_width] = 0;
 		zero_flag(buffer, tmp, flag, len);
 		minus_flag(buffer, len, tmp);

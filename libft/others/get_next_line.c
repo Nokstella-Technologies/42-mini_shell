@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 17:16:44 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/04/05 22:23:57 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:57:13 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_next_line(int fd)
 	if (buffer_lists[fd] == NULL)
 		buffer_lists[fd] = ft_lstnew(ft_strdup(""));
 	resf = read_text(&buffer_lists[fd], buffer_lists[fd],
-			ft_strlen(buffer_lists[fd]->content), fd);
+			ft_strlen((const char *)buffer_lists[fd]->content), fd);
 	return (resf);
 }
 
@@ -45,7 +45,7 @@ char	*read_text(t_list **buffer_lists, t_list *last, int len, int fd)
 	ssize_t	bytes_read;
 	t_list	*end;
 
-	content = ft_strchr(last->content, '\n');
+	content = ft_strchr((const char *)last->content, '\n');
 	if (content != NULL)
 	{
 		bytes_read = ft_strlen(content + 1);

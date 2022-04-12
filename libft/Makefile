@@ -6,7 +6,7 @@
 #    By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/27 13:53:47 by llima-ce          #+#    #+#              #
-#    Updated: 2022/03/28 17:19:04 by llima-ce         ###   ########.fr        #
+#    Updated: 2022/04/07 11:45:09 by llima-ce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,10 +63,12 @@ SRCS_BONUS =ft_lstnew.c			\
 			ft_lstiter.c		\
 			ft_lstmap.c
 
+
 SRCS_OTHERS =	get_next_line.c	\
 				ft_itoa_base.c	\
 				ft_strfstr.c	\
-				ft_new_atoi.c
+				ft_new_atoi.c	\
+				ft_split_pipe.c
 
 
 
@@ -128,4 +130,4 @@ rebonus: fclean bonus
 
 reother: fclean others
 
-.PHONY: all clean fclean re  bonus rebonus others reothers
+.PHONY: all clean fclean re bonus rebonus others reother

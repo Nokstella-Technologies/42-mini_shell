@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luizz <luizz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 18:20:38 by llima-ce          #+#    #+#             */
-/*   Updated: 2021/11/05 15:41:22 by luizz            ###   ########.fr       */
+/*   Updated: 2022/04/12 19:00:13 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	other_pointer(t_format *buffer, int *len)
 
 	if (buffer->cf_now->flag_pointer > *len && buffer->formated_src[0] != 0)
 	{
-		tmp = malloc(buffer->cf_now->flag_pointer + 1 * sizeof(char));
+		tmp = (char *)malloc(buffer->cf_now->flag_pointer + 1 * sizeof(char));
 		ft_memset(tmp, '0', buffer->cf_now->flag_pointer);
 		tmp[buffer->cf_now->flag_pointer] = 0;
 		ft_memcpy(&tmp[buffer->cf_now->flag_pointer - *len],
