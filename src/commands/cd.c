@@ -3,32 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:49:11 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/06 19:26:28 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:14:47 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/mini_shell.h"
 
 
-// int	command_cd(t_ms *ms, char **path)
-// {
-// 	int	i;
-// 	char	*str;
-// 	// closedir()
-// 	//getcwd()
-// 	str = opendir(*path[0]);
-// 	if(str == NULL)
-// 	{
-// 		printf("No such file or directory");
-// 		return(1);
-// 	}
-// 	else
-// 	{
-// 		printf("%s", str);
-// 	}
-	
+#include "../header/mini_shell.h"
 
-// }
+
+int	command_cd(t_)
+{
+	char	s[100];
+	
+	
+	if(chdir(folder) == 0)
+	{
+	printf("%s\n", getcwd(s, 64));
+		return(0);
+	}
+	else
+	{
+		printf("%s\n", strerror(errno));
+		return(-1);	
+	}
+	return (0);
+}
