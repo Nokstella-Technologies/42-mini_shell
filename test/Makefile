@@ -8,7 +8,7 @@ HAND = ../src/handlers/*.c
 all: $(NAME)
 
 $(NAME):
-	g++ -I ../header  -I ../libft $(LIBFT) $(SRC) $(CMDS) $(HAND)  -lgtest_main -lgtest -lpthread -o $(NAME)
+	g++ -I ../header  -I ../libft $(LIBFT) $(SRC) $(CMDS) $(HAND) -lgtest_main -lgtest -lpthread -o $(NAME)
 
 clean:
 	rm -f $(NAME)
