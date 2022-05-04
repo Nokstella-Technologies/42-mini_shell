@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 20:55:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/04/05 21:31:29 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:19:56 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void handler_sig(int sig)
 {
-	char s[100];
-	
 	if (sig == SIGINT)
-		printf("\n%s@%s:%s$ ", getenv("LOGNAME"), WORKSPACE, getcwd(s, 100));
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
 void init_sigaction(t_sigaction *sa, void (*hd)(int), int sig)

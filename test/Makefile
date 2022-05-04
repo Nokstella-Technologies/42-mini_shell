@@ -8,10 +8,13 @@ HAND = ../src/handlers/*.c
 all: $(NAME)
 
 $(NAME):
-	g++ -I ../header  -I ../libft $(LIBFT) $(SRC) $(CMDS) $(HAND) -lgtest_main -lgtest -lpthread -o $(NAME)
+	g++ -I ../header  -I ../libft $(LIBFT) $(SRC) $(CMDS) $(HAND) -lgtest_main -lgtest -lpthread  -o $(NAME) -fpermissive -Wwrite-strings -g3
+
+val:
+	valgrind --track-origins=yes ./test
 
 clean:
 	rm -f $(NAME)
 
 re: clean all
-	
+	./test

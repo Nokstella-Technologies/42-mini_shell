@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/05 20:55:58 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:04:23 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char **g_envp;
 // sigemptyset
 // sigaddset
 
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_sigaction sa;
@@ -31,13 +30,11 @@ int	main(int argc, char **argv, char **envp)
 	init_sigaction(&sa, &handler_sig, SIGINT);
 	init_sigaction(&sa, SIG_IGN, SIGQUIT);
 	while(1)
-	{
 		mini_shell();
-	}
 	return 0;
 }
 
-
+// testar >|<
 /*
 echo -n "asdkmoasjdnasnd" | grep a > teste
 cd 

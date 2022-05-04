@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:57:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/12 20:05:34 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/04/12 21:20:39 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	testing_programing(t_cmd **cmd, int a)
 {
 	if (find_cmd(cmd[a]) != 0)
 		return (127);
-	if (verify_custom_commands(cmd[a], cmd[a]->argv[0]))
-		return (127);
+	// if (verify_custom_commands(cmd[a], cmd[a]->argv[0]))
+	// 	return (127);
 	else if (testing_access(cmd[a]) != 0)
 		return (127);
 	return (0);

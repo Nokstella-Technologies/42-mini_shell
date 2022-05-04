@@ -8,9 +8,12 @@ LIBFT = ./libft/libft.a
 
 SIGNALS = signals.c \
 
+HANDLERS = *.c
+
 FILES = main.c			\
 		mini_shell.c	\
-		$(addprefix signals/, $(SIGNALS)) 
+		$(addprefix signals/, $(SIGNALS))		\
+		$(addprefix handlers/, $(HANDLERS))
 
 SRC=$(addprefix src/, $(FILES)) 
 
@@ -19,7 +22,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT)
-	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME)
+	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME) -fpermissive 
 
 $(LIBFT):
 	make others -C ./libft
@@ -35,4 +38,7 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test:
+	make re -C test
+
+.PHONY: all clean fclean re test
