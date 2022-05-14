@@ -13,21 +13,8 @@
 #include "../header/mini_shell.h"
 #include "../header/mini_shell.h"
 
-
-// int	command_cd(void)
-// {
-// 	char	s[100];
-	
-	
-// 	if(chdir(folder) == 0)
-// 	{
-// 	printf("%s\n", getcwd(s, 64));
-// 		return(0);
-// 	}
-// 	else
-// 	{
-// 		printf("%s\n", strerror(errno));
-// 		return(-1);	
-// 	}
-// 	return (0);
-// }
+void	command_cd(t_cmd *cmd)
+{
+	if (chdir(cmd->argv[1]) != 0)
+		printf("%s\n", strerror(errno));
+}

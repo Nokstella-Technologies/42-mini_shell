@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/03 11:45:02 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/14 17:03:39 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void mini_shell(void)
 				error_token(ms);
 				continue;
 			}
-			exec_line(ms);
+			command_cd(ms->cmd[0]);
+			// exec_line(ms);
 		}
 	}
 	exit(0);

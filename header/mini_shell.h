@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/03 11:43:20 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/14 17:06:15 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ extern char					**g_envp;
 
 typedef struct sigaction t_sigaction;
 
+void	error_token(t_ms *ms);
 void	parse_string(t_ms *ms, char *read, int a, char *s_tmp);
 void	mini_shell(void);
 void	init_sigaction(t_sigaction *sa, void (*hd)(int), int sig);
@@ -57,6 +58,8 @@ void	pwd(void);
 t_ms	*init_struct(char *line);
 void	ms_pipe(t_cmd **cmds, t_fds *fds);
 void	command_env(void);
+void	command_pwd(void);
+void	command_cd(t_cmd *cmd);
 
 #endif
 

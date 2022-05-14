@@ -10,10 +10,16 @@ SIGNALS = signals.c \
 
 HANDLERS = *.c
 
+COMMANDS = *.c
+
+ERROS = custom_error.c 
+
 FILES = main.c			\
 		mini_shell.c	\
-		$(addprefix signals/, $(SIGNALS))		\
-		$(addprefix handlers/, $(HANDLERS))
+		$(addprefix signals/, $(SIGNALS))	\
+		$(addprefix handlers/, $(HANDLERS))	\
+		$(addprefix error/, $(ERROS))		\
+		$(addprefix commands/, $(COMMANDS))
 
 SRC=$(addprefix src/, $(FILES)) 
 
@@ -22,7 +28,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT)
-	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME) -fpermissive 
+	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME) 
 
 $(LIBFT):
 	make others -C ./libft

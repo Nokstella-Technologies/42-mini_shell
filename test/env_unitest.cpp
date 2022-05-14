@@ -19,10 +19,10 @@ TEST(ENV_1, test_env) {
 	wait(&err);
 	close(fd[1]);
 	res = get_next_line(fd[0]);
-	EXPECT_STREQ(res, "SHELL=/bin/bash\n");
+	EXPECT_STREQ(res, "VSCODE_GIT_ASKPASS_MAIN=/home/luiz/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/extensions/git/dist/askpass-main.js\n");
 	free(res);
 	res = get_next_line(fd[0]);
-	EXPECT_STREQ(res, "COLORTERM=truecolor\n");
+	EXPECT_STREQ(res, "WSLENV=VSCODE_WSL_EXT_LOCATION/up:VSCODE_SERVER_TAR/up\n");
 	free(res);
 	close(fd[0]);
 }
@@ -34,14 +34,23 @@ TEST(ENV_2, test_env_out) {
 	int out = dup(1);
 	dup2(file, 1);
 	command_env();
-	res = get_next_line(file);
 	dup2(out, 1);
-	EXPECT_STREQ(res, "SHELL=/bin/bash\n");
+	int file2 = open("./out", O_RDWR);
+	res = get_next_line(file2);
+	EXPECT_STREQ(res, "VSCODE_GIT_ASKPASS_MAIN=/home/luiz/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/extensions/git/dist/askpass-main.js\n");
 	free(res);
-	res = get_next_line(file);
-	EXPECT_STREQ(res, "COLORTERM=truecolor\n");
+	res = get_next_line(file2);
+	EXPECT_STREQ(res, "WSLENV=VSCODE_WSL_EXT_LOCATION/up:VSCODE_SERVER_TAR/up\n");
+	int a = 2;
+	while(res != NULL)
+	{
+		res = get_next_line(file2);
+		a++;
+	}
+	EXPECT_EQ(a, 33);
 	free(res);
 	close(file);
+	close(file2);
 }
 
 
