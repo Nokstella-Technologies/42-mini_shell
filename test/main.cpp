@@ -3,6 +3,7 @@
 char g_read[2048];
 
 char **g_envp;
+ 
 int main(int argc, char **argv, char **envp) {
   g_envp = envp;
 

@@ -3,10 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:10 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/04 15:51:11 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:59:29 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mini_shell.h"
+
+void	command_env(void)
+{
+	int	i;
+	
+	i = 0;
+	while(g_envp[i] != NULL)
+	{
+		printf("%s\n", g_envp[i]);
+		i++;
+	}
+}

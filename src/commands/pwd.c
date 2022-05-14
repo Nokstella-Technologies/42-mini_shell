@@ -6,7 +6,7 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:42 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/06 19:33:35 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:24:10 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	pwd(void)
 {
-	char	s[200];
+	char	s[500];
 
-	printf("%s\n", getcwd(s, 200));
+	printf("%s\n", getcwd(s, 500));
 	return ;
 }
