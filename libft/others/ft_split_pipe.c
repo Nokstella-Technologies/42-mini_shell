@@ -6,14 +6,13 @@
 /*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:42:11 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/04/07 11:44:23 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/14 20:24:18 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static void		ft_fill_matrix(char const *s, size_t num, char **res);
-static void		ft_remove_quotes(char **res, int num);
 static size_t	count_s(char const *s);
 
 char	**ft_split_pipe(char const *s)
@@ -30,35 +29,20 @@ char	**ft_split_pipe(char const *s)
 		return (NULL);
 	res[num] = NULL;
 	ft_fill_matrix(s, num, res);
-	ft_remove_quotes(res, num);
 	return (res);
-}
-
-static void	ft_remove_quotes(char **res, int num)
-{
-	int		a;
-	char	*tmp;
-
-	a = -1;
-	while (++a < num)
-	{
-		if (*res[a] == '\'' || *res[a] == '\"')
-		{
-			tmp = ft_substr(res[a], 1, ft_strlen(res[a]) - 2);
-			free_ptr((void **)&res[a]);
-			res[a] = tmp;
-		}
-	}
 }
 
 static int	verify_quotes(char const *s, size_t num)
 {
+	char quote;
+
+	quote = *s;
 	num++;
-	while ((num == 1 || s[num] != 39) && s[num] != 0)
+	while ((num == 1 || s[num] != quote) && s[num] != 0)
 	{
 		num++;
-		if(s[num] == 39 && s[num + 1] == '\\')
-			num++;
+		if (s[num] == '\\' && s[num + 1] == quote)
+			num += 2;
 	}
 	num++;
 	return (num);
@@ -75,7 +59,7 @@ static size_t	count_s(char const *s)
 	{
 		while (*tmp == ' ' && *tmp != 0)
 			++tmp;
-		if (*(tmp) == 39)
+		if (*(tmp) == '\''|| *(tmp) == '\"')
 		{
 			tmp += verify_quotes(tmp, 0);
 			if (*(tmp) == ' ' || *(tmp) == 0)
@@ -107,7 +91,7 @@ static void	ft_fill_matrix(char const *s, size_t num, char **res)
 			++start_str;
 		while (start_str[len_word] != ' ' && start_str[len_word] != 0)
 		{
-			if (start_str[len_word] == 39)
+			if (start_str[len_word] == '\'' || start_str[len_word] == '\"' )
 				len_word = verify_quotes(start_str, len_word);
 			else if (start_str[len_word] == ' ' && start_str[len_word] == 0)
 				break ;

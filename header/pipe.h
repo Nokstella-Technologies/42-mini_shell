@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:18:56 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/04/12 20:02:33 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/15 00:50:14 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_fds
 	int fd[2];
 }		t_fds;
 
-
 typedef struct s_cmd
 {
 	char	*line_cmd;
@@ -36,5 +35,5 @@ typedef struct s_cmd
 int		testing_access(t_cmd *cmd);
 int		find_cmd(t_cmd *cmd);
 void	command_not_found(t_cmd *cmd);
-int		dup_custom(int fd1, int fd2, t_cmd *cmd);
+int		dup_custom(int fd1, int fd2);
 #endif

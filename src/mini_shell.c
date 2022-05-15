@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/14 17:03:39 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/15 01:25:08 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "mini_shell.h"
+
+static void	end_program(t_ms *ms)
+{
+	char	*line;
+
+	dup_custom(ms->fd_origin[0], STDIN_FILENO);
+	dup_custom(ms->fd_origin[1], STDOUT_FILENO);
+	close(ms->fd_origin[0]);
+	close(ms->fd_origin[1]);
+	line = get_next_line(ms->fd.in_fd);
+	while(line != NULL)
+	{
+		ft_putstr_fd(line, ms->fd.out_fd);
+		free_ptr((void **)&line);
+		line = get_next_line(ms->fd.in_fd);
+	}
+	close(ms->fd.in_fd);
+}
+
+// -> tokenin 
+// -> verify handlers
+// -> parse cmds
+// -> exec
+// -> end program
 
 void mini_shell(void)
 {
@@ -32,20 +56,19 @@ void mini_shell(void)
 			printf("\n");
 		else if (!ft_strncmp(r, "exit", 4))
 			exit(0);
-		// else if(!ft_strncmp(r, "env",3))
-		// 	command_env();
 		else
 		{
 			add_history(r);
 			ms = init_struct(r);
-			parse_string(ms, r, 0, NULL);
+			tokeneer(ms, r, 0, NULL);
 			if (ms->err == -2)
 			{
 				error_token(ms);
 				continue;
 			}
-			command_cd(ms->cmd[0]);
-			// exec_line(ms);
+			pipe(ms->fd.fd);
+			exec_command(ms->cmd[0], ms);
+			end_program(ms);
 		}
 	}
 	exit(0);

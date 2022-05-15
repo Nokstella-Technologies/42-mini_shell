@@ -12,6 +12,8 @@ HANDLERS = *.c
 
 COMMANDS = *.c
 
+UTILS = *.c
+
 ERROS = custom_error.c 
 
 FILES = main.c			\
@@ -19,7 +21,8 @@ FILES = main.c			\
 		$(addprefix signals/, $(SIGNALS))	\
 		$(addprefix handlers/, $(HANDLERS))	\
 		$(addprefix error/, $(ERROS))		\
-		$(addprefix commands/, $(COMMANDS))
+		$(addprefix commands/, $(COMMANDS))	\
+		$(addprefix utils/, $(UTILS))
 
 SRC=$(addprefix src/, $(FILES)) 
 
@@ -46,5 +49,10 @@ re: fclean all
 
 test:
 	make re -C test
+	make run -C test
+
+val:
+	make re -C test
+	make val -C test
 
 .PHONY: all clean fclean re test

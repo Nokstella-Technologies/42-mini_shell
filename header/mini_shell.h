@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/14 17:06:15 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/15 03:20:13 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 
 # define WORKSPACE getenv("NAME") ? getenv("NAME") : getenv("WORKSPACE")
+# define BUFFER 256
 
 
 typedef struct s_ms
@@ -42,6 +43,7 @@ typedef struct s_ms
 	char	*line;
 	t_cmd	**cmd;
 	t_fds	fd;
+	int		fd_origin[2];
 	int		err;
 }		t_ms;
 
@@ -50,17 +52,23 @@ extern char					**g_envp;
 typedef struct sigaction t_sigaction;
 
 void	error_token(t_ms *ms);
-void	parse_string(t_ms *ms, char *read, int a, char *s_tmp);
+void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp);
 void	mini_shell(void);
 void	init_sigaction(t_sigaction *sa, void (*hd)(int), int sig);
 void	handler_sig(int sig);
 void	pwd(void);
 t_ms	*init_struct(char *line);
 void	ms_pipe(t_cmd **cmds, t_fds *fds);
-void	command_env(void);
-void	command_pwd(void);
+void	exec_command(t_cmd *cmd, t_ms *ms);
 void	command_cd(t_cmd *cmd);
-
+void	command_echo(t_cmd *cmd);
+void	command_env(t_cmd *cmd);
+void	command_exit(t_cmd *cmd);
+void	command_export(t_cmd *cmd);
+void	command_pwd(t_cmd *cmd);
+void	command_unset(t_cmd *cmd);
+void	set_env(char *name, char *value);
+char	*get_cwd(void);
 #endif
 
 /*

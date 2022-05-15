@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:10 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/03 11:59:29 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/15 00:50:50 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-void	command_env(void)
+void	command_env(t_cmd *cmd)
 {
 	int	i;
 	
+	(void) cmd;
 	i = 0;
 	while(g_envp[i] != NULL)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:40 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/14 18:03:15 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/15 03:23:16 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,18 @@ void	command_export(t_cmd *cmd)
 
 	i = 1;
 	while(cmd->argv[i] == NULL)
-	{	
+	{
 		if(ft_strchr(cmd->argv[i], '='))
 		{
 			splitted = ft_split(cmd->argv[1], '=');
 			if (ft_strchr(splitted[0], ' ') == NULL)
 				printf("%s\n", strerror(errno));
 			if (splitted[1] == NULL)
-				setenv(splitted[0], "", 1);
+				set_env(splitted[0], "");
 			value =  verify_text(splitted[1]);
-			setenv(splitted[0], value, 1);
+			set_env(splitted[0], value);
 		}
 	}
 }
+
+// parse "luiz='teste'" luiz=$PWD

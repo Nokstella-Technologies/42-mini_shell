@@ -10,6 +10,9 @@ all: $(NAME)
 $(NAME):
 	g++ -I ../header  -I ../libft $(LIBFT) $(SRC) $(CMDS) $(HAND) -lgtest_main -lgtest -lpthread  -o $(NAME) -fpermissive -Wwrite-strings -g3
 
+run:
+	./test
+
 val:
 	valgrind --track-origins=yes ./test
 
@@ -17,4 +20,5 @@ clean:
 	rm -f $(NAME)
 
 re: clean all
-	./test
+
+.PHONY: all clean re run val

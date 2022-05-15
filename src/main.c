@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/04/18 21:04:23 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/15 02:49:01 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,32 @@ char **g_envp;
 // sigemptyset
 // sigaddset
 
+static char **	create_envp(char **envp)
+{
+	char	**tmp;
+	int		a;
+
+	a = 0;
+	while(envp[a] != NULL)
+		a++;
+	tmp = (char **)malloc((a + 1)* sizeof(char *));
+	a = 0;
+	while(envp[a] != NULL)
+	{
+		tmp[a] = ft_strdup(envp[a]);
+		a++;
+	}
+	tmp[a] = NULL;
+	return(tmp);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_sigaction sa;
 	(void)argc;
 	(void)argv;
 
-	g_envp = envp;
+	g_envp = create_envp(envp);
 	init_sigaction(&sa, &handler_sig, SIGINT);
 	init_sigaction(&sa, SIG_IGN, SIGQUIT);
 	while(1)
