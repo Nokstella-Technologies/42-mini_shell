@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+         #
+#    By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/27 13:53:47 by llima-ce          #+#    #+#              #
-#    Updated: 2022/04/07 11:45:09 by llima-ce         ###   ########.fr        #
+#    Updated: 2022/05/22 01:27:49 by llima-ce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,7 @@ others: $(OBJS) $(OBJS_BONUS) $(OBJS_OTHERS) $(OBJS_PRINTF)
 	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS) $(OBJS_OTHERS) $(OBJS_PRINTF)
 
 $(OBJS_OTHERS): $(addprefix others/, $(SRCS_OTHERS))
-	$(CC) -I ./others -I . -c $(CFLAGS) $(addprefix others/, $(SRCS_OTHERS))
+	$(CC) -I ./others -I . -c $(CFLAGS) $(addprefix others/, $(SRCS_OTHERS)) 
 
 $(OBJS_PRINTF): $(addprefix others/printf/, $(SRCS_PRINTF))
 	$(CC) -I ./others/printf -I . -c $(CFLAGS) $(addprefix others/printf/, $(SRCS_PRINTF))

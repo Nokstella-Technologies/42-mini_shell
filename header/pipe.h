@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:18:56 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/15 00:50:14 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/21 23:51:16 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdio.h>
 # include "../libft/libft.h"
-
-# define PATHS ft_split(getenv("PATH"), ':')
 
 typedef struct s_fds
 {

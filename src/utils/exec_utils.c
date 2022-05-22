@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_utils.c                                       :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:21:28 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/15 02:24:55 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/21 23:57:56 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,36 @@ int	dup_custom(int fd1, int fd2)
 
 void	command_not_found(t_cmd *cmd)
 {
+	
 	printf("%s: command not found\n", cmd->argv[0]);
+}
+
+static int free_path(char **paths, int i, int res)
+{
+	while(paths[i] != NULL)
+	{
+		free_ptr((void **)&paths[i]);
+		i++;
+	}
+	free_ptr((void **)&paths);
+	return(res);
 }
 
 int	testing_access(t_cmd *cmd)
 {
-	int	i;
+	char	**paths;
+	int		i;
 
 	i = 0;
-	while (PATHS[i])
+	paths = ft_split(getenv("PATH"), ':');
+	while (paths[i])
 	{
-		cmd->path_cmd = ft_formatf("%s/%s", PATHS[i],
+		cmd->path_cmd = ft_formatf("%s/%s", paths[i],
 				cmd->argv[0]);
 		if (access(cmd->path_cmd, X_OK) == 0)
-			return (0);
+			return (free_path(paths, 0, 0));
 		free_ptr((void **)&cmd->path_cmd);
 		i++;
 	}
-	return (2);
+	return (free_path(paths, 0, 2));
 }

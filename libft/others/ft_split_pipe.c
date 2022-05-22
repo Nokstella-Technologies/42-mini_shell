@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:42:11 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/14 20:24:18 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/22 01:00:17 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,12 @@ static int	verify_quotes(char const *s, size_t num)
 {
 	char quote;
 
-	quote = *s;
+	quote = s[num];
 	num++;
 	while ((num == 1 || s[num] != quote) && s[num] != 0)
-	{
 		num++;
-		if (s[num] == '\\' && s[num + 1] == quote)
-			num += 2;
-	}
-	num++;
+	if(s[num] != 0)
+		num++;
 	return (num);
 }
 
@@ -59,19 +56,19 @@ static size_t	count_s(char const *s)
 	{
 		while (*tmp == ' ' && *tmp != 0)
 			++tmp;
-		if (*(tmp) == '\''|| *(tmp) == '\"')
+		while (*tmp != ' ' && *tmp != 0)
 		{
-			tmp += verify_quotes(tmp, 0);
-			if (*(tmp) == ' ' || *(tmp) == 0)
-				count++;
-		}
-		else
-		{
-			while (*tmp != ' ' && *tmp != 0)
+			if (*(tmp) == '\''|| *(tmp) == '\"')
+			{
+				tmp += verify_quotes(tmp, 0);
+				if (*(tmp) == ' ' || *(tmp) == 0)
+					count++;
+			}
+			else 
 				++tmp;
-			if (*(tmp - 1) != ' ')
-				count++;
 		}
+		if (*(tmp - 1) != ' ')
+			count++;
 	}
 	return (count);
 }
@@ -87,13 +84,13 @@ static void	ft_fill_matrix(char const *s, size_t num, char **res)
 	while (count < num)
 	{
 		len_word = 0;
-		while (*start_str == ' ' && *start_str != 0)
+		while (*start_str != 0 && *start_str == ' ')
 			++start_str;
-		while (start_str[len_word] != ' ' && start_str[len_word] != 0)
+		while (start_str[len_word] != 0 && start_str[len_word] != ' ')
 		{
 			if (start_str[len_word] == '\'' || start_str[len_word] == '\"' )
 				len_word = verify_quotes(start_str, len_word);
-			else if (start_str[len_word] == ' ' && start_str[len_word] == 0)
+			else if (start_str[len_word] == 0 && start_str[len_word] == ' ')
 				break ;
 			else
 				len_word++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   custom_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:08:12 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/14 16:32:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/21 22:32:20 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	custom_perror(t_ms *ms, int err, char *str)
 {
-
 	(void) ms;
 	(void) str;
 	(void) err;

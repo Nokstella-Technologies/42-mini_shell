@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/15 02:49:01 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/21 16:03:59 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static char **	create_envp(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_sigaction sa;
+	t_sigaction	sa;
+
 	(void)argc;
 	(void)argv;
-
 	g_envp = create_envp(envp);
 	init_sigaction(&sa, &handler_sig, SIGINT);
 	init_sigaction(&sa, SIG_IGN, SIGQUIT);
-	while(1)
+	while (1)
 		mini_shell();
 	return 0;
 }

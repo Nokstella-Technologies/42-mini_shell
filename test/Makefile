@@ -4,17 +4,18 @@ LIBFT = ../libft/others/*.c ../libft/bonus/*.c ../libft/src/*.c ../libft/others/
 SRC = *.cpp
 CMDS = ../src/commands/*.c
 HAND = ../src/handlers/*.c
+UTILS = ../src/utils/*.c
 
 all: $(NAME)
 
 $(NAME):
-	g++ -I ../header  -I ../libft $(LIBFT) $(SRC) $(CMDS) $(HAND) -lgtest_main -lgtest -lpthread  -o $(NAME) -fpermissive -Wwrite-strings -g3
+	g++ -I ../header  -I ../libft $(LIBFT) $(SRC) $(CMDS) $(HAND) $(UTILS) -lgtest_main -lgtest -lpthread  -o $(NAME) -fpermissive -Wwrite-strings -g3
 
 run:
 	./test
 
 val:
-	valgrind --track-origins=yes ./test
+	valgrind --leak-check=full ./test
 
 clean:
 	rm -f $(NAME)

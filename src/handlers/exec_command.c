@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/15 01:00:42 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/22 01:23:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,32 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, int *err)
 	close(fd->fd[1]);
 }
 
-static void	pipe_change_commands(void (*commands)(t_cmd *), t_cmd *cmd, t_fds *fds)
+static void	pipe_change_commands(void (*commands)(void *), void **cmd, t_fds *fds)
 {
 	dup_custom(fds->in_fd, STDIN_FILENO);
 	dup_custom(fds->fd[1], STDOUT_FILENO);
-	commands(cmd);
+	commands(*cmd);
 	close(fds->in_fd);
 	fds->in_fd = fds->fd[0];
 	close(fds->fd[1]);
 }
 
-static int	testing_our_commands(t_cmd *cmd, t_fds *fds)
+static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 {
 	if (ft_strncmp(cmd->argv[0], "cd", 3) == 0)
-		pipe_change_commands(&command_cd, cmd, fds);
+		pipe_change_commands((void (*)(void*))&command_cd, (void **)&cmd, fds);
 	else if (ft_strncmp(cmd->argv[0], "echo", 5) == 0)
-		pipe_change_commands(&command_echo, cmd, fds);
+		pipe_change_commands((void (*)(void*))&command_echo, (void **)&cmd, fds);
 	else if (ft_strncmp(cmd->argv[0], "env", 4) == 0)
-		pipe_change_commands(&command_env, cmd, fds);
+		pipe_change_commands((void (*)(void*))&command_env, (void **)&cmd, fds);
 	else if (ft_strncmp(cmd->argv[0], "exit", 5) == 0)
-		pipe_change_commands(&command_exit, cmd, fds);
+		pipe_change_commands((void (*)(void*))&command_exit, (void **)&ms, fds);
 	else if (ft_strncmp(cmd->argv[0], "export", 7) == 0)
-		pipe_change_commands(&command_export, cmd, fds);
+		pipe_change_commands((void (*)(void*))&command_export, (void **)&cmd, fds);
 	else if (ft_strncmp(cmd->argv[0], "pwd", 4) == 0)
-		pipe_change_commands(&command_pwd, cmd, fds);
+		pipe_change_commands((void (*)(void*))&command_pwd, (void **)&cmd, fds);
 	else if (ft_strncmp(cmd->argv[0], "unset", 6) == 0)
-		pipe_change_commands(&command_unset, cmd, fds);
+		pipe_change_commands((void (*)(void*))&command_unset, (void **)&cmd, fds);
 	else
 		return (1);
 	return (0);
@@ -74,10 +74,12 @@ void	exec_command(t_cmd *cmd, t_ms *ms)
 	if (cmd == NULL || cmd->line_cmd == NULL)
 		return ;
 	cmd->argv = ft_split_pipe(cmd->line_cmd);
-	if (testing_our_commands(cmd, &ms->fd) == 0)
+	if (testing_our_commands(cmd, &ms->fd, ms) == 0)
 		return ;
 	else if (testing_access(cmd) == 0)
 		pipe_change_exc(cmd, &ms->fd, ms->fd.in_fd, &ms->err);
-	else
+	else {
+		ms->err = -1;
 		command_not_found(cmd);
+	}
 }

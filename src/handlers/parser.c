@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/15 02:50:43 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/22 01:36:22 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ static void verify_cmd(t_ms *ms, char *str) {
 	strlen = ft_strlen(ms->handlers);
 	if (*str == 0)
 		return ;
-	else if (ft_strlen(ms->handlers) > 1 && ms->handlers[strlen - 1] != '>' && ms->handlers[strlen - 1] != '<' && ms->handlers[strlen - 1] != 't')
-		add_token(ms, "c");
-	else
+	else if (strlen >  0 && (ms->handlers[strlen - 1] == '>' || ms->handlers[strlen - 1] == '<' || ms->handlers[strlen - 1] == 't'))
 		add_token(ms, "f");
+	else
+		add_token(ms, "c");
 }
 
 int	verify_error(char *handlers, int len, int err)
@@ -129,6 +129,7 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		tmp[a] = (t_cmd *)malloc(1 * sizeof(t_cmd));
 		tmp[a + 1] = NULL;
 		tmp[a]->line_cmd = ft_substr(read, 0, s_tmp - read);
+		tmp[a]->path_cmd = NULL;
 		cmd = ft_strtrim(tmp[a]->line_cmd, " ");
 		verify_cmd(ms, cmd);
 		read = ft_verify_handlers(ms, s_tmp);

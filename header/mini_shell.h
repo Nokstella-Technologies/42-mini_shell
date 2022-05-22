@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/15 03:20:13 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/22 00:11:11 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ extern char					**g_envp;
 typedef struct sigaction t_sigaction;
 
 void	error_token(t_ms *ms);
+void	free_all(t_ms **ms);
 void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp);
 void	mini_shell(void);
 void	init_sigaction(t_sigaction *sa, void (*hd)(int), int sig);
@@ -63,12 +64,17 @@ void	exec_command(t_cmd *cmd, t_ms *ms);
 void	command_cd(t_cmd *cmd);
 void	command_echo(t_cmd *cmd);
 void	command_env(t_cmd *cmd);
-void	command_exit(t_cmd *cmd);
+void	command_exit(t_ms *ms);
 void	command_export(t_cmd *cmd);
 void	command_pwd(t_cmd *cmd);
 void	command_unset(t_cmd *cmd);
 void	set_env(char *name, char *value);
+char	*sub_env(char *text, char *tmp);
 char	*get_cwd(void);
+void	end_program(t_ms **ms);
+void	free_g_envp(void);
+char	*verify_text(char *text);
+char	*verify_quotes(char *text, int i);
 #endif
 
 /*
