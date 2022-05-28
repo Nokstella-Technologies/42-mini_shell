@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/22 01:37:44 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/28 16:53:49 by an7onie77i       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	command_unset(t_cmd *cmd)
 		if (text == NULL)
 			printf("minishell: export: close your quotes\n");
 		else if(ft_strchr(text, '='))
-			printf("unset: `a=': not a valid identifier\n");
+			printf("unset: 'a=': not a valid identifier\n");
 		else
 			remove_envp(text);
 		free_ptr((void **)&text);

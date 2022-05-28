@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:42:11 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/22 01:00:17 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:59:44 by an7onie77i       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,25 @@
 
 static void		ft_fill_matrix(char const *s, size_t num, char **res);
 static size_t	count_s(char const *s);
+
+
+void remove_quote(char **res)
+{
+	int i;
+	char *tmp;
+
+	i = 0;
+	while (res[i] != NULL)
+	{
+		if (res[i][0] == '\"')
+		{
+			tmp = res[i];
+			res[i] = ft_substr(res[i], 1, ft_strlen(res[i]) - 2);
+			free(tmp);
+		}
+		i++;
+	}
+}
 
 char	**ft_split_pipe(char const *s)
 {
@@ -29,6 +48,7 @@ char	**ft_split_pipe(char const *s)
 		return (NULL);
 	res[num] = NULL;
 	ft_fill_matrix(s, num, res);
+	remove_quote(res);
 	return (res);
 }
 
@@ -39,7 +59,11 @@ static int	verify_quotes(char const *s, size_t num)
 	quote = s[num];
 	num++;
 	while ((num == 1 || s[num] != quote) && s[num] != 0)
+	{
+		if(s[num] == '\\' && s[num + 1] == '\"')
+			num += 2;
 		num++;
+	}
 	if(s[num] != 0)
 		num++;
 	return (num);

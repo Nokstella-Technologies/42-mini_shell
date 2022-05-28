@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/22 01:23:02 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:05:20 by an7onie77i       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, int *err)
 			printf("error execve\n");
 		exit(0);
 	}
-	wait(err);
+	waitpid(pid, err, 0); 
 	close(fd->in_fd);
 	fd->in_fd = fd->fd[0];
 	close(fd->fd[1]);
@@ -71,8 +71,13 @@ static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 
 void	exec_command(t_cmd *cmd, t_ms *ms)
 {
+	char	*tmp;
+
 	if (cmd == NULL || cmd->line_cmd == NULL)
 		return ;
+	tmp = verify_quotes(cmd->line_cmd, 0);
+	free_ptr((void **)&cmd->line_cmd);
+	cmd->line_cmd = tmp;
 	cmd->argv = ft_split_pipe(cmd->line_cmd);
 	if (testing_our_commands(cmd, &ms->fd, ms) == 0)
 		return ;

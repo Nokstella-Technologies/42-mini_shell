@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_shell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:20:06 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/21 21:22:02 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:39:00 by an7onie77i       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	end_program(t_ms **ms)
 	close(ms[0]->fd_origin[1]);
 	if (ms[0]->err == 0)
 	{
-		line = get_next_line(ms[0]->fd.fd[0]);
+		line = get_next_line(ms[0]->fd.in_fd);
 		while(line != NULL)
 		{
 			ft_putstr_fd(line, ms[0]->fd.out_fd);

@@ -34,6 +34,16 @@ TEST(SPLIT_PARSE, teste_parse_space_env_envvalue_hard){
 	EXPECT_STREQ(str[1], "\"LU\"'IZ'=\"Tes \"te");
 }
 
+TEST(SPLIT_PARSE, teste_tr){
+	char **str = ft_split_pipe("tr \"an\" \"pi\"");
+
+	EXPECT_STREQ(str[0], "tr");
+	EXPECT_STREQ(str[1], "an");
+	EXPECT_STREQ(str[2], "pi");
+}
+
+
+
 
 
 #pragma GCC diagnostic pop

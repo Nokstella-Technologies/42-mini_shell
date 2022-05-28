@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/22 00:11:11 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/28 17:13:05 by an7onie77i       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINI_SHELL_H
 # define MINI_SHELL_H
@@ -75,6 +74,7 @@ void	end_program(t_ms **ms);
 void	free_g_envp(void);
 char	*verify_text(char *text);
 char	*verify_quotes(char *text, int i);
+void	verify_next_move(t_ms *ms);
 #endif
 
 /*

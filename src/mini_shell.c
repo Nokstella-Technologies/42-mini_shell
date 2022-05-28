@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/21 21:23:55 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/05/28 16:18:509 by an7onie77i       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void mini_shell(void)
 				error_token(ms);
 				continue;
 			}
-			pipe(ms->fd.fd);
-			exec_command(ms->cmd[0], ms);
+			verify_next_move(ms);
 			end_program(&ms);
 		}
 	}
