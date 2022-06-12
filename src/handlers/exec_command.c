@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/28 18:05:20 by an7onie77i       ###   ########.fr       */
+/*   Updated: 2022/06/12 17:07:15 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, int *err)
 	pid_t	pid;
 
 	pid = fork();
-	if (pid == 0)
+	if (pid == -1)
+			perror("error pipe\n");
+	else if (pid == 0)
 	{
 		close(fd->fd[0]);
 		dup_custom(fd_tmp, STDIN_FILENO);
@@ -32,7 +34,7 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, int *err)
 			printf("error execve\n");
 		exit(0);
 	}
-	waitpid(pid, err, 0); 
+	wait(err); 
 	close(fd->in_fd);
 	fd->in_fd = fd->fd[0];
 	close(fd->fd[1]);
@@ -69,7 +71,13 @@ static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 	return (0);
 }
 
-void	exec_command(t_cmd *cmd, t_ms *ms)
+static void change_pipe_final(t_ms *ms)
+{
+	close(ms->fd.fd[1]);
+	ms->fd.fd[1] = ms->fd.out_fd;
+}
+
+void	exec_command(t_cmd *cmd, t_ms *ms, int j)
 {
 	char	*tmp;
 
@@ -79,6 +87,8 @@ void	exec_command(t_cmd *cmd, t_ms *ms)
 	free_ptr((void **)&cmd->line_cmd);
 	cmd->line_cmd = tmp;
 	cmd->argv = ft_split_pipe(cmd->line_cmd);
+	if (ms->cmd_number == j + 1)
+		change_pipe_final(ms);
 	if (testing_our_commands(cmd, &ms->fd, ms) == 0)
 		return ;
 	else if (testing_access(cmd) == 0)

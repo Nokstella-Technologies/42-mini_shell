@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_shell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:20:06 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/28 17:39:00 by an7onie77i       ###   ########.fr       */
+/*   Updated: 2022/06/12 16:51:55 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	end_program(t_ms **ms)
 {
-	char	*line;
+	// char	*line;
 
-	line = NULL;
+	// line = NULL;
 	dup_custom(ms[0]->fd_origin[0], STDOUT_FILENO);
 	dup_custom(ms[0]->fd_origin[1], STDIN_FILENO);
 	close(ms[0]->fd_origin[0]);
 	close(ms[0]->fd_origin[1]);
-	if (ms[0]->err == 0)
-	{
-		line = get_next_line(ms[0]->fd.in_fd);
-		while(line != NULL)
-		{
-			ft_putstr_fd(line, ms[0]->fd.out_fd);
-			free_ptr((void **)&line);
-			line = get_next_line(ms[0]->fd.fd[0]);
-		}
-	}
 	close(ms[0]->fd.fd[0]);
+	// if (ms[0]->err == 0)
+	// {
+	// 	line = get_next_line(ms[0]->fd.in_fd);
+	// 	while(line != NULL)
+	// 	{
+	// 		ft_putstr_fd(line, ms[0]->fd.out_fd);
+	// 		free_ptr((void **)&line);
+	// 		line = get_next_line(ms[0]->fd.fd[0]);
+	// 	}
+	// }
 	free_all(&ms[0]);
 }
 

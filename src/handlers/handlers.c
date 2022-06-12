@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by an7onie77i        #+#    #+#             */
-/*   Updated: 2022/05/28 17:14:57 by an7onie77i       ###   ########.fr       */
+/*   Updated: 2022/06/12 16:45:48 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void verify_next_move(t_ms *ms)
 				printf("error pipe\n");
 			if (ms->handlers[i + 1] == 'p')
 			{
-				exec_command(ms->cmd[j], ms);
+				exec_command(ms->cmd[j], ms, j);
 				i += 2;
 			}
 			else
 			{
-				exec_command(ms->cmd[j], ms);
+				exec_command(ms->cmd[j], ms, j);
 				i++;
 			}
 			j++;

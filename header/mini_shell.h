@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/28 17:13:05 by an7onie77i       ###   ########.fr       */
+/*   Updated: 2022/06/12 16:52:15 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_ms
 	char	*line;
 	t_cmd	**cmd;
 	t_fds	fd;
+	int		cmd_number;
 	int		fd_origin[2];
 	int		err;
 }		t_ms;
@@ -59,7 +60,7 @@ void	handler_sig(int sig);
 void	pwd(void);
 t_ms	*init_struct(char *line);
 void	ms_pipe(t_cmd **cmds, t_fds *fds);
-void	exec_command(t_cmd *cmd, t_ms *ms);
+void	exec_command(t_cmd *cmd, t_ms *ms, int j);
 void	command_cd(t_cmd *cmd);
 void	command_echo(t_cmd *cmd);
 void	command_env(t_cmd *cmd);

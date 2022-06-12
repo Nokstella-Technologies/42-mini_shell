@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/22 01:36:22 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/12 16:44:09 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,18 @@ static char	*ft_verify_handlers(t_ms *ms, char *s_tmp)
 	return(s_tmp + 1);
 }
 
-static void verify_cmd(t_ms *ms, char *str) {
-	int strlen;
+static void	verify_cmd(t_ms *ms, char *str) {
+	int	strlen;
 
 	strlen = ft_strlen(ms->handlers);
 	if (*str == 0)
 		return ;
 	else if (strlen >  0 && (ms->handlers[strlen - 1] == '>' || ms->handlers[strlen - 1] == '<' || ms->handlers[strlen - 1] == 't'))
 		add_token(ms, "f");
-	else
+	else {
+		ms->cmd_number ++;
 		add_token(ms, "c");
+	}
 }
 
 int	verify_error(char *handlers, int len, int err)
