@@ -11,23 +11,31 @@
 /* ************************************************************************** */
 
 #include "../header/mini_shell.h"
-#include "../header/mini_shell.h"
 
+void	command_cd(t_cmd *cmd)
+{
+	char	*formated;
+	char	*env;
 
-// int	command_cd(void)
-// {
-// 	char	s[100];
-	
-	
-// 	if(chdir(folder) == 0)
-// 	{
-// 	printf("%s\n", getcwd(s, 64));
-// 		return(0);
-// 	}
-// 	else
-// 	{
-// 		printf("%s\n", strerror(errno));
-// 		return(-1);	
-// 	}
-// 	return (0);
-// }
+	if (!cmd->argv[1])
+		cmd->argv[1] = getenv("HOME");
+	else if (cmd->argv[2] != NULL)
+		printf("%s\n", strerror(errno));
+	if (!cmd->argv[1])
+		return ;
+	if (strchr(cmd->argv[1], '~'))
+	{
+		formated = ft_formatf("%s%s",getenv("HOME"), &cmd->argv[1][1]);
+		free(cmd->argv[1]);
+		cmd->argv[1] = formated;
+	}
+	if (chdir(cmd->argv[1]) != 0)
+		printf("%s\n", strerror(errno));
+	else
+	{ 
+		set_env("OLDPWD", getenv("PWD"));
+		env = get_cwd();
+		set_env("PWD", env);
+		free(env);
+	}
+}

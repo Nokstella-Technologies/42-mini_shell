@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:18:56 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/04/12 20:02:33 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/18 01:51:56 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 
-# define PATHS ft_split(getenv("PATH"), ':')
-
 typedef struct s_fds
 {
 	int in_fd;
 	int out_fd;
+	int tmp_out;
 	int fd[2];
 }		t_fds;
-
 
 typedef struct s_cmd
 {
@@ -36,5 +34,5 @@ typedef struct s_cmd
 int		testing_access(t_cmd *cmd);
 int		find_cmd(t_cmd *cmd);
 void	command_not_found(t_cmd *cmd);
-int		dup_custom(int fd1, int fd2, t_cmd *cmd);
+int		dup_custom(int fd1, int fd2);
 #endif

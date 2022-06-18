@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/03 10:51:05 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/12 16:44:09 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,18 @@ static char	*ft_verify_handlers(t_ms *ms, char *s_tmp)
 	return(s_tmp + 1);
 }
 
-static void verify_cmd(t_ms *ms, char *str) {
-	int strlen;
+static void	verify_cmd(t_ms *ms, char *str) {
+	int	strlen;
 
 	strlen = ft_strlen(ms->handlers);
 	if (*str == 0)
 		return ;
-	else if (ms->handlers[strlen - 1] != '>' && ms->handlers[strlen - 1] != '<' && ms->handlers[strlen - 1] != 't')
-		add_token(ms, "c");
-	else
+	else if (strlen >  0 && (ms->handlers[strlen - 1] == '>' || ms->handlers[strlen - 1] == '<' || ms->handlers[strlen - 1] == 't'))
 		add_token(ms, "f");
+	else {
+		ms->cmd_number ++;
+		add_token(ms, "c");
+	}
 }
 
 int	verify_error(char *handlers, int len, int err)
@@ -87,7 +89,34 @@ int	verify_error(char *handlers, int len, int err)
 	return (err);
 }
 
-void	parse_string(t_ms *ms, char *read, int a, char *s_tmp)
+static char	*find_next_token(t_ms *ms, char *line)
+{
+	char	quote;
+
+	while (*line != '&' && *line != '>' && *line != '<' && *line != '|' && *line != 0)
+	{
+		if (*line == '\"' || *line == '\'')
+		{
+			quote = *line;
+			line++;
+			while(*line != quote)
+			{
+				if(*line == '\0')
+				{
+					ms->err = -3;
+					return(NULL);
+				}
+				line++;
+			}
+		}
+		line++;
+	}
+	if(*line == 0)
+		return(NULL);
+	return(line);
+}
+
+void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 {
 	t_cmd	**tmp;
 	char	*cmd;
@@ -95,13 +124,14 @@ void	parse_string(t_ms *ms, char *read, int a, char *s_tmp)
 	
 	while(*read != 0)
 	{
-		s_tmp = ft_strfstr(read, "|<>&");
+		s_tmp = find_next_token(ms, read);
 		if (s_tmp == NULL)
 			s_tmp = read + ft_strlen(read);
 		tmp = (t_cmd **)malloc((a + 2)* sizeof(t_cmd *));
 		tmp[a] = (t_cmd *)malloc(1 * sizeof(t_cmd));
 		tmp[a + 1] = NULL;
 		tmp[a]->line_cmd = ft_substr(read, 0, s_tmp - read);
+		tmp[a]->path_cmd = NULL;
 		cmd = ft_strtrim(tmp[a]->line_cmd, " ");
 		verify_cmd(ms, cmd);
 		read = ft_verify_handlers(ms, s_tmp);
