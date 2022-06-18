@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:18:56 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/21 23:51:16 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/18 01:51:56 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_fds
 {
 	int in_fd;
 	int out_fd;
+	int tmp_out;
 	int fd[2];
 }		t_fds;
 

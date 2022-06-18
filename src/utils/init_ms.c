@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ms.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:32:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/12 16:41:40 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/18 01:52:18 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ t_ms *init_struct(char *line)
 	ms->line = ft_strdup(line);
 	ms->fd.in_fd = 0;
 	ms->fd.out_fd = 1;
+	ms->fd.tmp_out = 0;
 	ms->handlers = ft_strdup("");
 	ms->err = 0;
 	ms->cmd_number = 0;
-	ms->fd_origin[0] = dup(STDOUT_FILENO);
-	ms->fd_origin[1] = dup(STDIN_FILENO);
+	ms->fd_origin[0] = dup(STDIN_FILENO);
+	ms->fd_origin[1] = dup(STDOUT_FILENO);
+	ms->cmd_now = 0;
+	ms->cmd_file_now = 0;
 	return(ms);
 }

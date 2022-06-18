@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/12 16:52:15 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/18 01:31:30 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_ms
 	t_cmd	**cmd;
 	t_fds	fd;
 	int		cmd_number;
+	int		cmd_now;
+	int		cmd_file_now;
 	int		fd_origin[2];
 	int		err;
 }		t_ms;
@@ -51,6 +53,7 @@ extern char					**g_envp;
 
 typedef struct sigaction t_sigaction;
 
+t_ms	*init_struct(char *line);
 void	error_token(t_ms *ms);
 void	free_all(t_ms **ms);
 void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp);
@@ -58,9 +61,8 @@ void	mini_shell(void);
 void	init_sigaction(t_sigaction *sa, void (*hd)(int), int sig);
 void	handler_sig(int sig);
 void	pwd(void);
-t_ms	*init_struct(char *line);
 void	ms_pipe(t_cmd **cmds, t_fds *fds);
-void	exec_command(t_cmd *cmd, t_ms *ms, int j);
+void	exec_command(t_cmd *cmd, t_ms *ms);
 void	command_cd(t_cmd *cmd);
 void	command_echo(t_cmd *cmd);
 void	command_env(t_cmd *cmd);
@@ -69,13 +71,15 @@ void	command_export(t_cmd *cmd);
 void	command_pwd(t_cmd *cmd);
 void	command_unset(t_cmd *cmd);
 void	set_env(char *name, char *value);
-char	*sub_env(char *text, char *tmp);
-char	*get_cwd(void);
 void	end_program(t_ms **ms);
 void	free_g_envp(void);
+void	verify_next_move(t_ms *ms);
+void	custom_close(int *fd);
+void	exec_elf(t_cmd *cmd);
+char	*sub_env(char *text, char *tmp);
+char	*get_cwd(void);
 char	*verify_text(char *text);
 char	*verify_quotes(char *text, int i);
-void	verify_next_move(t_ms *ms);
 #endif
 
 /*

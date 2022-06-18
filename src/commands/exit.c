@@ -14,9 +14,9 @@
 
 void	command_exit(t_ms *ms)
 {
-	close(ms->fd.in_fd);
+	custom_close(&ms->fd.in_fd);
 	ms->fd.in_fd = ms->fd.fd[0];
-	close(ms->fd.fd[1]);
+	custom_close(&ms->fd.fd[1]);
 	end_program(&ms);
 	exit(0);
 }

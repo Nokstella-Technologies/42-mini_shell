@@ -38,7 +38,7 @@ void mini_shell(void)
 		free_ptr((void **)&s);
 		if (!r)
 			printf("\n");
-		else
+		else if(*r != 0)
 		{
 			add_history(r);
 			ms = init_struct(r);
@@ -52,6 +52,7 @@ void mini_shell(void)
 			end_program(&ms);
 		}
 	}
+	perror(strerror(errno));
 	free_g_envp();
 	free_ptr((void **)&r);
 	exit(0);

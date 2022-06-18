@@ -3,20 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:21:28 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/21 23:57:56 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/18 01:37:42 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
+void exec_elf(t_cmd *cmd)
+{
+	char	*tmp;
+	char	*s;
+	
+	if(ft_strncmp("./", cmd->line_cmd, 2) == 0)
+	{
+		s = get_cwd();
+		tmp = ft_formatf("%s/%s", s, &cmd->line_cmd[2]);
+		cmd->line_cmd = tmp;
+		free_ptr((void**)&s);
+	}
+}
+
 int	dup_custom(int fd1, int fd2)
 {
 	if (dup2(fd1, fd2) == -1)
 	{
-		printf("%s\n", strerror(errno));
+		perror(strerror(errno));
 		return (-1);
 	}
 	return (0);
@@ -24,7 +38,6 @@ int	dup_custom(int fd1, int fd2)
 
 void	command_not_found(t_cmd *cmd)
 {
-	
 	printf("%s: command not found\n", cmd->argv[0]);
 }
 
@@ -45,6 +58,11 @@ int	testing_access(t_cmd *cmd)
 	int		i;
 
 	i = 0;
+	if(access(cmd->argv[0], X_OK) == 0)
+	{
+		cmd->path_cmd = ft_strdup(cmd->argv[0]);
+		return (0);
+	}
 	paths = ft_split(getenv("PATH"), ':');
 	while (paths[i])
 	{

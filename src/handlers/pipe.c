@@ -26,9 +26,9 @@
 // 		exit (0);
 // 	}
 // 	wait(&test);
-// 	close(fd->in_fd);
+// 	custom_close(&fd->in_fd);
 // 	fd->in_fd = fd->fd[0];
-// 	close(fd->fd[1]);
+// 	custom_close(&fd->fd[1]);
 // 	return (0);
 // }
 
