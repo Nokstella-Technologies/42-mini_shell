@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/18 02:08:46 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:48:30 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ static void change_pipe_final(t_ms *ms)
 {
 	if (ms->fd.tmp_out != 0) {
 		custom_close(&ms->fd.fd[1]);
-		custom_close(&ms->fd.fd[0]);
 		ms->fd.fd[1] = ms->fd.tmp_out;
-		ms->fd.fd[0] = ms->fd.tmp_out;
 	}
 	else if (ms->cmd_number == ms->cmd_now + 1)
 	{
@@ -48,13 +46,26 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms)
 		dup_custom(fd_tmp, STDIN_FILENO);
 		dup_custom(fd->fd[1], STDOUT_FILENO);
 		if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
-			printf("error execve\n");
+			perror("minishell: error execv\n");
 		exit(0);
 	}
 	wait(&ms->err);
 	custom_close(&fd->in_fd);
-	fd->in_fd = fd->fd[0];
-	custom_close(&fd->fd[1]);
+	if(ms->fd.in_fd == ms->fd.heredoc_fd)
+	{
+		if(unlink("./.tmp") != 0)
+			perror(strerrno(errno));
+	}
+	if(ms->fd.tmp_out != 0)
+	{
+		fd->in_fd = fd->tmp_out;
+		fd->tmp_out = 0;
+	}
+	else
+	{
+		fd->in_fd = fd->fd[0];
+		custom_close(&fd->fd[1]);
+	}
 }
 
 static void	pipe_change_commands(void (*commands)(void *), void **cmd, t_fds *fds, t_ms *ms)

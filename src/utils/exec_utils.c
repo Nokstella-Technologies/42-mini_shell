@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:21:28 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/18 01:37:42 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:54:45 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,13 @@ void exec_elf(t_cmd *cmd)
 
 int	dup_custom(int fd1, int fd2)
 {
+	char *tmp;
+
 	if (dup2(fd1, fd2) == -1)
 	{
-		perror(strerror(errno));
+		tmp = ft_formatf("minishell: %s : %i: %i",strerror(errno), fd1, fd2);
+		perror(tmp);
+		free_ptr((void **) &tmp);
 		return (-1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:20:06 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/18 01:08:42 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:10:21 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 void custom_close(int *fd)
 {
 	int err;
+	char *tmp;
 	
 	err = close(*fd);
 	if (err == -1)
 	{
-		printf("minishell: %s\n", strerror(errno));
+
+		tmp = ft_formatf("minishell: %s\n", strerror(errno));
+		perror(tmp);
+		free_ptr((void **) &tmp);
 		*fd = -1;
 	}
 	else 
