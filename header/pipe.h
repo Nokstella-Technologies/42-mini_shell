@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:18:56 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/18 01:51:56 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:11:58 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_fds
 	int in_fd;
 	int out_fd;
 	int tmp_out;
+	int heredoc_fd;
 	int fd[2];
 }		t_fds;
 

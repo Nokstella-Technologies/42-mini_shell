@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/18 01:31:30 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:39:51 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	free_g_envp(void);
 void	verify_next_move(t_ms *ms);
 void	custom_close(int *fd);
 void	exec_elf(t_cmd *cmd);
+void	heredoc(t_ms *ms, t_cmd *eof);
 char	*sub_env(char *text, char *tmp);
 char	*get_cwd(void);
 char	*verify_text(char *text);

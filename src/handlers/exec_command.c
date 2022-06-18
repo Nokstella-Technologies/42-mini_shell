@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/18 16:21:09 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:48:30 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms)
 	}
 	wait(&ms->err);
 	custom_close(&fd->in_fd);
+	if(ms->fd.in_fd == ms->fd.heredoc_fd)
+	{
+		if(unlink("./.tmp") != 0)
+			perror(strerrno(errno));
+	}
 	if(ms->fd.tmp_out != 0)
 	{
 		fd->in_fd = fd->tmp_out;
