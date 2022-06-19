@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/18 17:39:51 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/18 21:02:04 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_ms
 	int		cmd_now;
 	int		cmd_file_now;
 	int		fd_origin[2];
+	int		handlers_counter;
 	int		err;
 }		t_ms;
 
