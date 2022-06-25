@@ -12,10 +12,10 @@
 
 #include "../header/mini_shell.h"
 
-static char *concat(char **argv, char *formated, int i)
+static char	*concat(char **argv, char *formated, int i)
 {
-	char *tmp;
-	char * text;
+	char	*tmp;
+	char	*text;
 
 	text = ft_strdup("");
 	while (argv[i] != NULL)
@@ -35,13 +35,11 @@ static char *concat(char **argv, char *formated, int i)
 	return (text);
 }
 
-
 void	command_echo(t_cmd *cmd)
 {
 	char	*text;
 	int		i;
 
-	
 	i = 1;
 	if (!cmd->argv[1])
 		printf("\n");
@@ -59,4 +57,3 @@ void	command_echo(t_cmd *cmd)
 		printf("%s\n", text);
 	free_ptr((void **)&text);
 }
-

@@ -1,6 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/an7onie77i/Code/42-Cursus/42-mini_shell'
+make: Entering directory '/home/coder/Code/42-mini_shell'
 make others -C ./libft
 gcc src/main.c src/mini_shell.c src/signals/signals.c src/handlers/*.c src/error/custom_error.c src/commands/*.c src/utils/*.c  -Wall -Wextra -Werror -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o minishell 
-make: Leaving directory `/Users/an7onie77i/Code/42-Cursus/42-mini_shell'
+make: Leaving directory '/home/coder/Code/42-mini_shell'
  

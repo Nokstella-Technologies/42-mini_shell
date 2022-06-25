@@ -12,10 +12,18 @@
 
 #include "mini_shell.h"
 
+static void	free_command_export(char *text, char **splitted)
+{
+	free_ptr((void **)&text);
+	free_ptr((void **)&splitted[0]);
+	free_ptr((void **)&splitted[1]);
+	free_ptr((void **)&splitted);
+}
+
 char	*verify_text(char *text)
 {
 	char	*tmp2;
-	
+
 	tmp2 = verify_quotes(text, 0);
 	if (tmp2 == NULL)
 		return (NULL);
@@ -37,20 +45,15 @@ void	command_export(t_cmd *cmd)
 			if (text == NULL)
 				printf("minishell: export: close your quotes\n");
 			splitted = ft_split(text, '=');
-			if (ft_strchr(cmd->argv[i], '=') == cmd->argv[i] || ft_strchr(splitted[0], ' ') != NULL)
+			if (ft_strchr(cmd->argv[i], '=') == cmd->argv[i]
+				|| ft_strchr(splitted[0], ' ') != NULL)
 				printf("minishell: export: `=': not a valid identifier\n");
 			else if (splitted[1] == NULL)
 				set_env(splitted[0], "");
 			else
 				set_env(splitted[0], splitted[1]);
-			free_ptr((void **)&text);
-			free_ptr((void **)&splitted[0]);
-			free_ptr((void **)&splitted[1]);
-			free_ptr((void **)&splitted);
+			free_command_export(text, splitted);
 		}
 		i++;
 	}
 }
-
-// parse "luiz='teste'" luiz=$PWD
-// commnad not found break (possible infinite loop)

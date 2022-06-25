@@ -40,12 +40,12 @@ void	command_unset(t_cmd *cmd)
 	int		i;
 
 	i = 1;
-	while(cmd->argv[i] != NULL)
+	while (cmd->argv[i] != NULL)
 	{
 		text = verify_text(cmd->argv[i]);
 		if (text == NULL)
 			printf("minishell: export: close your quotes\n");
-		else if(ft_strchr(text, '='))
+		else if (ft_strchr(text, '='))
 			printf("unset: 'a=': not a valid identifier\n");
 		else
 			remove_envp(text);

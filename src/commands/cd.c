@@ -25,14 +25,14 @@ void	command_cd(t_cmd *cmd)
 		return ;
 	if (strchr(cmd->argv[1], '~'))
 	{
-		formated = ft_formatf("%s%s",getenv("HOME"), &cmd->argv[1][1]);
+		formated = ft_formatf("%s%s", getenv("HOME"), &cmd->argv[1][1]);
 		free(cmd->argv[1]);
 		cmd->argv[1] = formated;
 	}
 	if (chdir(cmd->argv[1]) != 0)
 		printf("%s\n", strerror(errno));
 	else
-	{ 
+	{
 		set_env("OLDPWD", getenv("PWD"));
 		env = get_cwd();
 		set_env("PWD", env);

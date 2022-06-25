@@ -82,62 +82,9 @@ char	*sub_env(char *text, char *tmp);
 char	*get_cwd(void);
 char	*verify_text(char *text);
 char	*verify_quotes(char *text, int i);
+char	*verify_token(t_ms *ms, char *s_tmp, char a);
+int		verify_error(char *handlers, int len, int err);
+void	verify_cmd(t_ms *ms, char *str);
+void	add_token(t_ms *ms, char *token);
+
 #endif
-
-/*
-- readline ler fd1 const char de entrada
-- rl_clear_history Clear the history list by deleting all of the entries, in the same manner as the History library's clear_history() function. This differs from clear_history because it frees private data Readline saves in the history list.
-- rl_on_new_line Tell the update routines that we have moved onto a new (empty) line, usually after ouputting a newline.
-- rl_replace_line Replace the contents of rl_line_buffer with text. The point and mark are preserved, if possible. If clear_undo is non-zero, the undo list associated with the current line is cleared.
-- rl_redisplay Change what's displayed on the screen to reflect the current contents of rl_line_buffer.
-- add_history add a line to the history
-getcwd
-chdir
-stat
-lstat
-fstat
-access
-unlink
-opendir
-readdir
-closedir
-strerror
-
-
-https://www.youtube.com/watch?v=hartxUrXqQM
-https://viewsourcecode.org/snaptoken/kilo/index.html
-ioctl
-tcsetattr
-tcgetattr
-tgetent
-tgetflag
-tgetnum
-tgetstr
-tgoto
-tputs
-*/
-
-// ttyname -> return a pointer to the null terminated byte in the pathname fo the terminal device that is open in the current file descriptor. 
-// ttyslot -> refers to an old model used by no systemV systems, in modern SystemV and SystemD, deprecable for us. 
-// isatty -> return 1 if the current fd is pointing to a terminal, returns 0 if not
-// printf
-// malloc
-// free
-// write
-// open
-// read
-// close
-// fork
-// wait
-// waitpid
-// wait3
-// wait4
-// execve
-// dup
-// dup2
-// exit
-// pipe
-
-// getenv
-// kill
-// perror

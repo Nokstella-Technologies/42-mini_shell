@@ -12,41 +12,9 @@
 
 #include "mini_shell.h"
 
-static void add_token(t_ms *ms, char *token)
-{
-	char *tmp;
-
-	tmp = ms->handlers;
-	ms->handlers = ft_formatf("%s%s", ms->handlers, token);
-	free(tmp);
-}
-
-static char *verify_token(t_ms *ms, char *s_tmp, char a)
-{
-	if (*s_tmp == a)
-	{
-		if (*s_tmp == '|')
-			add_token(ms, "o");
-		else if (*s_tmp == '>')
-			add_token(ms, "t");
-		else if (*s_tmp == '<')
-			add_token(ms, "h");
-		return(s_tmp + 1);
-	}
-	else if (*s_tmp == '|' || *s_tmp == '>' || *s_tmp == '<' || *s_tmp == '&')
-		ms->err = -2;
-	if (a == '|')
-		add_token(ms, "p");
-	if (a == '>')
-		add_token(ms, ">");
-	if (a == '<')
-		add_token(ms, "<");
-	return (s_tmp);
-}
-
 static char	*ft_verify_handlers(t_ms *ms, char *s_tmp)
 {
-	if(*(s_tmp) == '\0')
+	if (*(s_tmp) == '\0')
 		return (s_tmp);
 	else if (*(s_tmp) == '>')
 		return (verify_token(ms, s_tmp + 1, '>'));
@@ -59,75 +27,76 @@ static char	*ft_verify_handlers(t_ms *ms, char *s_tmp)
 		add_token(ms, "a");
 		return (s_tmp + 2);
 	}
-	else if(*(s_tmp) == '&')
+	else if (*(s_tmp) == '&')
 		ms->err = -2;
-	return(s_tmp + 1);
-}
-
-static void	verify_cmd(t_ms *ms, char *str) {
-	int	strlen;
-
-	strlen = ft_strlen(ms->handlers);
-	if (*str == 0)
-		return ;
-	else if (strlen >  0 && (ms->handlers[strlen - 1] == '>' || ms->handlers[strlen - 1] == '<' || ms->handlers[strlen - 1] == 't'))
-		add_token(ms, "f");
-	else {
-		ms->cmd_number ++;
-		add_token(ms, "c");
-	}
-}
-
-int	verify_error(char *handlers, int len, int err)
-{
-	if (handlers[len - 1] != 'c' && handlers[len - 1] != 'f' && err == 0)
-	{
-		if (handlers[len - 1] == 'p' || handlers[len - 1] == 'a' || handlers[len - 1] == 'o' )
-			return (1);
-		return (-2);
-	}
-	return (err);
+	return (s_tmp + 1);
 }
 
 static char	*find_next_token(t_ms *ms, char *line)
 {
 	char	quote;
 
-	while (*line != '&' && *line != '>' && *line != '<' && *line != '|' && *line != 0)
+	while (*line != '&' && *line != '>'
+		&& *line != '<' && *line != '|' && *line != 0)
 	{
 		if (*line == '\"' || *line == '\'')
 		{
 			quote = *line;
 			line++;
-			while(*line != quote)
+			while (*line != quote)
 			{
-				if(*line == '\0')
+				if (*line == '\0')
 				{
 					ms->err = -3;
-					return(NULL);
+					return (NULL);
 				}
 				line++;
 			}
 		}
 		line++;
 	}
-	if(*line == 0)
-		return(NULL);
-	return(line);
+	if (*line == 0)
+		return (NULL);
+	return (line);
+}
+
+static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int a, t_cmd **tmp)
+{
+	int	b;
+
+	if (ms->cmd != NULL)
+	{
+		b = 0;
+		while (b < a)
+		{
+			tmp[b] = ms->cmd[b];
+			b++;
+		}
+		free(ms->cmd);
+	}
+	return (tmp);
+}
+
+void	tokeneer_if(t_ms *ms, char *cmd)
+{
+	if (!ft_strncmp(cmd, "", 2) && !(a == 0 && (*ms->handlers == '>'
+				|| *ms->handlers == '<'
+				|| *ms->handlers == 'h'
+				|| *ms->handlers == 't')))
+		ms->err = -2;
 }
 
 void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 {
 	t_cmd	**tmp;
 	char	*cmd;
-	int		b;
-	
-	while(*read != 0)
+
+	while (*read != 0)
 	{
 		s_tmp = find_next_token(ms, read);
 		if (s_tmp == NULL)
 			s_tmp = read + ft_strlen(read);
-		tmp = (t_cmd **)malloc((a + 2)* sizeof(t_cmd *));
+		tmp = (t_cmd **)malloc((a + 2) * sizeof(t_cmd *));
 		tmp[a] = (t_cmd *)malloc(1 * sizeof(t_cmd));
 		tmp[a + 1] = NULL;
 		tmp[a]->line_cmd = ft_substr(read, 0, s_tmp - read);
@@ -135,20 +104,7 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		cmd = ft_strtrim(tmp[a]->line_cmd, " ");
 		verify_cmd(ms, cmd);
 		read = ft_verify_handlers(ms, s_tmp);
-		if(ms->cmd != NULL)
-		{
-			b = 0;
-			while(b < a)
-			{
-				tmp[b] = ms->cmd[b];
-				b++;
-			}
-			free(ms->cmd);
-		}
-		if (!ft_strncmp(cmd, "", 2) && !(a == 0 && (*ms->handlers == '>' || *ms->handlers == '<' || *ms->handlers == 'h' || *ms->handlers == 't')))
-		{
-			ms->err = -2;
-		}
+		tmp = struct_value_to_tokeneer(ms, a, tmp);
 		free(tmp[a]->line_cmd);
 		tmp[a]->line_cmd = cmd;
 		ms->cmd = tmp;
@@ -156,21 +112,3 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 	}
 	ms->err = verify_error(ms->handlers, ft_strlen(ms->handlers), ms->err);
 }
-
-
-
-
-
-
-
-
-	
-	/**
-	 * | pipe -> contar quantos comandos e quantos pipes
-	 * > redirect output to a file se não fd 1
-	 * < infile fd 0
-	 * << heredoc
-	 * >> fazer a saída no append mode
-	 * && AND Se o primeiro não existe ele da erro, se o primeiro e segundo existe ele roda os dois e se os dois não existem ele não roda nenhum. 
-	 * || OR Se o primeiro existe ele não roda o próximo, caso não exista nehum dos 2 ele 
-	 */
