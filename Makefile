@@ -14,7 +14,7 @@ COMMANDS = *.c
 
 UTILS = *.c
 
-ERROS = custom_error.c 
+ERROS = custom_error.c
 
 FILES = main.c			\
 		mini_shell.c	\
@@ -31,7 +31,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT)
-	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME) 
+	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -I /usr/local/opt/readline/include -L ./libft /usr/local/opt/readline/lib -lft -lreadline -g3 -o $(NAME) -v
 
 $(LIBFT):
 	make others -C ./libft

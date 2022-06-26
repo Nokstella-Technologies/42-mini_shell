@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/12 16:44:09 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/26 18:31:48 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int a, t_cmd **tmp)
 	return (tmp);
 }
 
-void	tokeneer_if(t_ms *ms, char *cmd)
+void	tokeneer_if(t_ms *ms,int a, char *cmd)
 {
 	if (!ft_strncmp(cmd, "", 2) && !(a == 0 && (*ms->handlers == '>'
 				|| *ms->handlers == '<'
@@ -105,6 +105,7 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		verify_cmd(ms, cmd);
 		read = ft_verify_handlers(ms, s_tmp);
 		tmp = struct_value_to_tokeneer(ms, a, tmp);
+		tokeneer_if(ms, a, cmd);
 		free(tmp[a]->line_cmd);
 		tmp[a]->line_cmd = cmd;
 		ms->cmd = tmp;

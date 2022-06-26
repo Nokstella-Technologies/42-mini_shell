@@ -1,33 +1,34 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-# GNU Make 4.2.1
-# Built for x86_64-pc-linux-gnu
-# Copyright (C) 1988-2016 Free Software Foundation, Inc.
-# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-# This is free software: you are free to change and redistribute it.
-# There is NO WARRANTY, to the extent permitted by law.
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
 
-# Make data base, printed on Sun Jun 26 23:03:21 2022
+# This program built for i386-apple-darwin11.3.0
+
+# Make data base, printed on Sun Jun 26 18:28:29 2022
 
 # Variables
 
-# makefile (from 'Makefile', line 15)
+# makefile (from `Makefile', line 15)
 UTILS = *.c
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# default
-.SHELLFLAGS := -c
-# makefile (from 'Makefile', line 29)
-OBJ = $(SRC:.c=.o)
 # environment
-VSCODE_AGENT_FOLDER = /home/coder/.vscode-server
-# makefile (from 'Makefile', line 27)
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# makefile (from `Makefile', line 29)
+OBJ = $(SRC:.c=.o)
+# makefile (from `Makefile', line 27)
 SRC = $(addprefix src/, $(FILES)) 
 # environment
 LC_CTYPE = en_US.UTF-8
 # environment
 VSCODE_LOG_NATIVE = false
+# environment
+NVM_INC = /Users/an7onie77i/.nvm/versions/node/v18.2.0/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -35,107 +36,161 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /home/coder/Code/42-mini_shell
+CURDIR := /Users/an7onie77i/Code/42-Cursus/42-mini_shell
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-_ = /home/coder/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/node
-# makefile (from 'Makefile', line 5)
+_ = /usr/bin/make
+# makefile (from `Makefile', line 5)
 CFLAGS = -Wall -Wextra -Werror
-# makefile (from 'Makefile', line 1)
+# makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
-# 'override' directive
-GNUMAKEFLAGS := 
+# environment
+AUTOJUMP_SOURCED = 1
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_CWD = /home/coder
+JOVIAL_VERSION = 1.1.8
 # environment
-SSH_CONNECTION = 192.168.78.0 1700 192.168.127.65 2222
+__CFBundleIdentifier = com.microsoft.VSCode
 # environment
-PATH = /home/coder/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-# makefile (from 'Makefile', line 17)
-ERROS = custom_error.c 
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/4p/fgpsy7jx2mn_chsl1yzp9t7m0000gn/T/vscode-ipc-88a2408c-18f3-4ecd-8f9c-c36078f44999.sock
+# environment
+VSCODE_CWD = /Users/an7onie77i/Code/42-Cursus/42-mini_shell
+# environment
+PATH = /Users/an7onie77i/.nvm/versions/node/v18.2.0/bin:/usr/local/opt/node@16/bin:/usr/local/opt/openjdk/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/an7onie77i/.cargo/bin:~/Downloads/flutter/bin
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# makefile (from `Makefile', line 17)
+ERROS = custom_error.c
+# environment
+NVM_BIN = /Users/an7onie77i/.nvm/versions/node/v18.2.0/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-f196ea16-399e-4be9-ad7e-917b998b4d62.sock
+ELECTRON_RUN_AS_NODE = 1
 # default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.3bZ42MRbaf/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /home/coder/Code/42-mini_shell
-# default
-.LOADED := 
-# automatic
-*D = $(patsubst %/,%,$(dir $*))
-# makefile (from 'Makefile', line 9)
+PWD = /Users/an7onie77i/Code/42-Cursus/42-mini_shell
+# environment
+APPLE_DISPLAY_SAFE_AREA_COMPATIBILITY_MODE = YES
+# makefile (from `Makefile', line 9)
 SIGNALS = signals.c 
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /home/coder
+HOME = /Users/an7onie77i
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-LOGNAME = coder
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/an7onie77i/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+# environment
+LOGNAME = an7onie77i
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# automatic
-+F = $(notdir $+)
+# environment
+NVM_CD_FLAGS = -q
+# environment
+ZSH = /Users/an7onie77i/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
-MAKELEVEL := 0
+XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
+# environment
+LC_TERMINAL = iTerm2
+# environment
+SHLVL = 3
+# makefile (from `Makefile', line 7)
+LIBFT = ./libft/libft.a
+# makefile (from `Makefile', line 3)
+CC = gcc
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = an7onie77i
+# makefile
+.DEFAULT_GOAL := all
 # default
 MAKECMDGOALS := all
 # environment
-SHLVL = 1
-# makefile (from 'Makefile', line 7)
-LIBFT = ./libft/libft.a
-# makefile (from 'Makefile', line 3)
-CC = gcc
-# default
-MAKE_VERSION := 4.2.1
-# environment
-USER = coder
-# makefile
-.DEFAULT_GOAL := all
-# makefile (from 'Makefile', line 1)
+TERM_SESSION_ID = w0t0p0:AE007D17-81B5-4513-A68F-511676CF3D22
+# makefile (from `Makefile', line 1)
 NAME = minishell
+# environment
+LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
-MAKE_COMMAND := make
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# environment
+TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
+# environment
+TMPDIR = /var/folders/4p/fgpsy7jx2mn_chsl1yzp9t7m0000gn/T/
 # automatic
 *F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/an7onie77i/Library/Application Support/Code/1.68.1-main.sock
 # makefile
-MAKEFLAGS = pqrR
+MAKEFLAGS = Rrqp
 # environment
-MFLAGS = -pqrR
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
 # environment
-SSH_CLIENT = 192.168.78.0 1700 2222
-# makefile (from 'Makefile', line 11)
+TERM_PROGRAM_VERSION = 3.4.11
+# environment
+NVM_DIR = /Users/an7onie77i/.nvm
+# makefile (from `Makefile', line 11)
 HANDLERS = *.c
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.38601444.38601450.52904383-8D4E-4627-A6CD-79C5F4050A97
+# environment
+LC_TERMINAL_VERSION = 3.4.11
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
 # environment
-BROWSER = /home/coder/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/helpers/browser.sh
+ITERM_SESSION_ID = w0t0p0:AE007D17-81B5-4513-A68F-511676CF3D22
 # environment
-VSCODE_HANDLES_SIGPIPE = true
+COLORFGBG = 15;0
+# environment
+JOVIAL_PLUGIN_VERSION = 1.1.0
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
+# environment
+HOMEBREW_NO_AUTO_UPDATE = true
 # automatic
 <F = $(notdir $<)
+# environment
+ITERM_PROFILE = Default
+# environment
+PAGER = less
 # environment
 LC_ALL = C
 # automatic
@@ -143,23 +198,23 @@ LC_ALL = C
 # default
 SUFFIXES := 
 # default
-.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
-# default
-.RECIPEPREFIX := 
-# default
-MAKE_HOST := x86_64-pc-linux-gnu
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+AUTOJUMP_ERROR_PATH = /Users/an7onie77i/Library/autojump/errors.log
 # environment
 LANG = C
 # environment
-VSCODE_EXTHOST_WILL_SEND_SOCKET = true
-# makefile (from 'Makefile', line 13)
-COMMANDS = *.c
+TERM = xterm-256color
 # environment
-MOTD_SHOWN = pam
-# makefile (from 'Makefile', line 19)
+VSCODE_PID = 10188
+# makefile (from `Makefile', line 13)
+COMMANDS = *.c
+# makefile (from `Makefile', line 19)
 FILES = main.c mini_shell.c $(addprefix signals/, $(SIGNALS)) $(addprefix handlers/, $(HANDLERS)) $(addprefix error/, $(ERROS)) $(addprefix commands/, $(COMMANDS)) $(addprefix utils/, $(UTILS))
 # variable set hash-table stats:
-# Load=74/1024=7%, Rehash=0, Collisions=8/116=7%
+# Load=101/1024=10%, Rehash=0, Collisions=5/141=4%
 
 # Pattern-specific Variable Values
 
@@ -167,7 +222,7 @@ FILES = main.c mini_shell.c $(addprefix signals/, $(SIGNALS)) $(addprefix handle
 
 # Directories
 
-# . (device 116, inode 106354702): 12 files, no impossibilities.
+# . (device 16777243, inode 41035688): 12 files, no impossibilities.
 
 # 12 files, no impossibilities in 1 directories.
 
@@ -179,13 +234,13 @@ FILES = main.c mini_shell.c $(addprefix signals/, $(SIGNALS)) $(addprefix handle
 
 all: minishell
 #  Phony target (prerequisite of .PHONY).
-#  Command line target.
+#  Command-line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/13=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/12=0%
 
 .PHONY: all clean fclean re test
 #  Implicit rule search has not been done.
@@ -201,30 +256,34 @@ all: minishell
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-25 20:58:07.36910995
+#  Last modified 2022-06-26 18:28:02
 #  File has been updated.
 #  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 test:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 51):
+#  commands to execute (from `Makefile', line 51):
 	make re -C test
 	make run -C test
+	
 
 val:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 55):
+#  commands to execute (from `Makefile', line 55):
 	make re -C test
 	make val -C test
+	
 
 minishell: libft/libft.a
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
+#  Implicit/static pattern stem: `'
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
@@ -245,26 +304,30 @@ minishell: libft/libft.a
 # automatic
 # ? := libft/libft.a
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=3/21=14%
-#  recipe to execute (from 'Makefile', line 34):
-	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME) 
+# Load=8/32=25%, Rehash=0, Collisions=3/20=15%
+#  commands to execute (from `Makefile', line 34):
+	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -I /usr/local/opt/readline/include -L ./libft /usr/local/opt/readline/lib -lft -lreadline -g3 -o $(NAME) 
+	
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-26 23:02:03.299392612
+ 
+#  Last modified 2022-06-26 18:28:08
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 37):
+#  commands to execute (from `Makefile', line 37):
 	make others -C ./libft
+	
 
 fclean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 45):
+#  commands to execute (from `Makefile', line 45):
 	make fclean -C ./libft
 	rm -f $(NAME)
+	
 
 # Not a target:
 .DEFAULT:
@@ -283,26 +346,25 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 40):
+#  commands to execute (from `Makefile', line 40):
 	rm -f $(LIBFT_OBJS) $(NAME) $(NAME_BONUS)
 	make clean -C ./libft
 	rm -rf minishell.dSYM
+	
 
 # files hash-table stats:
- 
 # Load=12/1024=1%, Rehash=0, Collisions=1/35=3%
 # VPATH Search Paths
 
-# No 'vpath' search paths.
+# No `vpath' search paths.
 
-# No general ('VPATH' variable) search path.
+# No general (`VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 24 / storage = 186 B / avg = 7 B
-# current buf: size = 8162 B / used = 186 B / count = 24 / avg = 7 B
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# strcache performance: lookups = 49 / hit rate = 51%
-# hash-table stats:
-# Load=24/8192=0%, Rehash=0, Collisions=1/49=2%
-# Finished Make data base on Sun Jun 26 23:03:21 2022
+# Finished Make data base on Sun Jun 26 18:28:29 2022
 
  
