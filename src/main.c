@@ -6,19 +6,13 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/17 15:57:46 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/26 03:16:12 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-
 char **g_envp;
-
-// signal
-// sigaction
-// sigemptyset
-// sigaddset
 
 static char **	create_envp(char **envp)
 {
@@ -52,27 +46,3 @@ int	main(int argc, char **argv, char **envp)
 		mini_shell();
 	return 0;
 }
-
-// testar >|<
-/*
-echo -n "asdkmoasjdnasnd" | grep a > teste
-cd 
-pwd
-export
-unset
-env
-exit
-history
-manusear single quotes
-manusear double quotes com do $
-executer ./
-<<
->>
-<
->
-Ctrl D, Ctrl C, Ctrl \
-**BONUS**
-||
-&&
-Wildcard * working for the current dir
-*/

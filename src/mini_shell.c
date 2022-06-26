@@ -6,18 +6,11 @@
 /*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/28 16:18:509 by an7onie77i       ###   ########.fr       */
+/*   Updated: 2022/05/28 16:18:509 by an7onie77i       ###   ########.fr      */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "mini_shell.h"
-
-
-// -> tokenin 
-// -> verify handlers
-// -> parse cmds
-// -> exec
-// -> end program
 
 void mini_shell(void)
 {

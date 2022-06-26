@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 25 21:59:38 2022
+# Make data base, printed on Sun Jun 26 23:03:21 2022
 
 # Variables
 
@@ -24,6 +24,8 @@ OBJ = $(SRC:.c=.o)
 VSCODE_AGENT_FOLDER = /home/coder/.vscode-server
 # makefile (from 'Makefile', line 27)
 SRC = $(addprefix src/, $(FILES)) 
+# environment
+LC_CTYPE = en_US.UTF-8
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -51,7 +53,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 VSCODE_CWD = /home/coder
 # environment
-SSH_CONNECTION = 192.168.127.0 45179 192.168.88.40 2222
+SSH_CONNECTION = 192.168.78.0 1700 192.168.127.65 2222
 # environment
 PATH = /home/coder/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 # makefile (from 'Makefile', line 17)
@@ -59,7 +61,7 @@ ERROS = custom_error.c
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-1a5ee864-3e14-47eb-b822-304cc5149c3a.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-f196ea16-399e-4be9-ad7e-917b998b4d62.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # automatic
@@ -76,13 +78,12 @@ PWD = /home/coder/Code/42-mini_shell
 SIGNALS = signals.c 
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
- 
 # environment
 HOME = /home/coder
 # environment
 LOGNAME = coder
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 +F = $(notdir $+)
 # environment
@@ -113,8 +114,6 @@ NAME = minishell
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := make
-# environment
-OLDPWD = /home/coder/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630
 # default
 .VARIABLES := 
 # automatic
@@ -124,7 +123,7 @@ MAKEFLAGS = pqrR
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_CLIENT = 192.168.127.0 45179 2222
+SSH_CLIENT = 192.168.78.0 1700 2222
 # makefile (from 'Makefile', line 11)
 HANDLERS = *.c
 # automatic
@@ -160,7 +159,7 @@ MOTD_SHOWN = pam
 # makefile (from 'Makefile', line 19)
 FILES = main.c mini_shell.c $(addprefix signals/, $(SIGNALS)) $(addprefix handlers/, $(HANDLERS)) $(addprefix error/, $(ERROS)) $(addprefix commands/, $(COMMANDS)) $(addprefix utils/, $(UTILS))
 # variable set hash-table stats:
-# Load=74/1024=7%, Rehash=0, Collisions=8/103=8%
+# Load=74/1024=7%, Rehash=0, Collisions=8/116=7%
 
 # Pattern-specific Variable Values
 
@@ -168,9 +167,9 @@ FILES = main.c mini_shell.c $(addprefix signals/, $(SIGNALS)) $(addprefix handle
 
 # Directories
 
-# . (device 115, inode 106354702): 13 files, no impossibilities.
+# . (device 116, inode 106354702): 12 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 12 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -184,9 +183,17 @@ all: minishell
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/13=0%
 
 .PHONY: all clean fclean re test
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -217,15 +224,34 @@ val:
 
 minishell: libft/libft.a
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-25 21:24:04.671844257
+#  Implicit/static pattern stem: ''
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := minishell
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := libft/libft.a
+# automatic
+# | := 
+# automatic
+# < := libft/libft.a
+# automatic
+# ^ := libft/libft.a
+# automatic
+# ? := libft/libft.a
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=3/21=14%
 #  recipe to execute (from 'Makefile', line 34):
 	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME) 
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-25 21:23:02.74964558
+#  Last modified 2022-06-26 23:02:03.299392612
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 37):
@@ -263,7 +289,8 @@ clean:
 	rm -rf minishell.dSYM
 
 # files hash-table stats:
-# Load=12/1024=1%, Rehash=0, Collisions=1/34=3%
+ 
+# Load=12/1024=1%, Rehash=0, Collisions=1/35=3%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
@@ -276,6 +303,6 @@ clean:
 # strcache performance: lookups = 49 / hit rate = 51%
 # hash-table stats:
 # Load=24/8192=0%, Rehash=0, Collisions=1/49=2%
-# Finished Make data base on Sat Jun 25 21:59:38 2022
+# Finished Make data base on Sun Jun 26 23:03:21 2022
 
  
