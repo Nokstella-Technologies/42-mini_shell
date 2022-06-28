@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/18 21:02:04 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:43:04 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,26 @@
 # include <curses.h>
 # include <term.h>
 
-
 # define WORKSPACE getenv("NAME") ? getenv("NAME") : getenv("WORKSPACE")
 # define BUFFER 256
 
-
 typedef struct s_ms
 {
-	char	*handlers; //p = pipe, h = heredoc, o = or, a = and, > = out, t = truncate, c = command, f = file.
+	int		err;
 	char	*line;
-	t_cmd	**cmd;
-	t_fds	fd;
-	int		cmd_number;
 	int		cmd_now;
+	int		cmd_number;
 	int		cmd_file_now;
 	int		fd_origin[2];
 	int		handlers_counter;
-	int		err;
-}		t_ms;
+	char	*handlers;
+	t_fds	fd;
+	t_cmd	**cmd;
+}			t_ms;
 
 extern char					**g_envp;
 
-typedef struct sigaction t_sigaction;
+typedef struct sigaction	t_sigaction;
 
 t_ms	*init_struct(char *line);
 void	error_token(t_ms *ms);
@@ -86,5 +84,6 @@ char	*verify_token(t_ms *ms, char *s_tmp, char a);
 int		verify_error(char *handlers, int len, int err);
 void	verify_cmd(t_ms *ms, char *str);
 void	add_token(t_ms *ms, char *token);
+void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp);
 
 #endif

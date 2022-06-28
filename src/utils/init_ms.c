@@ -6,15 +6,15 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:32:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/18 21:03:19 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:31:52 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "mini_shell.h"
+#include "mini_shell.h"
 
-t_ms *init_struct(char *line)
+t_ms	*init_struct(char *line)
 {
-	t_ms *ms;
+	t_ms	*ms;
 
 	ms = (t_ms *)malloc(sizeof(t_ms));
 	ms->cmd = NULL;
@@ -30,5 +30,5 @@ t_ms *init_struct(char *line)
 	ms->cmd_now = 0;
 	ms->cmd_file_now = 0;
 	ms->handlers_counter = 0;
-	return(ms);
+	return (ms);
 }

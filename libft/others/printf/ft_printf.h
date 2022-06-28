@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:51:38 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/04/18 21:51:24 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:56:33 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define HEX "0123456789abcdef"
 # define HEXU "0123456789ABCDEF"
 
-typedef enum e_bool {TRUE = 1, FALSE = 0} t_bool;
+typedef enum e_bool {TRUE = 1, FALSE = 0}	t_bool;
 
 typedef struct s_convert_flags {
 	char	conversion;

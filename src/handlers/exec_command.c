@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/18 17:48:30 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:23:32 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,7 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms)
 	if (pid == -1)
 		perror("error pipe\n");
 	else if (pid == 0)
-	{
-		custom_close(&fd->fd[0]);
-		dup_custom(fd_tmp, STDIN_FILENO);
-		dup_custom(fd->fd[1], STDOUT_FILENO);
-		if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
-			perror("minishell: error execv\n");
-		exit(0);
-	}
+		pipe_exit(cmd, fd, fd_tmp);
 	wait(&ms->err);
 	custom_close(&fd->in_fd);
 	if (ms->fd.in_fd == ms->fd.heredoc_fd)
@@ -76,19 +69,19 @@ static void	pcc(void (*commands)(void *), void **cmd, t_fds *fds, t_ms *ms)
 static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 {
 	if (ft_strncmp(cmd->argv[0], "cd", 3) == 0)
-		pcc((void (*)(void*))&command_cd, (void **)&cmd, fds, ms);
+		pcc((void (*)(void *)) & command_cd, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "echo", 5) == 0)
-		pcc((void (*)(void*))&command_echo, (void **)&cmd, fds,  ms);
+		pcc((void (*)(void *)) & command_echo, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "env", 4) == 0)
-		pcc((void (*)(void*))&command_env, (void **)&cmd, fds,  ms);
+		pcc((void (*)(void *)) & command_env, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "exit", 5) == 0)
-		pcc((void (*)(void*))&command_exit, (void **)&ms, fds, ms);
+		pcc((void (*)(void *)) & command_exit, (void **)&ms, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "export", 7) == 0)
-		pcc((void (*)(void*))&command_export, (void **)&cmd, fds, ms);
+		pcc((void (*)(void *)) & command_export, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "pwd", 4) == 0)
-		pcc((void (*)(void*))&command_pwd, (void **)&cmd, fds,  ms);
+		pcc((void (*)(void *)) & command_pwd, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "unset", 6) == 0)
-		pcc(( void(*) (void*) )&command_unset, (void **)&cmd, fds, ms);
+		pcc((void (*)(void *)) & command_unset, (void **) &cmd, fds, ms);
 	else
 		return (1);
 	return (0);

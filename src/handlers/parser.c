@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/26 18:31:48 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:22:03 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int a, t_cmd **tmp)
 	return (tmp);
 }
 
-void	tokeneer_if(t_ms *ms,int a, char *cmd)
+void	tokeneer_if(t_ms *ms, int a, char *cmd)
 {
 	if (!ft_strncmp(cmd, "", 2) && !(a == 0 && (*ms->handlers == '>'
 				|| *ms->handlers == '<'

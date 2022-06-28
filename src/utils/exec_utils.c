@@ -6,33 +6,33 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:21:28 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/18 15:54:45 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:40:21 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-void exec_elf(t_cmd *cmd)
+void	exec_elf(t_cmd *cmd)
 {
 	char	*tmp;
 	char	*s;
-	
-	if(ft_strncmp("./", cmd->line_cmd, 2) == 0)
+
+	if (ft_strncmp("./", cmd->line_cmd, 2) == 0)
 	{
 		s = get_cwd();
 		tmp = ft_formatf("%s/%s", s, &cmd->line_cmd[2]);
 		cmd->line_cmd = tmp;
-		free_ptr((void**)&s);
+		free_ptr((void **) &s);
 	}
 }
 
 int	dup_custom(int fd1, int fd2)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (dup2(fd1, fd2) == -1)
 	{
-		tmp = ft_formatf("minishell: %s : %i: %i",strerror(errno), fd1, fd2);
+		tmp = ft_formatf("minishell: %s : %i: %i", strerror(errno), fd1, fd2);
 		perror(tmp);
 		free_ptr((void **) &tmp);
 		return (-1);
@@ -45,15 +45,15 @@ void	command_not_found(t_cmd *cmd)
 	printf("%s: command not found\n", cmd->argv[0]);
 }
 
-static int free_path(char **paths, int i, int res)
+static int	free_path(char **paths, int i, int res)
 {
-	while(paths[i] != NULL)
+	while (paths[i] != NULL)
 	{
 		free_ptr((void **)&paths[i]);
 		i++;
 	}
 	free_ptr((void **)&paths);
-	return(res);
+	return (res);
 }
 
 int	testing_access(t_cmd *cmd)
@@ -62,7 +62,7 @@ int	testing_access(t_cmd *cmd)
 	int		i;
 
 	i = 0;
-	if(access(cmd->argv[0], X_OK) == 0)
+	if (access(cmd->argv[0], X_OK) == 0)
 	{
 		cmd->path_cmd = ft_strdup(cmd->argv[0]);
 		return (0);

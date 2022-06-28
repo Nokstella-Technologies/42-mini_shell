@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:42:11 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/28 17:59:44 by an7onie77i       ###   ########.fr       */
+/*   Updated: 2022/06/28 13:55:54 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 static void		ft_fill_matrix(char const *s, size_t num, char **res);
 static size_t	count_s(char const *s);
 
-
-void remove_quote(char **res)
+void	remove_quote(char **res)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (res[i] != NULL)
@@ -54,17 +53,17 @@ char	**ft_split_pipe(char const *s)
 
 static int	verify_quotes(char const *s, size_t num)
 {
-	char quote;
+	char	quote;
 
 	quote = s[num];
 	num++;
 	while ((num == 1 || s[num] != quote) && s[num] != 0)
 	{
-		if(s[num] == '\\' && s[num + 1] == '\"')
+		if (s[num] == '\\' && s[num + 1] == '\"')
 			num += 2;
 		num++;
 	}
-	if(s[num] != 0)
+	if (s[num] != 0)
 		num++;
 	return (num);
 }
@@ -82,13 +81,13 @@ static size_t	count_s(char const *s)
 			++tmp;
 		while (*tmp != ' ' && *tmp != 0)
 		{
-			if (*(tmp) == '\''|| *(tmp) == '\"')
+			if (*(tmp) == '\'' || *(tmp) == '\"')
 			{
 				tmp += verify_quotes(tmp, 0);
 				if (*(tmp) == ' ' || *(tmp) == 0)
 					count++;
 			}
-			else 
+			else
 				++tmp;
 		}
 		if (*(tmp - 1) != ' ')

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <luizlcezario@gmail.com>          +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 20:55:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/04/18 21:19:56 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:31:00 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-void handler_sig(int sig)
+void	handler_sig(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -23,7 +23,7 @@ void handler_sig(int sig)
 	}
 }
 
-void init_sigaction(t_sigaction *sa, void (*hd)(int), int sig)
+void	init_sigaction(t_sigaction *sa, void (*hd)(int), int sig)
 {
 	sa->sa_handler = hd;
 	sa->sa_flags = SA_RESTART;

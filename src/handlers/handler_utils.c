@@ -6,11 +6,21 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/25 21:02:04 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:22:49 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
+
+void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp)
+{
+	custom_close(&fd->fd[0]);
+	dup_custom(fd_tmp, STDIN_FILENO);
+	dup_custom(fd->fd[1], STDOUT_FILENO);
+	if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
+		perror("minishell: error execv\n");
+	exit(0);
+}
 
 void	add_token(t_ms *ms, char *token)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 02:25:24 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/05/22 01:18:45 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:38:09 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*get_cwd(void)
 
 	a = 1;
 	tmp = NULL;
-	while(tmp == NULL)
+	while (tmp == NULL)
 	{
 		tmp = ft_calloc(((BUFFER * a) + 1), sizeof(char));
-		if(getcwd(tmp, (BUFFER * a)) == NULL)
+		if (getcwd(tmp, (BUFFER * a)) == NULL)
 			free(tmp);
 		a++;
 	}
@@ -36,7 +36,7 @@ void	set_env(char *name, char *value)
 
 	i = 0;
 	while (g_envp[i] != NULL && ft_strnstr(g_envp[i], name,
-		ft_strlen(name)) == NULL)
+			ft_strlen(name)) == NULL)
 		i++;
 	if (g_envp[i] != NULL)
 	{
@@ -53,11 +53,11 @@ void	set_env(char *name, char *value)
 	}	
 	free_ptr((void **)&g_envp);
 	g_envp = tmp;
-	g_envp[i] = ft_formatf("%s=%s",name, value);
+	g_envp[i] = ft_formatf("%s=%s", name, value);
 	g_envp[i + 1] = NULL;
 }
 
-static char *format_env(char *env_end, char *env_sign, char *env_start)
+static char	*format_env(char *env_end, char *env_sign, char *env_start)
 {
 	char	*env;
 
@@ -65,18 +65,18 @@ static char *format_env(char *env_end, char *env_sign, char *env_start)
 	if (env)
 	{
 		if (ft_strfstr(env_sign + 1, "$ ") == NULL)
-			return(ft_formatf("%s%s", env_start, env));
+			return (ft_formatf("%s%s", env_start, env));
 		else
-			return(ft_formatf("%s%s%s", env_start, env,
-				ft_strfstr(env_sign + 1, " $")));
+			return (ft_formatf("%s%s%s", env_start, env,
+					ft_strfstr(env_sign + 1, " $")));
 	}
 	else
 	{
 		if (ft_strfstr(env_sign + 1, " $") == NULL)
-			return(ft_formatf("%s", env_start));
+			return (ft_formatf("%s", env_start));
 		else
-			return(ft_formatf("%s%s", env_start,
-				ft_strfstr(env_sign + 1, " $")));
+			return (ft_formatf("%s%s", env_start,
+					ft_strfstr(env_sign + 1, " $")));
 	}
 }
 
