@@ -6,12 +6,12 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/28 13:25:59 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/06/29 10:46:05 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
-static void 
+
 void	mini_shell(void)
 {
 	char	*s;
@@ -33,7 +33,7 @@ void	mini_shell(void)
 			printf("\n");
 		else if (*r != 0)
 		{
-			add_history(r);
+			history(ms, r);
 			ms = init_struct(r);
 			tokeneer(ms, r, 0, NULL);
 			if (ms->err == -2)

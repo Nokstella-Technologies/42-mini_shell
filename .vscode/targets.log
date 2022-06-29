@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Tue Jun 28 11:41:02 2022
+# Make data base, printed on Wed Jun 29 11:13:51 2022
 
 # Variables
 
@@ -56,7 +56,7 @@ JOVIAL_VERSION = 1.1.8
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/4p/fgpsy7jx2mn_chsl1yzp9t7m0000gn/T/vscode-ipc-d22a5e0a-7899-4a55-9fa8-ee028993e300.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/4p/fgpsy7jx2mn_chsl1yzp9t7m0000gn/T/vscode-ipc-d10d7c96-7604-48f4-886e-934c865aa120.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -76,7 +76,7 @@ LDFLAGS = -L/usr/local/opt/readline/lib
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.leS49gfWH3/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.vtFnI4aZPm/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -186,13 +186,13 @@ AUTOJUMP_ERROR_PATH = /Users/an7onie77i/Library/autojump/errors.log
 # environment
 LANG = C
 # environment
-VSCODE_PID = 7556
+VSCODE_PID = 8460
 # makefile (from `Makefile', line 13)
 COMMANDS = *.c
 # makefile (from `Makefile', line 19)
 FILES = main.c mini_shell.c $(addprefix signals/, $(SIGNALS)) $(addprefix handlers/, $(HANDLERS)) $(addprefix error/, $(ERROS)) $(addprefix commands/, $(COMMANDS)) $(addprefix utils/, $(UTILS))
 # variable set hash-table stats:
-# Load=90/1024=9%, Rehash=0, Collisions=2/131=2%
+# Load=90/1024=9%, Rehash=0, Collisions=2/121=2%
 
 # Pattern-specific Variable Values
 
@@ -218,7 +218,7 @@ all: minishell
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/12=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
 
 .PHONY: all clean fclean re test
 #  Implicit rule search has not been done.
@@ -261,37 +261,39 @@ val:
 
 minishell: libft/libft.a
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
-# automatic
-# @ := minishell
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := libft/libft.a
-# automatic
-# | := 
-# automatic
-# < := libft/libft.a
-# automatic
-# ^ := libft/libft.a
-# automatic
-# ? := libft/libft.a
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=3/20=15%
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
 #  commands to execute (from `Makefile', line 34):
 	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -g3 -o $(NAME)
 	
 
 libft/libft.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-28 11:01:06
+#  Implicit/static pattern stem: `'
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := libft/libft.a
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/10=10%
 #  commands to execute (from `Makefile', line 36):
 	make others -C ./libft
 	
@@ -314,8 +316,8 @@ fclean:
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
  
+#  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
 
@@ -343,6 +345,6 @@ clean:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jun 28 11:41:02 2022
+# Finished Make data base on Wed Jun 29 11:13:51 2022
 
  
