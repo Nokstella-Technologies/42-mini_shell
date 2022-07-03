@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/02 23:14:47 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/03 04:31:33 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # include <curses.h>
 # include <term.h>
 
-# define WORKSPACE getenv("NAME") ? getenv("NAME") : getenv("WORKSPACE")
 # define BUFFER 256
 
 typedef struct s_ms

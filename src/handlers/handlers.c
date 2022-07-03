@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/28 11:52:24 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/03 05:31:10 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	verify_file(t_ms *ms, int type, t_bool is_on_while)
 	if (type == 0)
 	{
 		custom_close(&ms->fd.in_fd);
-		ms->fd.in_fd = open(ms->cmd[ms->cmd_file_now + 1]->line_cmd, O_RDONLY);
+		ms->fd.in_fd = open(ms->cmd[ms->cmd_file_now + 1]->line_cmd, O_RDONLY, 0644);
 	}
 	else if (type == 1)
 		ms->fd.tmp_out = open(ms->cmd[ms->cmd_file_now + 1]->line_cmd,

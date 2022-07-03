@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_shell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:20:06 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/28 12:35:14 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/03 05:33:29 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	end_program(t_ms **ms)
 	custom_close(&ms[0]->fd_origin[0]);
 	custom_close(&ms[0]->fd_origin[1]);
 	free_all(&ms[0]);
+	errno = 0;
 }
 
 void	free_g_envp(void)
