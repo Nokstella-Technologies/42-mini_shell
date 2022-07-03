@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/28 13:43:04 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/02 23:14:47 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ int		verify_error(char *handlers, int len, int err);
 void	verify_cmd(t_ms *ms, char *str);
 void	add_token(t_ms *ms, char *token);
 void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp);
+void	history(char *r);
+void	command_history(void);
 
 #endif

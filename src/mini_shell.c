@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/29 10:46:05 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/02 23:14:08 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	mini_shell(void)
 			printf("\n");
 		else if (*r != 0)
 		{
-			history(ms, r);
+			history(r);
 			ms = init_struct(r);
 			tokeneer(ms, r, 0, NULL);
 			if (ms->err == -2)
@@ -50,3 +50,4 @@ void	mini_shell(void)
 	free_ptr((void **)&r);
 	exit (0);
 }
+ 

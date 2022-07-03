@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/28 13:23:32 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/02 23:15:06 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 		pcc((void (*)(void *)) & command_pwd, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "unset", 6) == 0)
 		pcc((void (*)(void *)) & command_unset, (void **) &cmd, fds, ms);
+	else if (ft_strncmp(cmd->argv[0], "history", 8) == 0)
+		pcc((void (*)(void *)) & command_history, (void **) &cmd, fds, ms);
 	else
 		return (1);
 	return (0);
