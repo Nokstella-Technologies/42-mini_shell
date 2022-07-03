@@ -12,25 +12,26 @@
 
 #include "../header/mini_shell.h"
 
-void	command_cd(t_cmd *cmd)
+void	command_cd(t_ms *ms)
 {
 	char	*formated;
 	char	*env;
 
-	if (!cmd->argv[1])
-		cmd->argv[1] = getenv("HOME");
-	else if (cmd->argv[2] != NULL)
-		printf("%s\n", strerror(errno));
-	if (!cmd->argv[1])
+	if (!ms->cmd[ms->cmd_now]->argv[1])
+		ms->cmd[ms->cmd_now]->argv[1] = getenv("HOME");
+	else if (ms->cmd[ms->cmd_now]->argv[2] != NULL)
+		custom_perror(ms, 1, " too many arguments");
+	if (!ms->cmd[ms->cmd_now]->argv[1])
 		return ;
-	if (strchr(cmd->argv[1], '~'))
+	if (strchr(ms->cmd[ms->cmd_now]->argv[1], '~'))
 	{
-		formated = ft_formatf("%s%s", getenv("HOME"), &cmd->argv[1][1]);
-		free(cmd->argv[1]);
-		cmd->argv[1] = formated;
+		formated = ft_formatf("%s%s", getenv("HOME"),
+			&ms->cmd[ms->cmd_now]->argv[1][1]);
+		free(ms->cmd[ms->cmd_now]->argv[1]);
+		ms->cmd[ms->cmd_now]->argv[1] = formated;
 	}
-	if (chdir(cmd->argv[1]) != 0)
-		printf("%s\n", strerror(errno));
+	if (chdir(ms->cmd[ms->cmd_now]->argv[1]) != 0)
+		custom_perror(ms, 1, " No such file or directory");
 	else
 	{
 		set_env("OLDPWD", getenv("PWD"));

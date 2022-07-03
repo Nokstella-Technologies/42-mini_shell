@@ -6,13 +6,13 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:32:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/02 23:18:59 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:58:28 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-t_ms	*init_struct(char *line)
+t_ms	*init_struct(char *line,  int *err)
 {
 	t_ms	*ms;
 
@@ -24,7 +24,7 @@ t_ms	*init_struct(char *line)
 	ms->fd.tmp_out = 0;
 	ms->fd.heredoc_fd = -1;
 	ms->handlers = ft_strdup("");
-	ms->err = 0;
+	ms->err = err;
 	ms->cmd_number = 0;
 	ms->fd_origin[0] = dup(STDIN_FILENO);
 	ms->fd_origin[1] = dup(STDOUT_FILENO);

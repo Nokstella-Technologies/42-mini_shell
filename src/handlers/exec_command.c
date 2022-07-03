@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/02 23:15:06 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:53:17 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms)
 		perror("error pipe\n");
 	else if (pid == 0)
 		pipe_exit(cmd, fd, fd_tmp);
-	wait(&ms->err);
+	wait(&ms->err[0]);
 	custom_close(&fd->in_fd);
 	if (ms->fd.in_fd == ms->fd.heredoc_fd)
 	{
@@ -69,7 +69,7 @@ static void	pcc(void (*commands)(void *), void **cmd, t_fds *fds, t_ms *ms)
 static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 {
 	if (ft_strncmp(cmd->argv[0], "cd", 3) == 0)
-		pcc((void (*)(void *)) & command_cd, (void **)&cmd, fds, ms);
+		pcc((void (*)(void *)) & command_cd, (void **)&ms, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "echo", 5) == 0)
 		pcc((void (*)(void *)) & command_echo, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "env", 4) == 0)
@@ -106,7 +106,7 @@ void	exec_command(t_cmd *cmd, t_ms *ms)
 		pipe_change_exc(cmd, &ms->fd, ms->fd.in_fd, ms);
 	else
 	{
-		ms->err = -1;
+		ms->err[0] = -1;
 		command_not_found(cmd);
 	}
 }

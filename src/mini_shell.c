@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 06:52:42 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:03:34 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,28 @@ char *read_line(char *prompt, char *s,char *workspacename) {
 }
 
 
-void	mini_shell(void)
+t_bool	mini_shell(int *err)
 {
-	char	*r;
-	t_ms	*ms;
+	char		*r;
+	t_ms		*ms;
 
-	r = ft_strdup("");
-	while (r != NULL)
+	r = read_line(NULL, NULL, NULL);
+	if (!r)
+		return (TRUE);
+	else if (*r != 0)
 	{
-		if (r)
-			free_ptr((void **)&r);
-		r = read_line(NULL, NULL, NULL);
-		if (!r)
-			printf("\n");
-		else if (*r != 0)
+		history(r);
+		ms = init_struct(r, err);
+		tokeneer(ms, r, 0, NULL);
+		if (ms->err[0] == -2)
 		{
-			history(r);
-			ms = init_struct(r);
-			tokeneer(ms, r, 0, NULL);
-			if (ms->err == -2)
-			{
-				error_token(ms);
-				continue ;
-			}
-			verify_next_move(ms);
-			end_program(&ms);
+			error_token(ms);
+			return (FALSE);
 		}
+		verify_next_move(ms);
+		end_program(&ms);
+		free_ptr((void **)&r);
+		return (FALSE);
 	}
-	free_g_envp();
-	free_ptr((void **)&r);
-	exit (0);
+	return (FALSE);
 }
- 

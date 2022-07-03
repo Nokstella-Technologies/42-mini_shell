@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/28 12:28:34 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:02:17 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,19 @@ static char	**create_envp(char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	t_sigaction	sa;
+	int			exit_status;
 
 	(void)argc;
 	(void)argv;
+	exit_status = 0;
 	g_envp = create_envp(envp);
 	init_sigaction(&sa, &handler_sig, SIGINT);
 	init_sigaction(&sa, SIG_IGN, SIGQUIT);
 	while (1)
-		mini_shell();
-	return (0);
+	{
+		if (mini_shell(&exit_status) == TRUE)
+			break ;
+	}
+	free_g_envp();
+	exit (exit_status);
 }

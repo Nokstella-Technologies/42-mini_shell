@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/28 12:22:03 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:58:20 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*ft_verify_handlers(t_ms *ms, char *s_tmp)
 		return (s_tmp + 2);
 	}
 	else if (*(s_tmp) == '&')
-		ms->err = -2;
+		ms->err[0] = -2;
 	return (s_tmp + 1);
 }
 
@@ -47,7 +47,7 @@ static char	*find_next_token(t_ms *ms, char *line)
 			{
 				if (*line == '\0')
 				{
-					ms->err = -3;
+					ms->err[0] = -3;
 					return (NULL);
 				}
 				line++;
@@ -83,7 +83,7 @@ void	tokeneer_if(t_ms *ms, int a, char *cmd)
 				|| *ms->handlers == '<'
 				|| *ms->handlers == 'h'
 				|| *ms->handlers == 't')))
-		ms->err = -2;
+		ms->err[0] = -2;
 }
 
 void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
@@ -111,5 +111,6 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		ms->cmd = tmp;
 		a++;
 	}
-	ms->err = verify_error(ms->handlers, ft_strlen(ms->handlers), ms->err);
+	ms->err[0] = verify_error(ms->handlers, ft_strlen(ms->handlers),
+			ms->err[0]);
 }

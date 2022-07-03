@@ -54,7 +54,7 @@ val:
 	make re -C test
 	make val -C test
 
-test:
-	cd minishell_tester && ./tester
+test2: re
+	cd minishell_tester && ./tester builtins 
 
 .PHONY: all clean fclean re test

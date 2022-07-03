@@ -3,6 +3,8 @@
 		"libft"
 	],
 	"files.associations": {
+		"*.rmd": "markdown",
+		"*.Rmd": "rmarkdown",
 		"history.h": "c",
 		"string.h": "c",
 		"wait.h": "c",
@@ -57,7 +59,8 @@
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
 		"mini_shell.h": "c",
-		"cerrno": "c"
+		"cerrno": "c",
+		"ft_printf.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

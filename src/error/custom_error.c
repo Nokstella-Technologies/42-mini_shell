@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   custom_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:08:12 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/28 12:25:59 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:53:17 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	custom_perror(t_ms *ms, int err, char *str)
 {
-	(void) ms;
-	(void) str;
-	(void) err;
+	ms->err[0] = err;
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }
 
 void	error_token(t_ms *ms)
@@ -28,7 +28,7 @@ void	error_token(t_ms *ms)
 	{
 		if (a == 0 && (ms->handlers[a] == '|' || ms->handlers[a] == 'o'
 				|| ms->handlers[a] == 'a'))
-			custom_perror(ms, -2, ms->handlers);
+			custom_perror(ms, 2, "error tokenizer");
 		else if (ms->handlers[a] == '|' || ms->handlers[a] == 'o'
 			|| ms->handlers[a] == 'a' || ms->handlers[a] == '>'
 			|| ms->handlers[a] == '<' || ms->handlers[a] == 't'
@@ -38,7 +38,7 @@ void	error_token(t_ms *ms)
 				|| ms->handlers[a + 1] == 'a' || ms->handlers[a + 1] == '>'
 				|| ms->handlers[a + 1] == '<' || ms->handlers[a + 1] == 't'
 				|| ms->handlers[a + 1] == 'h')
-				custom_perror(ms, -2, ms->handlers);
+				custom_perror(ms, 2,"error tokenizer");
 		}
 		a++;
 	}
