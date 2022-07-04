@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 02:25:24 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/03 05:25:46 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:31:46 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ char	*sub_env(char *text, char *tmp)
 		env_end = ft_substr(env_sign, 1,
 				ft_strfstr(env_sign + 1, "$ ") - env_sign - 1);
 		text = tmp;
-		tmp = format_env(env_end, env_sign, env_start);
+		if (*env_end == '?')
+			tmp = ft_formatf("%s%d%s", env_start, errno, &env_end[1]);
+		else
+			tmp = format_env(env_end, env_sign, env_start);
 		free_ptr((void **)&text);
 		free_ptr((void **)&env_start);
 		free_ptr((void **)&env_end);

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 05:31:10 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:46:38 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ void	verify_next_move(t_ms *ms)
 	while (ms->handlers[i] != 0)
 	{
 		if (ms->handlers[i] == 'c')
-		{
 			i = verify_next_move_token(ms, i);
-		}
 		else if (ms->handlers[i] == '<')
 			i += verify_file(ms, 0, FALSE);
 		else if (ms->handlers[i + 1] == '>')

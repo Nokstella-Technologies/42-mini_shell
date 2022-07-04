@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 20:03:34 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/04 11:58:42 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_bool	mini_shell(int *err)
 		free_ptr((void **)&r);
 		return (FALSE);
 	}
+	free_ptr((void **) &r);	
 	return (FALSE);
 }
