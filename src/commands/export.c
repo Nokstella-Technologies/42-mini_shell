@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:40 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/22 00:11:03 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:04:43 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,32 @@ char	*verify_text(char *text)
 	return (tmp2);
 }
 
-void	command_export(t_cmd *cmd)
+void	command_export(t_ms *ms)
 {
 	char	**splitted;
 	char	*text;
 	int		i;
 
 	i = 1;
-	while (cmd->argv[i] != NULL)
+	while (ms->cmd[ms->cmd_now]->argv[i] != NULL)
 	{
-		if (ft_strchr(cmd->argv[i], '='))
+		if (ft_strchr(ms->cmd[ms->cmd_now]->argv[i], '='))
 		{
-			text = verify_text(cmd->argv[i]);
+			text = verify_text(ms->cmd[ms->cmd_now]->argv[i]);
 			if (text == NULL)
 				printf("minishell: export: close your quotes\n");
 			splitted = ft_split(text, '=');
-			if (ft_strchr(cmd->argv[i], '=') == cmd->argv[i]
-				|| ft_strchr(splitted[0], ' ') != NULL)
-				printf("minishell: export: `=': not a valid identifier\n");
+			if (ft_strchr(ms->cmd[ms->cmd_now]->argv[i], '=') == ms->cmd
+				[ms->cmd_now]->argv[i] || ft_strchr(splitted[0], ' ') != NULL)
+				custom_perror(ms, 1,"minishell: export: `=': not a valid identifier\n");
 			else if (splitted[1] == NULL)
 				set_env(splitted[0], "");
 			else
 				set_env(splitted[0], splitted[1]);
 			free_command_export(text, splitted);
 		}
+		else
+			custom_perror(ms, 1, " not a valid identifier");
 		i++;
 	}
 }

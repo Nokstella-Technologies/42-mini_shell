@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 19:55:39 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:41:44 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	command_cd(t_ms *ms);
 void	command_echo(t_cmd *cmd);
 void	command_env(t_cmd *cmd);
 void	command_exit(t_ms *ms);
-void	command_export(t_cmd *cmd);
+void	command_export(t_ms *ms);
 void	command_pwd(t_cmd *cmd);
 void	command_unset(t_cmd *cmd);
 void	set_env(char *name, char *value);

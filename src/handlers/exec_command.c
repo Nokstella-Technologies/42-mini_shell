@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/03 19:53:17 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:41:55 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 	else if (ft_strncmp(cmd->argv[0], "exit", 5) == 0)
 		pcc((void (*)(void *)) & command_exit, (void **)&ms, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "export", 7) == 0)
-		pcc((void (*)(void *)) & command_export, (void **)&cmd, fds, ms);
+		pcc((void (*)(void *)) & command_export, (void **)&ms, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "pwd", 4) == 0)
 		pcc((void (*)(void *)) & command_pwd, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "unset", 6) == 0)
