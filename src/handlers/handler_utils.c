@@ -6,19 +6,19 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 19:57:45 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:40:42 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp)
+void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms)
 {
 	custom_close(&fd->fd[0]);
 	dup_custom(fd_tmp, STDIN_FILENO);
 	dup_custom(fd->fd[1], STDOUT_FILENO);
 	if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
-		perror("minishell: error execv\n");
+		custom_perror(ms, errno, strerror(errno));
 	exit(0);
 }
 

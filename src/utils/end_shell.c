@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:20:06 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/03 05:33:29 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:34:21 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	custom_close(int *fd)
 	if (err == -1)
 	{
 		tmp = ft_formatf("minishell: %s\n", strerror(errno));
-		perror(tmp);
+		ft_putstr_fd(tmp, STDERR_FILENO);
 		free_ptr((void **) &tmp);
 		*fd = -1;
 	}

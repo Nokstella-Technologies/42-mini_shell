@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:12:04 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/04 11:19:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:27:48 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	find_second_quote(char *sub, char quote, char **tmp)
 	int	i;
 
 	i = 0;
-	while (sub[i] && sub[i] != quote)
+	while (sub[i] != 0 && sub[i] != quote)
 		i++;
 	if (sub != &sub[i] && sub[i] == quote)
 	{
@@ -28,8 +28,8 @@ static int	find_second_quote(char *sub, char quote, char **tmp)
 	}
 	else
 	{
-		*tmp = NULL;
-		return (i);
+		*tmp = ft_strdup("");
+		return (1);
 	}
 }
 

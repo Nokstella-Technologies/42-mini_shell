@@ -60,7 +60,8 @@
 		"typeinfo": "cpp",
 		"mini_shell.h": "c",
 		"cerrno": "c",
-		"ft_printf.h": "c"
+		"ft_printf.h": "c",
+		"errno.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

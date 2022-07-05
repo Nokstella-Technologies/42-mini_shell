@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 20:41:44 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:42:24 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	pwd(void);
 void	ms_pipe(t_cmd **cmds, t_fds *fds);
 void	exec_command(t_cmd *cmd, t_ms *ms);
 void	command_cd(t_ms *ms);
-void	command_echo(t_cmd *cmd);
+void	command_echo(t_ms *ms);
 void	command_env(t_cmd *cmd);
 void	command_exit(t_ms *ms);
 void	command_export(t_ms *ms);
@@ -85,8 +85,9 @@ char	*verify_token(t_ms *ms, char *s_tmp, char a);
 int		verify_error(char *handlers, int len, int err);
 void	verify_cmd(t_ms *ms, char *str);
 void	add_token(t_ms *ms, char *token);
-void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp);
+void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms);
 void	history(char *r);
 void	command_history(void);
+char	**ft_strtok(char *str, char t);
 
 #endif

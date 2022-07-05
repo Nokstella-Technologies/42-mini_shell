@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/04 11:49:06 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:32:44 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (mini_shell(exit_status) == TRUE)
 			break ;
-		// printf("%d\n", errno);
 	}
+	printf("%d, %d\n", errno, *exit_status);
 	free_g_envp();
 	exit (*exit_status);
 }

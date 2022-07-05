@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:08:12 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/03 19:53:17 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:42:58 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	custom_perror(t_ms *ms, int err, char *str)
 {
+	errno = err;
 	ms->err[0] = err;
 	ft_putstr_fd(str, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);

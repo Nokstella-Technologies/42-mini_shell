@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/03 20:41:55 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:40:52 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms)
 	change_pipe_final(ms);
 	pid = fork();
 	if (pid == -1)
-		perror("error pipe\n");
+		custom_perror(ms, errno, strerror(errno));
 	else if (pid == 0)
-		pipe_exit(cmd, fd, fd_tmp);
-	wait(&ms->err[0]);
+		pipe_exit(cmd, fd, fd_tmp, ms);
+	wait(ms->err);
+	if (ms->err[0])
+		custom_perror(ms, errno, strerror(errno));
 	custom_close(&fd->in_fd);
 	if (ms->fd.in_fd == ms->fd.heredoc_fd)
 	{
 		if (unlink("./.tmp") != 0)
-			perror(strerror(errno));
+			custom_perror(ms, errno, strerror(errno));
 	}
 	if (ms->fd.tmp_out != 0)
 	{
@@ -71,7 +73,7 @@ static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 	if (ft_strncmp(cmd->argv[0], "cd", 3) == 0)
 		pcc((void (*)(void *)) & command_cd, (void **)&ms, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "echo", 5) == 0)
-		pcc((void (*)(void *)) & command_echo, (void **)&cmd, fds, ms);
+		pcc((void (*)(void *)) & command_echo, (void **)&ms, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "env", 4) == 0)
 		pcc((void (*)(void *)) & command_env, (void **)&cmd, fds, ms);
 	else if (ft_strncmp(cmd->argv[0], "exit", 5) == 0)
@@ -99,10 +101,14 @@ void	exec_command(t_cmd *cmd, t_ms *ms)
 	free_ptr((void **)&cmd->line_cmd);
 	cmd->line_cmd = tmp;
 	exec_elf(cmd);
-	cmd->argv = ft_split_pipe(cmd->line_cmd);
+	cmd->argv = ft_strtok(cmd->line_cmd, ' ');
 	if (testing_our_commands(cmd, &ms->fd, ms) == 0)
 		return ;
-	else if (testing_access(cmd) == 0)
+	free_ptr((void **) &cmd->argv[0]);
+	free_ptr((void **) &cmd->argv[1]);
+	free_ptr((void **) &cmd->argv);
+	cmd->argv = ft_split_pipe(cmd->line_cmd);
+	if (testing_access(cmd) == 0)
 		pipe_change_exc(cmd, &ms->fd, ms->fd.in_fd, ms);
 	else
 	{
