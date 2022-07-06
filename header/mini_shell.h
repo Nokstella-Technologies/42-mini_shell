@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/05 19:42:24 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:22:06 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	custom_close(int *fd);
 void	custom_perror(t_ms *ms, int err, char *str);
 void	exec_elf(t_cmd *cmd);
 void	heredoc(t_ms *ms, t_cmd *eof);
-char	*sub_env(char *text, char *tmp);
 char	*get_cwd(void);
 char	*verify_text(char *text);
 char	*verify_quotes(char *text, int i);
@@ -89,5 +88,7 @@ void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms);
 void	history(char *r);
 void	command_history(void);
 char	**ft_strtok(char *str, char t);
+char	*get_envp(char *var);
+char	**create_envp(char **envp);
 
 #endif

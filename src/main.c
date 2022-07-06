@@ -6,32 +6,13 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/05 19:32:44 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:22:05 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
 char	**g_envp;
-
-static char	**create_envp(char **envp)
-{
-	char	**tmp;
-	int		a;
-
-	a = 0;
-	while (envp[a] != NULL)
-		a++;
-	tmp = (char **)malloc((a + 1) * sizeof(char *));
-	a = 0;
-	while (envp[a] != NULL)
-	{
-		tmp[a] = ft_strdup(envp[a]);
-		a++;
-	}
-	tmp[a] = NULL;
-	return (tmp);
-}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -49,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 		if (mini_shell(exit_status) == TRUE)
 			break ;
 	}
-	printf("%d, %d\n", errno, *exit_status);
+	// printf("%d, %d\n", errno, *exit_status);
 	free_g_envp();
-	exit (*exit_status);
+	exit (errno);
 }

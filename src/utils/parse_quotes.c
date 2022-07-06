@@ -3,14 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   parse_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:12:04 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/05 19:27:48 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:51:1:0 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
+
+static char	*format_env(char *env_sign, char *env_start, char *env,
+char *env_end)
+{
+	char	*final;
+	int		a;
+
+	a = ft_strlen(env_start) + ft_strlen(env_end) + 1;
+	if (env)
+		final = ft_formatf("%s%s%s", env_start, env, &env_sign[a]);
+	else
+		final = ft_formatf("%s%s%s", env_start, "$", &env_sign[a]);
+	free_ptr((void **) &env);
+	return(final);
+}
+
+static char	*sub_env(char *text, char *tmp, int a)
+{
+	char	*env_start;
+	int		env_sign;
+	char	*env_end;
+
+	env_sign = ft_strchr(&tmp[a], '$') - tmp;
+	if (env_sign >= 0)
+	{
+		env_start = ft_substr(tmp, 0, env_sign);
+		env_end = ft_substr(tmp, env_sign + 1,
+			ft_strfstr(&tmp[env_sign + 1], " $") - &tmp[env_sign] - 1);
+		text = tmp;
+		if (ft_strncmp(env_end , "?", 1) == 0)
+			tmp = format_env(tmp, env_start, ft_itoa(errno), "?");
+		else
+			tmp = format_env(tmp, env_start, get_envp(env_end),	env_end);
+		free_ptr((void **)&env_start);
+		free_ptr((void **)&text);
+		free_ptr((void **)&env_end);
+		return(sub_env(NULL, tmp, env_sign + 1));
+	}
+	return (tmp);
+}
 
 static int	find_second_quote(char *sub, char quote, char **tmp)
 {
@@ -23,7 +63,7 @@ static int	find_second_quote(char *sub, char quote, char **tmp)
 	{
 		*tmp = ft_substr(sub, 0, i);
 		if (quote == '\"')
-			*tmp = sub_env(NULL, *tmp);
+			*tmp = sub_env(NULL, *tmp, 0);
 		return (i + 2);
 	}
 	else
@@ -41,7 +81,7 @@ static int	find_without_quote(char *sub, char **tmp)
 	while (sub[i] && sub[i] != '\"' && sub[i] != '\'')
 		i++;
 	*tmp = ft_substr(sub, 0, i);
-	*tmp = sub_env(NULL, *tmp);
+	*tmp = sub_env(NULL, *tmp, 0);
 	return (i);
 }
 
