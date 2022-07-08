@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:21:28 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/28 12:40:21 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/07 23:20:21 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	dup_custom(int fd1, int fd2)
 	return (0);
 }
 
-void	command_not_found(t_cmd *cmd)
+void	command_not_found(t_ms *ms)
 {
-	printf("%s: command not found\n", cmd->argv[0]);
+	custom_perror(ms, 1,"command not found");
 }
 
 static int	free_path(char **paths, int i, int res)

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/07 22:48:50 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/07 23:20:45 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms)
 	else if (pid == 0)
 		pipe_exit(cmd, fd, fd_tmp, ms);
 	wait(ms->err);
-	if (ms->err[0])
-		custom_perror(ms, errno, strerror(errno));
 	custom_close(&fd->in_fd);
 	if (ms->fd.in_fd == ms->fd.heredoc_fd)
 	{
@@ -116,8 +114,5 @@ void	exec_command(t_cmd *cmd, t_ms *ms)
 	if (testing_access(cmd) == 0)
 		pipe_change_exc(cmd, &ms->fd, ms->fd.in_fd, ms);
 	else
-	{
-		ms->err[0] = -1;
-		command_not_found(cmd);
-	}
+		command_not_found(ms);
 }

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/07 19:11:17 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/07 23:20:32 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINI_SHELL_H
 
 # include "../libft/libft.h"
-# include "pipe.h"
 # include <stdio.h>
 # include <errno.h>
 # include <unistd.h>
@@ -33,6 +32,21 @@
 
 # define BUFFER 256
 
+typedef struct s_fds
+{
+	int	in_fd;
+	int	out_fd;
+	int	tmp_out;
+	int	heredoc_fd;
+	int	fd[2];
+}		t_fds;
+
+typedef struct s_cmd
+{
+	char	*line_cmd;
+	char	*path_cmd;
+	char	**argv;
+}			t_cmd;
 
 typedef struct s_ms
 {
@@ -52,6 +66,11 @@ extern char					**g_envp;
 
 typedef struct sigaction	t_sigaction;
 
+
+int		testing_access(t_cmd *cmd);
+int		find_cmd(t_cmd *cmd);
+void	command_not_found(t_ms *ms);
+int		dup_custom(int fd1, int fd2);
 t_ms	*init_struct(char *line, int *err);
 void	error_token(t_ms *ms);
 void	free_all(t_ms **ms);
