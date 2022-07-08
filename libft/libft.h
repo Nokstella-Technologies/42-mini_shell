@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 23:03:35 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/03 19:10:59 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/07 19:08:24 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -441,5 +441,9 @@ char	*ft_itoa_base(size_t number, char *base);
 int		ft_new_atoi(const char *str, int *err);
 
 char	**ft_split_pipe(char const *s);
+
+long	ft_strtol(char *str);
+
+long long	ft_atol(const char *dest);
 
 #endif

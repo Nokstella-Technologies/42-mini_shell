@@ -6,20 +6,34 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:34 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 02:25:12 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/07 19:08:50 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-int count_argv(t_cmd *cmd)
+
+
+static int	verify_exit_error(char *str, t_ms *ms)
 {
 	int	a;
 
 	a = 0;
-	while (cmd->argv[a] != NULL)
+	if (strchr(str, ' ') != NULL)
+	{
+		custom_perror(ms, 1, " too many arguments");
+		return (1);
+	}
+	while ((ft_isdigit(str[a]) || str[a] == '+' || str[a] == '-'
+			|| str[a] == ' ' || (str[a] >= 9 && str[a] <= 13))
+			&& str[a] != 0)
 		a++;
-	return(a);
+	if (str[a] != 0)
+	{
+		custom_perror(ms, 2, " numeric argument required");
+		return (2);
+	}
+	return (0);
 }
 
 void	command_exit(t_ms *ms)
@@ -30,15 +44,9 @@ void	command_exit(t_ms *ms)
 	custom_close(&ms->fd.in_fd);
 	ms->fd.in_fd = ms->fd.fd[0];
 	custom_close(&ms->fd.fd[1]);
-	if (count_argv(ms->cmd[ms->cmd_now]) > 2)
-	{
-		ft_putstr_fd(" too many arguments", STDERR_FILENO);
-		exitS = 1;
-	}
-	else if (ms->cmd[ms->cmd_now]->argv[1] != NULL)
-	{
-			exitS = ft_atoi(ms->cmd[ms->cmd_now]->argv[1]);
-	}
+	exitS = verify_exit_error(ms->cmd[ms->cmd_now]->argv[1], ms);
+	if (exitS == 0 && ms->cmd[ms->cmd_now]->argv[1] != NULL)
+		exitS = ft_strtol(ms->cmd[ms->cmd_now]->argv[1]);
 	free_g_envp();
 	end_program(&ms);
 	exit(exitS);

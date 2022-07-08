@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: an7onie77i <an7onie77i@student.42.fr>      +#+  +:+       +#+         #
+#    By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/27 13:53:47 by llima-ce          #+#    #+#              #
-#    Updated: 2022/05/28 15:45:25 by an7onie77i       ###   ########.fr        #
+#    Updated: 2022/07/07 21:56:29 by llima-ce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ SRCS_OTHERS =	get_next_line.c	\
 				ft_itoa_base.c	\
 				ft_strfstr.c	\
 				ft_new_atoi.c	\
-				ft_split_pipe.c
+				ft_split_pipe.c \
+				ft_atol.c
 
 
 
@@ -101,7 +102,7 @@ $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
 $(OBJS): $(addprefix src/, $(SRCS))
-	$(CC) -I . -c $(CFLAGS) $(addprefix  src/, $(SRCS))
+	$(CC) -I . -c $(CFLAGS) $(addprefix  src/, $(SRCS)) 
 
 bonus: $(OBJS_BONUS)
 	ar rcs $(NAME) $(OBJS_BONUS)
@@ -113,7 +114,7 @@ others: $(OBJS) $(OBJS_BONUS) $(OBJS_OTHERS) $(OBJS_PRINTF)
 	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS) $(OBJS_OTHERS) $(OBJS_PRINTF)
 
 $(OBJS_OTHERS): $(addprefix others/, $(SRCS_OTHERS))
-	$(CC) -I ./others -I . -c $(CFLAGS) $(addprefix others/, $(SRCS_OTHERS)) -g3
+	$(CC) -I ./others -I . -c $(CFLAGS) $(addprefix others/, $(SRCS_OTHERS)) 
 
 $(OBJS_PRINTF): $(addprefix others/printf/, $(SRCS_PRINTF))
 	$(CC) -I ./others/printf -I . -c $(CFLAGS) $(addprefix others/printf/, $(SRCS_PRINTF))

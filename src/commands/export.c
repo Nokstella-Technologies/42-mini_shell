@@ -6,19 +6,11 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:40 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 21:04:43 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/07 21:42:33 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
-
-static void	free_command_export(char *text, char **splitted)
-{
-	free_ptr((void **)&text);
-	free_ptr((void **)&splitted[0]);
-	free_ptr((void **)&splitted[1]);
-	free_ptr((void **)&splitted);
-}
 
 char	*verify_text(char *text)
 {
@@ -30,32 +22,86 @@ char	*verify_text(char *text)
 	return (tmp2);
 }
 
+static char	*concat_all(char **splitted)
+{
+	char	*tmp;
+	char 	*final;
+	int		a;
+
+	a = 1;
+	final = ft_strdup("");
+	while(splitted[a] != NULL)
+	{
+		tmp = final;
+		final = ft_formatf("%s%s", final, splitted[a]);
+		free_ptr((void **)&tmp);
+		a++;
+	}
+	return (final);
+}
+
+void	verify_err(t_ms *ms, int i)
+{
+	int	a;
+
+	a = 0;
+	while (ft_isdigit(ms->cmd[ms->cmd_now]->argv[i][a]) != 0)
+		a++;
+	if (ms->cmd[ms->cmd_now]->argv[i][a] == 0)
+		custom_perror(ms, 1, " not a valid identifier");
+	a = 0;
+	while (ms->err[0] == 0 
+		&& ft_isalpha(ms->cmd[ms->cmd_now]->argv[i][a]) != 0)
+		a++;
+	if (ms->err[0] == 0 && ms->cmd[ms->cmd_now]->argv[i][a] != 0 )
+		custom_perror(ms, 1, " not a valid identifier");
+}
+
+static void	export(t_ms *ms, int i, char **splitted)
+{
+	char	*tmp;
+	int		a;
+
+	if (ft_strchr(ms->cmd[ms->cmd_now]->argv[i], '=') != NULL)
+	{
+		a = 0;
+		while (splitted[0] != NULL && ft_isalpha(splitted[0][a]) != 0)
+			a++;
+		if (splitted[0] == NULL || splitted[0][a] != 0 )
+			custom_perror(ms, 1, " not a valid identifier");
+		else if (ft_strchr(ms->cmd[ms->cmd_now]->argv[i], '=') == ms->cmd
+			[ms->cmd_now]->argv[i] || ft_strchr(splitted[0], ' ') != NULL)
+			custom_perror(ms, 1,"minishell: export: `=': not a valid identifier\n");
+		else if (splitted[1] == NULL)
+			set_env(splitted[0], "");
+		else
+		{
+			tmp = concat_all(splitted);
+			set_env(splitted[0], tmp);
+			free_ptr((void **)&tmp);
+		}
+	}
+	else
+		verify_err(ms, i);
+}
+
 void	command_export(t_ms *ms)
 {
 	char	**splitted;
-	char	*text;
 	int		i;
 
 	i = 1;
+	free_ptr((void **) &ms->cmd[ms->cmd_now]->argv[1]);
+	free_ptr((void **) &ms->cmd[ms->cmd_now]->argv[0]);
+	free_ptr((void **) &ms->cmd[ms->cmd_now]->argv);
+	ms->cmd[ms->cmd_now]->argv = ft_split_pipe( ms->cmd[ms->cmd_now]->line_cmd);
 	while (ms->cmd[ms->cmd_now]->argv[i] != NULL)
 	{
-		if (ft_strchr(ms->cmd[ms->cmd_now]->argv[i], '='))
-		{
-			text = verify_text(ms->cmd[ms->cmd_now]->argv[i]);
-			if (text == NULL)
-				printf("minishell: export: close your quotes\n");
-			splitted = ft_split(text, '=');
-			if (ft_strchr(ms->cmd[ms->cmd_now]->argv[i], '=') == ms->cmd
-				[ms->cmd_now]->argv[i] || ft_strchr(splitted[0], ' ') != NULL)
-				custom_perror(ms, 1,"minishell: export: `=': not a valid identifier\n");
-			else if (splitted[1] == NULL)
-				set_env(splitted[0], "");
-			else
-				set_env(splitted[0], splitted[1]);
-			free_command_export(text, splitted);
-		}
-		else
-			custom_perror(ms, 1, " not a valid identifier");
+		splitted = ft_split(ms->cmd[ms->cmd_now]->argv[i], '=');
+		export(ms, i, splitted);
+		free_ptr((void **)&splitted[0]);
+		free_ptr((void **)&splitted[1]);
+		free_ptr((void **)&splitted);
 		i++;
 	}
 }
