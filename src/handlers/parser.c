@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/03 19:58:20 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:06:09 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		tmp[a + 1] = NULL;
 		tmp[a]->line_cmd = ft_substr(read, 0, s_tmp - read);
 		tmp[a]->path_cmd = NULL;
+		tmp[a]->argv = NULL;
 		cmd = ft_strtrim(tmp[a]->line_cmd, " ");
 		verify_cmd(ms, cmd);
 		read = ft_verify_handlers(ms, s_tmp);
@@ -111,6 +112,5 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		ms->cmd = tmp;
 		a++;
 	}
-	ms->err[0] = verify_error(ms->handlers, ft_strlen(ms->handlers),
-			ms->err[0]);
+	ms->err[0] = verify_error(ms->handlers, ft_strlen(ms->handlers),ms->err[0]);
 }

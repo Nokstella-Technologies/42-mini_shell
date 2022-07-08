@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/04 11:46:38 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:18:15 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	verify_next_move_token(t_ms *ms, int i)
 		i += verify_file(ms, 1, TRUE);
 	else if (ms->handlers[i + 1] == 't')
 		i += verify_file(ms, 2, TRUE);
-	else if (ms->handlers[i + 1] == 'p')
+	else if (ms->handlers[i + 1] == '|')
 		i += verify_pipe(ms, TRUE);
 	else if (ms->handlers[i + 1] == 'h')
 		i += verify_heredoc(ms, TRUE);
@@ -94,7 +94,7 @@ void	verify_next_move(t_ms *ms)
 			i += verify_file(ms, 1, FALSE);
 		else if (ms->handlers[i] == 't')
 			i += verify_file(ms, 2, FALSE);
-		else if (ms->handlers[i] == 'p')
+		else if (ms->handlers[i] == '|')
 			i += verify_pipe(ms, FALSE);
 	}
 	if (ms->cmd_now != ms->cmd_number)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags_formating2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luizz <luizz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:04:12 by llima-ce          #+#    #+#             */
-/*   Updated: 2021/11/05 15:40:46 by luizz            ###   ########.fr       */
+/*   Updated: 2022/07/08 12:18:15 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	hastag_flag(t_format *buffer, int *len)
 	if (buffer->cf_now->flag_hashtag == TRUE && !(*len == 1
 			&& *buffer->formated_src == '0'))
 	{
-		if (buffer->cf_now->conversion == 'p'
+		if (buffer->cf_now->conversion == '|'
 			|| buffer->cf_now->conversion == 'x')
 		{
 			tmp = ft_strjoin("0x", buffer->formated_src);

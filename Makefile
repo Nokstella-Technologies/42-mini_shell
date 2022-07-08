@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) 
 	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -o $(NAME) -fsanitize=address -g3
-#-fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
+# -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
 
 $(LIBFT):
 	make others -C ./libft

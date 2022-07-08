@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/05 19:40:42 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:22:13 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*verify_token(t_ms *ms, char *s_tmp, char a)
 	else if (*s_tmp == '|' || *s_tmp == '>' || *s_tmp == '<' || *s_tmp == '&')
 		ms->err[0] = -2;
 	if (a == '|')
-		add_token(ms, "p");
+		add_token(ms, "|");
 	if (a == '>')
 		add_token(ms, ">");
 	if (a == '<')
@@ -58,7 +58,7 @@ int	verify_error(char *handlers, int len, int err)
 {
 	if (handlers[len - 1] != 'c' && handlers[len - 1] != 'f' && err == 0)
 	{
-		if (handlers[len - 1] == 'p'
+		if (handlers[len - 1] == '|'
 			|| handlers[len - 1] == 'a' || handlers[len - 1] == 'o' )
 			return (1);
 		return (-2);

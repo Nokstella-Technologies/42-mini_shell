@@ -54,13 +54,15 @@ t_bool	mini_shell(int *err)
 		if (ms->err[0] == -2)
 		{
 			error_token(ms);
+			free_ptr((void **) &r);
+			end_program(&ms);
 			return (FALSE);
 		}
 		verify_next_move(ms);
-		end_program(&ms);
 		free_ptr((void **)&r);
 		return (FALSE);
 	}
-	free_ptr((void **) &r);	
+	free_ptr((void **) &r);
+	end_program(&ms);
 	return (FALSE);
 }

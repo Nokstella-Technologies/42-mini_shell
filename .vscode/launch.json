@@ -21,6 +21,9 @@
 		{
 			"name": "lldb testdebugger",
 			"type": "lldb",
+			"env": {
+				"LSAN_OPTIONS": "verbosity=1:log_threads=1"
+			},
 			"request": "launch",
 			"program": "${workspaceRoot}/test/test",
 			"cwd": "${workspaceRoot}/test",

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:32:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/03 19:58:28 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:21:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_ms	*init_struct(char *line,  int *err)
 	ms->fd.in_fd = 0;
 	ms->fd.out_fd = 1;
 	ms->fd.tmp_out = 0;
+	ms->fd.fd[0] = 0;
+	ms->fd.fd[1] = 0;
 	ms->fd.heredoc_fd = -1;
 	ms->handlers = ft_strdup("");
 	ms->err = err;
