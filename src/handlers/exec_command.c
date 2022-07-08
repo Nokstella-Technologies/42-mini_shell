@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/07 19:12:43 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:48:50 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,25 @@ static int	testing_our_commands(t_cmd *cmd, t_fds *fds, t_ms *ms)
 void	exec_command(t_cmd *cmd, t_ms *ms)
 {
 	char	*tmp;
+	int		a;
 
 	if (cmd == NULL || cmd->line_cmd == NULL)
 		return ;
+	cmd->argv = ft_split_pipe(cmd->line_cmd);
+	a = 0;
+	while(cmd->argv[a] != NULL)
+	{
+		tmp = verify_quotes(cmd->argv[a], 0);
+		free_ptr((void **)&cmd->argv[a]);
+		cmd->argv[a] = tmp;
+		a++;
+	}
 	tmp = verify_quotes(cmd->line_cmd, 0);
 	free_ptr((void **)&cmd->line_cmd);
 	cmd->line_cmd = tmp;
 	exec_elf(cmd);
-	cmd->argv = ft_strtok(cmd->line_cmd, ' ');
 	if (testing_our_commands(cmd, &ms->fd, ms) == 0)
 		return ;
-	free_ptr((void **) &cmd->argv[0]);
-	free_ptr((void **) &cmd->argv[1]);
-	free_ptr((void **) &cmd->argv);
-	cmd->argv = ft_split_pipe(cmd->line_cmd);
 	if (testing_access(cmd) == 0)
 		pipe_change_exc(cmd, &ms->fd, ms->fd.in_fd, ms);
 	else

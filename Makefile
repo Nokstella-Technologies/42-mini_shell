@@ -31,9 +31,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) 
-	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -o $(NAME) 
-
-#-fsanitize=address 
+	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -o $(NAME) -fsanitize=address -g3
 #-fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
 
 $(LIBFT):
@@ -59,6 +57,6 @@ val:
 	make val -C test
 
 test2: re
-	cd minishell_tester && ./tester builtins 
+	cd minishell_tester && ./tester 
 
 .PHONY: all clean fclean re test

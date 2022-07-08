@@ -44,7 +44,7 @@ t_bool	mini_shell(int *err)
 	t_ms		*ms;
 
 	r = read_line(NULL, NULL, NULL);
-	if (!r)
+	if (cat ./test_files/infile_big | grep oi!r)
 		return (TRUE);
 	else if (*r != 0)
 	{

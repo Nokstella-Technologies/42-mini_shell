@@ -6,20 +6,18 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:34 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/07 19:08:50 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:53:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
-
-
 
 static int	verify_exit_error(char *str, t_ms *ms)
 {
 	int	a;
 
 	a = 0;
-	if (strchr(str, ' ') != NULL)
+	if (ms->cmd[ms->cmd_now]->argv[2] != NULL)
 	{
 		custom_perror(ms, 1, " too many arguments");
 		return (1);
@@ -46,7 +44,7 @@ void	command_exit(t_ms *ms)
 	custom_close(&ms->fd.fd[1]);
 	exitS = verify_exit_error(ms->cmd[ms->cmd_now]->argv[1], ms);
 	if (exitS == 0 && ms->cmd[ms->cmd_now]->argv[1] != NULL)
-		exitS = ft_strtol(ms->cmd[ms->cmd_now]->argv[1]);
+		exitS = ft_atoi(ms->cmd[ms->cmd_now]->argv[1]);
 	free_g_envp();
 	end_program(&ms);
 	exit(exitS);

@@ -19,7 +19,7 @@ void	command_cd(t_ms *ms)
 
 	if (!ms->cmd[ms->cmd_now]->argv[1])
 		ms->cmd[ms->cmd_now]->argv[1] = getenv("HOME");
-	else if (ft_strchr(ms->cmd[ms->cmd_now]->argv[1], ' ') != NULL)
+	else if (ms->cmd[ms->cmd_now]->argv[2] != NULL)
 		custom_perror(ms, 1, " too many arguments");
 	else if (!ms->cmd[ms->cmd_now]->argv[1])
 		return ;

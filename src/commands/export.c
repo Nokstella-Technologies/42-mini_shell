@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:40 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/07 21:42:33 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/07 22:47:16 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ void	verify_err(t_ms *ms, int i)
 		a++;
 	if (ms->cmd[ms->cmd_now]->argv[i][a] == 0)
 		custom_perror(ms, 1, " not a valid identifier");
-	a = 0;
-	while (ms->err[0] == 0 
-		&& ft_isalpha(ms->cmd[ms->cmd_now]->argv[i][a]) != 0)
-		a++;
-	if (ms->err[0] == 0 && ms->cmd[ms->cmd_now]->argv[i][a] != 0 )
-		custom_perror(ms, 1, " not a valid identifier");
+	else {
+		a = 0;
+		while (ft_isalpha(ms->cmd[ms->cmd_now]->argv[i][a]) != 0)
+			a++;
+		if (ms->cmd[ms->cmd_now]->argv[i][a] != 0 )
+			custom_perror(ms, 1, " not a valid identifier");
+	}
 }
 
 static void	export(t_ms *ms, int i, char **splitted)
@@ -91,10 +92,10 @@ void	command_export(t_ms *ms)
 	int		i;
 
 	i = 1;
-	free_ptr((void **) &ms->cmd[ms->cmd_now]->argv[1]);
-	free_ptr((void **) &ms->cmd[ms->cmd_now]->argv[0]);
-	free_ptr((void **) &ms->cmd[ms->cmd_now]->argv);
-	ms->cmd[ms->cmd_now]->argv = ft_split_pipe( ms->cmd[ms->cmd_now]->line_cmd);
+	// free_ptr((void **) &ms->cmd[ms->cmd_now]->argv[1]);
+	// free_ptr((void **) &ms->cmd[ms->cmd_now]->argv[0]);
+	// free_ptr((void **) &ms->cmd[ms->cmd_now]->argv);
+	// ms->cmd[ms->cmd_now]->argv = ft_split_pipe( ms->cmd[ms->cmd_now]->line_cmd);
 	while (ms->cmd[ms->cmd_now]->argv[i] != NULL)
 	{
 		splitted = ft_split(ms->cmd[ms->cmd_now]->argv[i], '=');
