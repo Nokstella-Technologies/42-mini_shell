@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/09 16:00:54 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 16:44:20 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, int fd_tmp, t_exec *exec)
 			custom_perror(exec->ms, errno, strerror(errno));
 		else if (pid == 0)
 			pipe_exit(cmd, fd, fd_tmp, exec);
-		wait4(pid, exec->ms->err, WNOHANG, NULL);
+		else
+			wait(exec->ms->err);
 	}
 	else
 	{
