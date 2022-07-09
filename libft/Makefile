@@ -6,7 +6,7 @@
 #    By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/27 13:53:47 by llima-ce          #+#    #+#              #
-#    Updated: 2022/07/07 21:56:29 by llima-ce         ###   ########.fr        #
+#    Updated: 2022/07/09 15:53:35 by llima-ce         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,10 +111,10 @@ $(OBJS_BONUS): $(addprefix bonus/, $(SRCS_BONUS))
 	$(CC) -I . -c $(CFLAGS) $(addprefix bonus/, $(SRCS_BONUS))
 
 others: $(OBJS) $(OBJS_BONUS) $(OBJS_OTHERS) $(OBJS_PRINTF)
-	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS) $(OBJS_OTHERS) $(OBJS_PRINTF)
+	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS) $(OBJS_OTHERS) $(OBJS_PRINTF) 
 
 $(OBJS_OTHERS): $(addprefix others/, $(SRCS_OTHERS))
-	$(CC) -I ./others -I . -c $(CFLAGS) $(addprefix others/, $(SRCS_OTHERS)) 
+	$(CC) -I ./others -I . -c $(CFLAGS) $(addprefix others/, $(SRCS_OTHERS)) -g3
 
 $(OBJS_PRINTF): $(addprefix others/printf/, $(SRCS_PRINTF))
 	$(CC) -I ./others/printf -I . -c $(CFLAGS) $(addprefix others/printf/, $(SRCS_PRINTF))

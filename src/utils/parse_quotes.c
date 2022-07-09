@@ -22,7 +22,12 @@ char *env_end)
 	if (env)
 		final = ft_formatf("%s%s%s", env_start, env, &env_sign[a]);
 	else
-		final = ft_formatf("%s%s%s", env_start, "$", &env_sign[a]);
+	{
+		if (*(env_sign + 1) == 0 || *(env_sign + 1) == ' ')
+			final = ft_formatf("%s%s%s", env_start, "$", &env_sign[a]);
+		else
+			final = ft_formatf("%s%s", env_start,  &env_sign[a]);
+	}
 	free_ptr((void **) &env);
 	return(final);
 }

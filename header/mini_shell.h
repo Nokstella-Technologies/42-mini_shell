@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/07 23:20:32 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 15:20:55 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,15 @@ typedef struct s_ms
 	char	*handlers;
 	t_fds	fd;
 	t_cmd	**cmd;
+	int		*errnot;
 }			t_ms;
+
+typedef struct s_exec
+{
+	void	(*command)(t_ms *);
+	t_bool	builtins;
+	t_ms	*ms;
+}			t_exec;
 
 extern char					**g_envp;
 
@@ -83,11 +91,11 @@ void	ms_pipe(t_cmd **cmds, t_fds *fds);
 void	exec_command(t_cmd *cmd, t_ms *ms);
 void	command_cd(t_ms *ms);
 void	command_echo(t_ms *ms);
-void	command_env(t_cmd *cmd);
+void	command_env(t_ms *ms);
 void	command_exit(t_ms *ms);
 void	command_export(t_ms *ms);
 void	command_pwd(t_ms *ms);
-void	command_unset(t_cmd *cmd);
+void	command_unset(t_ms *ms);
 void	set_env(char *name, char *value);
 void	end_program(t_ms **ms);
 void	free_g_envp(void);
@@ -103,9 +111,9 @@ char	*verify_token(t_ms *ms, char *s_tmp, char a);
 int		verify_error(char *handlers, int len, int err);
 void	verify_cmd(t_ms *ms, char *str);
 void	add_token(t_ms *ms, char *token);
-void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp, t_ms *ms);
+void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp, t_exec *exec);
 void	history(char *r);
-void	command_history(void);
+void	command_history(t_ms *ms);
 char	**ft_strtok(char *str, char t);
 char	*get_envp(char *var);
 char	**create_envp(char **envp);

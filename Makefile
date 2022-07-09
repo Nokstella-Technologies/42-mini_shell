@@ -31,8 +31,8 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT) 
-	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -o $(NAME) -fsanitize=address -g3
-# -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
+	$(CC) $(SRC) $(CFLAGS) -I ./header -I ./libft -L ./libft -lft -lreadline -o $(NAME)  -g3 -fsanitize=address
+#  -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
 
 $(LIBFT):
 	make others -C ./libft
@@ -56,7 +56,25 @@ val:
 	make re -C test
 	make val -C test
 
+test4: re
+	cd minishell_tester && ./tester pipes 
+
+test5: re
+	cd minishell_tester && ./tester redirects 
+
 test2: re
+	cd minishell_tester && ./tester builtins
+
+test3: re
 	cd minishell_tester && ./tester syntax
 
-.PHONY: all clean fclean re test
+err:
+	echo -e ".\minishell\n$teste\necho \$?\nexit\n" | bash 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -v "$PROMPT" | grep -v ^exit$ | tail -n 1
+.PHONY: all clean fclean re test test2 test3 test4 test5
+
+
+#cat ./test_files/infile_big | grep oi
+#env | sort | grep -v SHLVL | grep -v ^_
+#export | sort | grep -v SHLVL | grep -v "declare -x _" | grep -v "PS.="
+#cat minishell.h | grep ");"$
+#export GHOST=123 | env | grep GHOST

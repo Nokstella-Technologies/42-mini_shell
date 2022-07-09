@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:21:28 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/07 23:20:21 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 15:20:59 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	dup_custom(int fd1, int fd2)
 
 void	command_not_found(t_ms *ms)
 {
-	custom_perror(ms, 1,"command not found");
+	custom_perror(ms, 1," command not found");
 }
 
 static int	free_path(char **paths, int i, int res)

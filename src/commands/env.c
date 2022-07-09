@@ -6,21 +6,21 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:10 by vantonie          #+#    #+#             */
-/*   Updated: 2022/05/21 15:21:04 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 15:35:54 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-void	command_env(t_cmd *cmd)
+void	command_env(t_ms *ms)
 {
 	int	i;
 
-	(void) cmd;
+	(void) ms;
 	i = 0;
 	while (g_envp[i] != NULL)
 	{
-		printf("%s\n", g_envp[i]);
+		ft_printf("%s\n", g_envp[i]);
 		i++;
 	}
 }

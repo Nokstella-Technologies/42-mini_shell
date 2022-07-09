@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:49:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/05 19:27:49 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 15:36:09 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	command_echo(t_ms *ms)
 	i = 1;
 	if (ms->cmd[ms->cmd_now]->argv[1] == 0)
 	{
-		printf("\n");
+		ft_printf("\n");
 		return ;
 	}
 	else if (ft_strnstr(ms->cmd[ms->cmd_now]->argv[1], "-n", 3))
@@ -57,6 +57,6 @@ void	command_echo(t_ms *ms)
 		custom_perror(ms, 1, "Not Possible to write this phrase");
 		return ;
 	}
-	printf("%s", text);
+	ft_printf("%s", text);
 	free_ptr((void **)&text);
 }

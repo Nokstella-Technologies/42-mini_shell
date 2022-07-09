@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/07 22:09:23 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 16:10:31 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 	}
 	free_g_envp();
+	ft_printf("\n");
 	exit (errno);
 }

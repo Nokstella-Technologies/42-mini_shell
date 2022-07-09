@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 20:55:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/06/28 12:31:00 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/09 15:35:54 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	handler_sig(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printf("\n");
+		ft_printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();

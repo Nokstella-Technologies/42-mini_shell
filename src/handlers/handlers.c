@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/08 12:18:15 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 16:07:45 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int	verify_file(t_ms *ms, int type, t_bool is_on_while)
 {
 	if (type == 0)
 	{
-		custom_close(&ms->fd.in_fd);
 		ms->fd.in_fd = open(ms->cmd[ms->cmd_file_now + 1]->line_cmd, O_RDONLY, 0644);
 	}
 	else if (type == 1)
@@ -39,7 +38,7 @@ static int	verify_file(t_ms *ms, int type, t_bool is_on_while)
 	if (ms->fd.tmp_out == -1 || ms->fd.in_fd == -1)
 	{
 		dup_custom(ms->fd_origin[1], STDOUT_FILENO);
-		printf("minishell: %s\n", strerror(errno));
+		ft_printf("minishell: %s\n", strerror(errno));
 		custom_close(&ms->fd.fd[0]);
 		custom_close(&ms->fd.fd[1]);
 	}
@@ -63,7 +62,7 @@ static int	verify_heredoc(t_ms *ms, t_bool is_on_while)
 int	verify_next_move_token(t_ms *ms, int i)
 {
 	if (pipe(ms->fd.fd))
-		printf("error pipe\n");
+		ft_printf("error pipe\n");
 	if (ms->handlers[i + 1] == '<')
 		i += verify_file(ms, 0, TRUE);
 	else if (ms->handlers[i + 1] == '>')

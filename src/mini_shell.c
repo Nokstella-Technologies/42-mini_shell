@@ -60,9 +60,9 @@ t_bool	mini_shell(int *err)
 		}
 		verify_next_move(ms);
 		free_ptr((void **)&r);
+		end_program(&ms);
 		return (FALSE);
 	}
 	free_ptr((void **) &r);
-	end_program(&ms);
 	return (FALSE);
 }
