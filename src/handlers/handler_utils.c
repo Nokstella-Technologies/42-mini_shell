@@ -6,31 +6,32 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/09 15:24:06 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:34:31 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp, t_exec *exec)
+void	pipe_exit(t_fds *fd, t_exec *exec)
 {
-	if (testing_access(cmd) == 0)
+	if (fd->in_fd == fd->heredoc_fd)
 	{
-		dup_custom(fd_tmp, STDIN_FILENO);
-		dup_custom(fd->fd[1], STDOUT_FILENO);
-		custom_close(&fd->fd[0]);
-		if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
+		if (unlink("./.tmp") != 0)
 			custom_perror(exec->ms, errno, strerror(errno));
+		fd->heredoc_fd = -1;
+	}
+	if (exec->ms->fd.tmp_out != 0)
+	{
+		fd->in_fd = fd->tmp_out;
+		fd->tmp_out = 0;
 	}
 	else
 	{
+		if (fd->in_fd != 0)
+			custom_close(&fd->in_fd);
+		fd->in_fd = fd->fd[0];
 		custom_close(&fd->fd[1]);
-		custom_close(&fd->fd[0]);
-		command_not_found(exec->ms);
-		custom_close(&fd_tmp);
-		exit(127);
 	}
-	exit(256);
 }
 
 void	add_token(t_ms *ms, char *token)

@@ -61,7 +61,8 @@
 		"mini_shell.h": "c",
 		"cerrno": "c",
 		"ft_printf.h": "c",
-		"errno.h": "c"
+		"errno.h": "c",
+		"minishell.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

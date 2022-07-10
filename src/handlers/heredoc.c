@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:57:50 by vantonie          #+#    #+#             */
-/*   Updated: 2022/06/28 12:21:15 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:15:48 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	heredoc_helper(t_ms *ms, char *final, char *r)
 		free_ptr((void **)&r);
 		r = ft_formatf("\n");
 	}
-	ms->fd.heredoc_fd = open("./.tmp", O_RDWR | O_CREAT, 0644);
 	final = verify_quotes(r, 0);
 	ft_putstr_fd(final, ms->fd.heredoc_fd);
 	ft_putstr_fd("\n", ms->fd.heredoc_fd);

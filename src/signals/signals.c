@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 20:55:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/09 16:39:48 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 22:09:57 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,12 @@ void	init_sigaction(t_sigaction *sa, void (*hd)(int), int sig)
 	sa->sa_flags = SA_RESTART;
 	sigemptyset(&sa->sa_mask);
 	sigaction(sig, sa, NULL);
+}
+
+void	ft_sigaction()
+{
+	t_sigaction	sa;
+
+	init_sigaction(&sa, &handler_sig, SIGINT);
+	init_sigaction(&sa, SIG_IGN, SIGQUIT);
 }

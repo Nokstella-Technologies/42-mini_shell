@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/09 15:20:55 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/09 23:33:30 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ typedef struct sigaction	t_sigaction;
 
 int		testing_access(t_cmd *cmd);
 int		find_cmd(t_cmd *cmd);
-void	command_not_found(t_ms *ms);
+void	ft_sigaction();
+int		command_not_found(t_ms *ms);
 int		dup_custom(int fd1, int fd2);
 t_ms	*init_struct(char *line, int *err);
 void	error_token(t_ms *ms);
@@ -111,12 +112,11 @@ char	*verify_token(t_ms *ms, char *s_tmp, char a);
 int		verify_error(char *handlers, int len, int err);
 void	verify_cmd(t_ms *ms, char *str);
 void	add_token(t_ms *ms, char *token);
-void	pipe_exit(t_cmd *cmd, t_fds *fd, int fd_tmp, t_exec *exec);
 void	history(char *r);
 void	command_history(t_ms *ms);
 char	**ft_strtok(char *str, char t);
 char	*get_envp(char *var);
 char	**create_envp(char **envp);
-
+void	pipe_exit(t_fds *fd, t_exec *exec);
 
 #endif
