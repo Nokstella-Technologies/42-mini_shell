@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/10 16:07:02 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 17:47:14 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int a, t_cmd **tmp)
 
 	if (ms->cmd != NULL)
 	{
+		if (tmp[a]->line_cmd[0] == '\0')
+		{
+			free_ptr((void **) &tmp[a]->line_cmd);
+			free_ptr((void **) &tmp);
+			return (NULL);
+		}
 		b = 0;
 		while (b < a)
 		{
@@ -76,15 +82,20 @@ static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int a, t_cmd **tmp)
 		}
 		free(ms->cmd);
 	}
+	else if (tmp[a]->line_cmd[0] == '\0')
+	{
+		free_ptr((void **) &tmp[a]->line_cmd);
+		free_ptr((void **) &tmp);
+		return (NULL);
+	}
 	return (tmp);
 }
 
-void	tokeneer_if(t_ms *ms, int a, char *cmd)
+void	tokeneer_if(t_ms *ms, int a)
 {
-	if (!ft_strncmp(cmd, "", 2) && !(a == 0 && (*ms->handlers == '>'
-				|| *ms->handlers == '<'
-				|| *ms->handlers == 'h'
-				|| *ms->handlers == 't')))
+	if (ms->cmd != NULL && !ft_strncmp(ms->cmd[a]->line_cmd, "", 2) 
+		&& !(a == 0 && (*ms->handlers == '>'|| *ms->handlers == '<'
+		|| *ms->handlers == 'h' || *ms->handlers == 't')))
 		ms->err[0] = -2;
 }
 
@@ -106,11 +117,11 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		tmp[a]->argv = NULL;
 		cmd = ft_strtrim(tmp[a]->line_cmd, " ");
 		verify_cmd(ms, cmd);
-		read = ft_verify_handlers(ms, s_tmp);
-		tmp = struct_value_to_tokeneer(ms, a, tmp);
-		tokeneer_if(ms, a, cmd);
 		free(tmp[a]->line_cmd);
 		tmp[a]->line_cmd = cmd;
+		tmp = struct_value_to_tokeneer(ms, a, tmp);
+		read = ft_verify_handlers(ms, s_tmp);
+		tokeneer_if(ms, a);
 		ms->cmd = tmp;
 		a++;
 	}

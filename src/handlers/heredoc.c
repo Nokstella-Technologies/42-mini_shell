@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:57:50 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/09 23:15:48 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 16:29:28 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	heredoc_helper(t_ms *ms, char *final, char *r)
 	final = verify_quotes(r, 0);
 	ft_putstr_fd(final, ms->fd.heredoc_fd);
 	ft_putstr_fd("\n", ms->fd.heredoc_fd);
-	free_ptr((void **)&r);
 	free_ptr((void **)&final);
 }
 

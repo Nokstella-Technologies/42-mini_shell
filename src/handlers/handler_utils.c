@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/10 15:22:18 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 17:52:12 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,12 @@ void	verify_cmd(t_ms *ms, char *str)
 		return ;
 	else if (strlen > 0 && (ms->handlers[strlen - 1] == '>'
 			|| ms->handlers[strlen - 1] == '<'
-			|| ms->handlers[strlen - 1] == 't'))
+			|| ms->handlers[strlen - 1] == 't'
+			|| ms->handlers[strlen - 1] == 'h'))
+	{
+		ms->cmd_number ++;
 		add_token(ms, "f");
+	}
 	else
 	{
 		ms->cmd_number ++;
