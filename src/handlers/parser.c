@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/08 12:06:09 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 16:07:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,31 @@ static char	*ft_verify_handlers(t_ms *ms, char *s_tmp)
 static char	*find_next_token(t_ms *ms, char *line)
 {
 	char	quote;
+	int		a;
 
-	while (*line != '&' && *line != '>'
-		&& *line != '<' && *line != '|' && *line != 0)
+	a = 0;
+	while (line[a] != '&' && line[a] != '>'
+		&& line[a] != '<' && line[a] != '|' && line[a] != 0)
 	{
-		if (*line == '\"' || *line == '\'')
+		if (line[a] == '\"' || line[a] == '\'')
 		{
-			quote = *line;
+			quote = line[a];
 			line++;
-			while (*line != quote)
+			while (line[a] != quote)
 			{
-				if (*line == '\0')
+				if (line[a] == '\0')
 				{
 					ms->err[0] = -3;
 					return (NULL);
 				}
-				line++;
+				a++;
 			}
 		}
-		line++;
+		a++;
 	}
-	if (*line == 0)
+	if (line[a] == 0)
 		return (NULL);
-	return (line);
+	return (&line[a]);
 }
 
 static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int a, t_cmd **tmp)
@@ -94,9 +96,9 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 	while (*read != 0)
 	{
 		s_tmp = find_next_token(ms, read);
-		if (s_tmp == NULL)
-			s_tmp = read + ft_strlen(read);
 		tmp = (t_cmd **)malloc((a + 2) * sizeof(t_cmd *));
+		if (s_tmp == NULL)
+			s_tmp = ft_strchr(read, '\0');
 		tmp[a] = (t_cmd *)malloc(1 * sizeof(t_cmd));
 		tmp[a + 1] = NULL;
 		tmp[a]->line_cmd = ft_substr(read, 0, s_tmp - read);

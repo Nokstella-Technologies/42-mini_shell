@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 20:55:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/09 22:09:57 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 15:24:25 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	handler_sig(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_printf("\n");
+		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();

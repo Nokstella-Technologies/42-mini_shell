@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/09 23:34:31 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 15:22:18 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	pipe_exit(t_fds *fd, t_exec *exec)
 			custom_perror(exec->ms, errno, strerror(errno));
 		fd->heredoc_fd = -1;
 	}
-	if (exec->ms->fd.tmp_out != 0)
+	if (exec->ms->fd.tmp_out != -1)
 	{
 		fd->in_fd = fd->tmp_out;
-		fd->tmp_out = 0;
+		fd->tmp_out = -1;
 	}
 	else
 	{

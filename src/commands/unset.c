@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/09 16:39:48 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 15:24:25 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	command_unset(t_ms *ms)
 	{
 		text = verify_text(ms->cmd[ms->cmd_now]->argv[i]);
 		if (text == NULL)
-			ft_printf("minishell: export: close your quotes\n");
+			printf("minishell: export: close your quotes\n");
 		else if (ft_strchr(text, '='))
-			ft_printf("unset: 'a=': not a valid identifier\n");
+			printf("unset: 'a=': not a valid identifier\n");
 		else
 			remove_envp(text);
 		free_ptr((void **)&text);

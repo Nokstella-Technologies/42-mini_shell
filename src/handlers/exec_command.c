@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/10 00:19:20 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 16:11:05 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 static void	change_pipe_final(t_exec *exec, int fd_tmp)
 {
-	dup_custom(fd_tmp, STDIN_FILENO);
-	if (exec->ms->fd.tmp_out != 1)
+	if (fd_tmp != 0)
+		dup_custom(fd_tmp, STDIN_FILENO);
+	if (exec->ms->fd.tmp_out != -1)
 	{
 		dup_custom(exec->ms->fd.tmp_out, STDOUT_FILENO);
-		exec->ms->fd.tmp_out = 0;
+		exec->ms->fd.tmp_out = -1;
 	}
 	else if (exec->ms->cmd_now + 1 == exec->ms->cmd_number)
 		dup_custom(exec->ms->fd_origin[1], STDOUT_FILENO);
@@ -30,15 +31,14 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 {
 	pid_t	pid;
 
+	ft_sigaction();
 	pid = fork();
 	if (pid == -1)
 		custom_perror(exec->ms, errno, strerror(errno));
 	else if (pid == 0)
 	{
-		change_pipe_final(exec, exec->ms->fd.in_fd);
 		if (testing_access(cmd) == 0)
 		{
-			ft_sigaction();
 			custom_close(&fd->fd[0]);
 			if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
 				custom_perror(exec->ms, errno, strerror(errno));
@@ -113,6 +113,9 @@ void	exec_command(t_cmd *cmd, t_ms *ms)
 
 	exec.ms = fix_quotes(cmd, ms);
 	exec.builtins = FALSE;
+	change_pipe_final(&exec, exec.ms->fd.in_fd);
 	if (testing_our_commands(cmd, &exec, ms) == FALSE)
 		pipe_change_exc(cmd, &ms->fd, &exec);
+	else
+		pipe_exit(&ms->fd, &exec);
 }

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:20:06 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/08 18:59:21 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/10 16:24:39 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	custom_close(int *fd)
 	char	*tmp;
 
 	err = 0;
-	if (*fd != 0)
+	if (*fd != 0 && *fd != -1)
 		err = close(*fd);
 	if (err == -1)
 	{
