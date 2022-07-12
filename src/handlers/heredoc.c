@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:57:50 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 17:03:55 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:59:16 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	heredoc_helper(t_ms *ms, char *final, char *r)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_formatf("%s\n", r);
 	final = verify_quotes(tmp, 0);
@@ -27,7 +27,9 @@ static void	error_heredoc(t_ms *ms, char *str)
 {
 	char	*tmp;
 
-	tmp = ft_formatf("warning: here-document delimited by end-of-file (wanted `%s')", str);
+	tmp = ft_formatf(
+			"warning: here-document delimited by end-of-file (wanted `%s')",
+			str);
 	custom_perror(ms->err, 0, tmp, "heredoc");
 	free_ptr((void **) &tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:21:28 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/12 17:05:02 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:08:52 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	dup_custom(int fd1, int fd2)
 
 int	command_not_found(t_ms *ms, char *err)
 {
-	custom_perror(ms->err, 1," command not found", err);
+	custom_perror(ms->err, 1, " command not found", err);
 	return (127);
 }
 

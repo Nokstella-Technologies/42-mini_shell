@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/11 19:03:58 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:04:26 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,11 @@ static t_cmd	**free_tmp(t_cmd **tmp, int a)
 
 static void	tokeneer_if(t_ms *ms, int a)
 {
-	if (ms->cmd != NULL && !ft_strncmp(ms->cmd[a]->line_cmd, "", 1) 
-		&& !(a == 0 && (*ms->handlers == '>'|| *ms->handlers == '<'
-		|| *ms->handlers == 'h' || *ms->handlers == 't')))
+	if (ms->cmd != NULL && !ft_strncmp(ms->cmd[a]->line_cmd, "", 1)
+		&& !(a == 0 && (*ms->handlers == '>' || *ms->handlers == '<'
+				|| *ms->handlers == 'h' || *ms->handlers == 't')))
 		ms->err[0] = -2;
 }
-
 
 static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int *a, t_cmd **tmp)
 {
@@ -85,7 +84,7 @@ static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int *a, t_cmd **tmp)
 	if (ms->cmd != NULL)
 	{
 		if (tmp[*a]->line_cmd[0] == '\0')
-			return(free_tmp(tmp, *a));
+			return (free_tmp(tmp, *a));
 		b = 0;
 		while (b < *a)
 		{
@@ -95,13 +94,12 @@ static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int *a, t_cmd **tmp)
 		free_ptr((void **) &ms->cmd);
 	}
 	else if (tmp[*a]->line_cmd[0] == '\0')
-		return(free_tmp(tmp, *a));
+		return (free_tmp(tmp, *a));
 	ms->cmd = tmp;
 	tokeneer_if(ms, *a);
 	*a = *a + 1;
 	return (tmp);
 }
-
 
 void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 {
@@ -126,5 +124,6 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		tmp = struct_value_to_tokeneer(ms, &a, tmp);
 		read = ft_verify_handlers(ms, s_tmp);
 	}
-	ms->err[0] = verify_error(ms->handlers, ft_strlen(ms->handlers),ms->err[0]);
+	ms->err[0] = verify_error(ms->handlers, ft_strlen(ms->handlers),
+			ms->err[0]);
 }

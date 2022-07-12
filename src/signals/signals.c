@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 20:55:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/10 15:24:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:07:45 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_sigaction(t_sigaction *sa, void (*hd)(int), int sig)
 	sigaction(sig, sa, NULL);
 }
 
-void	ft_sigaction()
+void	ft_sigaction(void)
 {
 	t_sigaction	sa;
 

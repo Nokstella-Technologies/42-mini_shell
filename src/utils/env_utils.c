@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:04:37 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/05 23:22:03 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:12:48 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ char	**create_envp(char **envp)
 	return (tmp);
 }
 
-
 void	set_env(char *name, char *value)
 {
 	char	**tmp;
@@ -89,7 +88,7 @@ char	*get_envp(char *var)
 		if (ft_strncmp(g_envp[i], tmp, ft_strlen(var) + 1) == 0)
 		{
 			free_ptr((void **)&tmp);
-			return(ft_strdup(&g_envp[i][ft_strlen(var) + 1]));
+			return (ft_strdup(&g_envp[i][ft_strlen(var) + 1]));
 		}
 		i++;
 	}

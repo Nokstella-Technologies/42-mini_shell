@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 12:53:11 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/07 19:04:08 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:40:08 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_atoi(const char *dest)
 	}
 	return (num * sign);
 }
-
 
 long long	ft_atol(const char *dest)
 {

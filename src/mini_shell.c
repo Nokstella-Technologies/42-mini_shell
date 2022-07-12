@@ -6,13 +6,14 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/05 19:10:110 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:14:25 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-char *read_line(char *prompt, char *s,char *workspacename) {
+char	*read_line(char *prompt, char *s, char *workspacename)
+{
 	int		fd;
 	char	*r;
 	char	*tmp;
@@ -36,7 +37,6 @@ char *read_line(char *prompt, char *s,char *workspacename) {
 	close(fd);
 	return (r);
 }
-
 
 t_bool	mini_shell(int *err)
 {

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 23:03:35 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/07 19:08:24 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:41:08 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -444,6 +444,6 @@ char	**ft_split_pipe(char const *s);
 
 long	ft_strtol(char *str);
 
-long long	ft_atol(const char *dest);
+// long long	ft_atol(const char *dest);
 
 #endif

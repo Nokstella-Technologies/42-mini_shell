@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:49:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 17:00:58 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:52:22 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	command_echo(t_ms *ms)
 	}
 	else if (ft_strnstr(ms->cmd[ms->cmd_now]->argv[1], "-n", 3))
 		text = concat(ms->cmd[ms->cmd_now]->argv, TRUE, i);
-	else 
+	else
 		text = concat(ms->cmd[ms->cmd_now]->argv, FALSE, i);
 	if (text == NULL)
 	{

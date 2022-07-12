@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:12:04 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/05 22:51:1:0 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:12:21 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ char *env_end)
 		if (*(env_sign + 1) == 0 || *(env_sign + 1) == ' ')
 			final = ft_formatf("%s%s%s", env_start, "$", &env_sign[a]);
 		else
-			final = ft_formatf("%s%s", env_start,  &env_sign[a]);
+			final = ft_formatf("%s%s", env_start, &env_sign[a]);
 	}
 	free_ptr((void **) &env);
-	return(final);
+	return (final);
 }
 
 static char	*sub_env(char *text, char *tmp, int a)
@@ -43,16 +43,16 @@ static char	*sub_env(char *text, char *tmp, int a)
 	{
 		env_start = ft_substr(tmp, 0, env_sign);
 		env_end = ft_substr(tmp, env_sign + 1,
-			ft_strfstr(&tmp[env_sign + 1], " $") - &tmp[env_sign] - 1);
+				ft_strfstr(&tmp[env_sign + 1], " $") - &tmp[env_sign] - 1);
 		text = tmp;
-		if (ft_strncmp(env_end , "?", 1) == 0)
+		if (ft_strncmp(env_end, "?", 1) == 0)
 			tmp = format_env(tmp, env_start, ft_itoa(errno), "?");
 		else
-			tmp = format_env(tmp, env_start, get_envp(env_end),	env_end);
+			tmp = format_env(tmp, env_start, get_envp(env_end), env_end);
 		free_ptr((void **)&env_start);
 		free_ptr((void **)&text);
 		free_ptr((void **)&env_end);
-		return(sub_env(NULL, tmp, env_sign + 1));
+		return (sub_env(NULL, tmp, env_sign + 1));
 	}
 	return (tmp);
 }

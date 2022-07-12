@@ -6,13 +6,13 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:32:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/12 16:59:13 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:08:39 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-t_ms	*init_struct(char *line,  int *err)
+t_ms	*init_struct(char *line, int *err)
 {
 	t_ms	*ms;
 

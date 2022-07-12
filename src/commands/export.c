@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:40 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 17:08:48 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:52:06 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ char	*verify_text(char *text)
 static char	*concat_all(char **splitted)
 {
 	char	*tmp;
-	char 	*final;
+	char	*final;
 	int		a;
 
 	a = 1;
 	final = ft_strdup("");
-	while(splitted[a] != NULL)
+	while (splitted[a] != NULL)
 	{
 		tmp = final;
 		final = ft_formatf("%s%s", final, splitted[a]);
@@ -49,11 +49,12 @@ void	verify_err(t_ms *ms, int i)
 		a++;
 	if (ms->cmd[ms->cmd_now]->argv[i][a] == 0)
 		custom_perror(ms->err, 1, "not a valid identifier", "export");
-	else {
+	else
+	{
 		a = 0;
 		while (ft_isalpha(ms->cmd[ms->cmd_now]->argv[i][a]) != 0)
 			a++;
-		if (ms->cmd[ms->cmd_now]->argv[i][a] != 0 )
+		if (ms->cmd[ms->cmd_now]->argv[i][a] != 0)
 			custom_perror(ms->err, 1, "not a valid identifier", "export");
 	}
 }
@@ -68,11 +69,11 @@ static void	export(t_ms *ms, int i, char **splitted)
 		a = 0;
 		while (splitted[0] != NULL && ft_isalpha(splitted[0][a]) != 0)
 			a++;
-		if (splitted[0] == NULL || splitted[0][a] != 0 )
+		if (splitted[0] == NULL || splitted[0][a] != 0)
 			custom_perror(ms->err, 1, "not a valid identifier", "export");
 		else if (ft_strchr(ms->cmd[ms->cmd_now]->argv[i], '=') == ms->cmd
 			[ms->cmd_now]->argv[i] || ft_strchr(splitted[0], ' ') != NULL)
-			custom_perror(ms->err, 1," =': not a valid identifier", "export");
+			custom_perror(ms->err, 1, " =': not a valid identifier", "export");
 		else if (splitted[1] == NULL)
 			set_env(splitted[0], "");
 		else
@@ -92,10 +93,6 @@ void	command_export(t_ms *ms)
 	int		i;
 
 	i = 1;
-	// free_ptr((void **) &ms->cmd[ms->cmd_now]->argv[1]);
-	// free_ptr((void **) &ms->cmd[ms->cmd_now]->argv[0]);
-	// free_ptr((void **) &ms->cmd[ms->cmd_now]->argv);
-	// ms->cmd[ms->cmd_now]->argv = ft_split_pipe( ms->cmd[ms->cmd_now]->line_cmd);
 	while (ms->cmd[ms->cmd_now]->argv[i] != NULL)
 	{
 		splitted = ft_split(ms->cmd[ms->cmd_now]->argv[i], '=');

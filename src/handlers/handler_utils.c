@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 17:08:33 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:59:32 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	pipe_exit(t_fds *fd, t_exec *exec)
 	if (fd->in_fd == fd->heredoc_fd)
 	{
 		if (unlink("./.tmp") != 0)
-			custom_perror(exec->ms->err, errno, "not possible to delete tmp file", ".tmp");
+			custom_perror(exec->ms->err, errno,
+				"not possible to delete tmp file", ".tmp");
 		fd->heredoc_fd = -1;
 	}
 	if (exec->ms->fd.tmp_out != -1)

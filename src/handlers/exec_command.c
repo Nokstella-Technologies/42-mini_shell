@@ -6,27 +6,11 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/12 17:07:46 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:25:42 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
-
-static void	change_pipe_final(t_exec *exec, int fd_tmp)
-{
-	if (fd_tmp != 0)
-		dup_custom(fd_tmp, STDIN_FILENO);
-	if (exec->ms->fd.tmp_out != -1)
-	{
-		dup_custom(exec->ms->fd.tmp_out, STDOUT_FILENO);
-		exec->ms->fd.tmp_out = -1;
-	}
-	else if(exec->ms->cmd_now + exec->ms->cmd_file_now + 1
-		== exec->ms->cmd_number)
-		dup_custom(exec->ms->fd_origin[1], STDOUT_FILENO);
-	else
-		dup_custom(exec->ms->fd.fd[1], STDOUT_FILENO);
-}
 
 static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 {
@@ -42,7 +26,7 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 		{
 			custom_close(&fd->fd[0]);
 			if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
-				custom_perror(exec->ms->err, errno, strerror(errno),  "execve");
+				custom_perror(exec->ms->err, errno, strerror(errno), "execve");
 		}
 		else
 			exit(command_not_found(exec->ms, cmd->argv[0]));
@@ -66,21 +50,21 @@ static t_bool	pcc(void (*commands)(t_ms *), t_exec *exec, t_ms *ms)
 static t_bool	testing_our_commands(t_cmd *cmd, t_exec *exec, t_ms *ms)
 {
 	if (ft_strncmp(cmd->argv[0], "cd", 3) == 0)
-		return(pcc(&command_cd, exec, ms));
+		return (pcc(&command_cd, exec, ms));
 	else if (ft_strncmp(cmd->argv[0], "echo", 5) == 0)
-		return(pcc(&command_echo, exec, ms));
+		return (pcc(&command_echo, exec, ms));
 	else if (ft_strncmp(cmd->argv[0], "env", 4) == 0)
-		return(pcc(&command_env, exec, ms));
+		return (pcc(&command_env, exec, ms));
 	else if (ft_strncmp(cmd->argv[0], "exit", 5) == 0)
-		return(pcc(&command_exit, exec, ms));
+		return (pcc(&command_exit, exec, ms));
 	else if (ft_strncmp(cmd->argv[0], "export", 7) == 0)
-		return(pcc(&command_export, exec, ms));
+		return (pcc(&command_export, exec, ms));
 	else if (ft_strncmp(cmd->argv[0], "pwd", 4) == 0)
-		return(pcc(&command_pwd, exec, ms));
+		return (pcc(&command_pwd, exec, ms));
 	else if (ft_strncmp(cmd->argv[0], "unset", 6) == 0)
-		return(pcc(&command_unset, exec, ms));
+		return (pcc(&command_unset, exec, ms));
 	else if (ft_strncmp(cmd->argv[0], "history", 8) == 0)
-		return(pcc(&command_history, exec, ms));
+		return (pcc(&command_history, exec, ms));
 	else
 		return (FALSE);
 }
@@ -94,7 +78,7 @@ t_ms	*fix_quotes(t_cmd *cmd, t_ms *ms)
 		return (ms);
 	cmd->argv = ft_split_pipe(cmd->line_cmd);
 	a = 0;
-	while(cmd->argv[a] != NULL)
+	while (cmd->argv[a] != NULL)
 	{
 		tmp = verify_quotes(cmd->argv[a], 0);
 		free_ptr((void **)&cmd->argv[a]);

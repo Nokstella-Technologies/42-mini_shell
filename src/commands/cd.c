@@ -26,7 +26,7 @@ void	command_cd(t_ms *ms)
 	else if (strchr(ms->cmd[ms->cmd_now]->argv[1], '~'))
 	{
 		formated = ft_formatf("%s%s", getenv("HOME"),
-			&ms->cmd[ms->cmd_now]->argv[1][1]);
+				&ms->cmd[ms->cmd_now]->argv[1][1]);
 		free(ms->cmd[ms->cmd_now]->argv[1]);
 		ms->cmd[ms->cmd_now]->argv[1] = formated;
 	}

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 17:05:48 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:26:19 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ extern char					**g_envp;
 
 typedef struct sigaction	t_sigaction;
 
-
 int		testing_access(t_cmd *cmd);
 int		find_cmd(t_cmd *cmd);
-void	ft_sigaction();
+void	ft_sigaction(void);
 int		command_not_found(t_ms *ms, char *err);
 int		dup_custom(int fd1, int fd2);
 t_ms	*init_struct(char *line, int *err);
@@ -117,5 +116,6 @@ char	**ft_strtok(char *str, char t);
 char	*get_envp(char *var);
 char	**create_envp(char **envp);
 void	pipe_exit(t_fds *fd, t_exec *exec);
+void	change_pipe_final(t_exec *exec, int fd_tmp);
 
 #endif

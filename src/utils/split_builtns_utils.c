@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:04:45 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/05 19:27:50 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:13:17 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ char	**ft_strtok(char *str, char t)
 {
 	char	**tmp;
 	int		i;
+
 	i = 0;
-	while(str[i] != t && str[i] != 0)
+	while (str[i] != t && str[i] != 0)
 		i++;
 	tmp = malloc(3 * sizeof(char *));
 	tmp[0] = ft_substr(str, 0, i);
