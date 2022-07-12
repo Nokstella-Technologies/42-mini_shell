@@ -6,16 +6,21 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:08:12 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/08 13:03:44 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:09:58 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-void	custom_perror(t_ms *ms, int err, char *str)
+void	custom_perror(int *ms_err, int err, char *str, char *cmd)
 {
-	errno = err;
-	ms->err[0] = err;
+	*ms_err = err;
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	if (cmd != NULL)
+	{
+		ft_putstr_fd(cmd, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+	}
 	ft_putstr_fd(str, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 }
@@ -25,12 +30,12 @@ static void tonken_res(t_ms *ms ,char *str)
 	char	*tmp;
 
 	if (ft_strncmp(str,"newline", 7) == 0)
-		tmp = ft_formatf(" syntax error near unexpected token `newline'");
+		tmp = ft_formatf("syntax error near unexpected token `newline'");
 	else if (*str == 't')
-		tmp = ft_formatf(" syntax error near unexpected token `>>'");
+		tmp = ft_formatf("syntax error near unexpected token `>>'");
 	else
-		tmp = ft_formatf(" syntax error near unexpected token `%c'", *str);
-	custom_perror(ms, 2, tmp);
+		tmp = ft_formatf("syntax error near unexpected token `%c'", *str);
+	custom_perror(ms->err, 2, tmp, NULL);
 	free_ptr((void **)& tmp);
 }
 

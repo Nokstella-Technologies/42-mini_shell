@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:49:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/10 15:24:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:00:58 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	command_echo(t_ms *ms)
 		text = concat(ms->cmd[ms->cmd_now]->argv, FALSE, i);
 	if (text == NULL)
 	{
-		custom_perror(ms, 1, "Not Possible to write this phrase");
+		custom_perror(ms->err, 1, "Not Possible to write this phrase", "echo");
 		return ;
 	}
 	printf("%s", text);

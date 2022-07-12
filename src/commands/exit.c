@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:34 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/09 16:01:56 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:01:08 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	verify_exit_error(char *str, t_ms *ms)
 	a = 0;
 	if (ms->cmd[ms->cmd_now]->argv[2] != NULL)
 	{
-		custom_perror(ms, 1, " too many arguments");
+		custom_perror(ms->err, 1, " too many arguments", "exit");
 		return (1);
 	}
 	while ((ft_isdigit(str[a]) || str[a] == '+' || str[a] == '-'
@@ -28,7 +28,7 @@ static int	verify_exit_error(char *str, t_ms *ms)
 		a++;
 	if (str[a] != 0)
 	{
-		custom_perror(ms, 2, " numeric argument required");
+		custom_perror(ms->err, 2, " numeric argument required", "exit");
 		return (2);
 	}
 	return (0);

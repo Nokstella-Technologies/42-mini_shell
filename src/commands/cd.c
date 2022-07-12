@@ -20,7 +20,7 @@ void	command_cd(t_ms *ms)
 	if (!ms->cmd[ms->cmd_now]->argv[1])
 		ms->cmd[ms->cmd_now]->argv[1] = getenv("HOME");
 	else if (ms->cmd[ms->cmd_now]->argv[2] != NULL)
-		custom_perror(ms, 1, " too many arguments");
+		custom_perror(ms->err, 1, "too many arguments", "cd");
 	else if (!ms->cmd[ms->cmd_now]->argv[1])
 		return ;
 	else if (strchr(ms->cmd[ms->cmd_now]->argv[1], '~'))
@@ -31,7 +31,7 @@ void	command_cd(t_ms *ms)
 		ms->cmd[ms->cmd_now]->argv[1] = formated;
 	}
 	else if (chdir(ms->cmd[ms->cmd_now]->argv[1]) != 0)
-		custom_perror(ms, 1, " No such file or directory");
+		custom_perror(ms->err, 1, "No such file or directory", "cd");
 	else
 	{
 		set_env("OLDPWD", getenv("PWD"));

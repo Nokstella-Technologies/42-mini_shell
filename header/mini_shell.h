@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/09 23:33:30 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:05:48 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_ms
 	char	*handlers;
 	t_fds	fd;
 	t_cmd	**cmd;
-	int		*errnot;
 }			t_ms;
 
 typedef struct s_exec
@@ -78,7 +77,7 @@ typedef struct sigaction	t_sigaction;
 int		testing_access(t_cmd *cmd);
 int		find_cmd(t_cmd *cmd);
 void	ft_sigaction();
-int		command_not_found(t_ms *ms);
+int		command_not_found(t_ms *ms, char *err);
 int		dup_custom(int fd1, int fd2);
 t_ms	*init_struct(char *line, int *err);
 void	error_token(t_ms *ms);
@@ -102,7 +101,7 @@ void	end_program(t_ms **ms);
 void	free_g_envp(void);
 void	verify_next_move(t_ms *ms);
 void	custom_close(int *fd);
-void	custom_perror(t_ms *ms, int err, char *str);
+void	custom_perror(int *ms_err, int err, char *str, char *cmd);
 void	exec_elf(t_cmd *cmd);
 void	heredoc(t_ms *ms, t_cmd *eof);
 char	*get_cwd(void);

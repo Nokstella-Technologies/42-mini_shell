@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/11 18:26:17 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:07:46 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	change_pipe_final(t_exec *exec, int fd_tmp)
 		dup_custom(exec->ms->fd.tmp_out, STDOUT_FILENO);
 		exec->ms->fd.tmp_out = -1;
 	}
-	else if (exec->ms->cmd_now + 1 == exec->ms->cmd_number)
+	else if(exec->ms->cmd_now + exec->ms->cmd_file_now + 1
+		== exec->ms->cmd_number)
 		dup_custom(exec->ms->fd_origin[1], STDOUT_FILENO);
 	else
 		dup_custom(exec->ms->fd.fd[1], STDOUT_FILENO);
@@ -34,20 +35,20 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 	ft_sigaction();
 	pid = fork();
 	if (pid == -1)
-		custom_perror(exec->ms, errno, strerror(errno));
+		custom_perror(exec->ms->err, errno, strerror(errno), "fork");
 	else if (pid == 0)
 	{
 		if (testing_access(cmd) == 0)
 		{
 			custom_close(&fd->fd[0]);
 			if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
-				custom_perror(exec->ms, errno, strerror(errno));
+				custom_perror(exec->ms->err, errno, strerror(errno),  "execve");
 		}
 		else
-			exit(command_not_found(exec->ms));
-		exit(256);
+			exit(command_not_found(exec->ms, cmd->argv[0]));
+		kill(pid, 256);
 	}
-	waitpid(pid, exec->ms->err, 0);
+	wait4(pid, exec->ms->err, 0, NULL);
 	if (WIFEXITED(*exec->ms->err))
 		*exec->ms->err = WEXITSTATUS(*exec->ms->err);
 	else if (WIFSIGNALED(*exec->ms->err))

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:40 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/07 22:47:16 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:08:48 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	verify_err(t_ms *ms, int i)
 	while (ft_isdigit(ms->cmd[ms->cmd_now]->argv[i][a]) != 0)
 		a++;
 	if (ms->cmd[ms->cmd_now]->argv[i][a] == 0)
-		custom_perror(ms, 1, " not a valid identifier");
+		custom_perror(ms->err, 1, "not a valid identifier", "export");
 	else {
 		a = 0;
 		while (ft_isalpha(ms->cmd[ms->cmd_now]->argv[i][a]) != 0)
 			a++;
 		if (ms->cmd[ms->cmd_now]->argv[i][a] != 0 )
-			custom_perror(ms, 1, " not a valid identifier");
+			custom_perror(ms->err, 1, "not a valid identifier", "export");
 	}
 }
 
@@ -69,10 +69,10 @@ static void	export(t_ms *ms, int i, char **splitted)
 		while (splitted[0] != NULL && ft_isalpha(splitted[0][a]) != 0)
 			a++;
 		if (splitted[0] == NULL || splitted[0][a] != 0 )
-			custom_perror(ms, 1, " not a valid identifier");
+			custom_perror(ms->err, 1, "not a valid identifier", "export");
 		else if (ft_strchr(ms->cmd[ms->cmd_now]->argv[i], '=') == ms->cmd
 			[ms->cmd_now]->argv[i] || ft_strchr(splitted[0], ' ') != NULL)
-			custom_perror(ms, 1,"minishell: export: `=': not a valid identifier\n");
+			custom_perror(ms->err, 1," =': not a valid identifier", "export");
 		else if (splitted[1] == NULL)
 			set_env(splitted[0], "");
 		else

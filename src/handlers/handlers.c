@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/11 19:05:56 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:03:41 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	verify_pipe(t_ms *ms)
 {
 	if(pipe(ms->fd.fd) == -1)
-		custom_perror(ms, 2, " error to create the pipe");
+		custom_perror(ms->err, 2, " error to create the pipe", "pipe");
 	// ft_putstr_fd(ms->cmd[ms->cmd_now]->line_cmd ,ms->fd_origin[1]);
 	exec_command(ms->cmd[ms->cmd_now], ms);
 }
@@ -39,8 +39,10 @@ static int	out_file(t_ms *ms, char type, t_bool was_out, int *f)
 				O_RDWR | O_CREAT, 0644);
 	}
 	if (ms->fd.tmp_out == -1)
-		custom_perror(ms, 2, "No such file or directory");
+		custom_perror(ms->err, 2, "No such file or directory",
+			ms->cmd[ms->cmd_now + *f]->line_cmd);
 	*f = *f + 1;
+	ms->cmd_file_now += 1;
 	return (2);
 }
 
@@ -50,23 +52,28 @@ static int	in_file(t_ms *ms, int *f)
 
 	fd = open(ms->cmd[ms->cmd_now + *f]->line_cmd, O_RDONLY , 0644);
 	if (fd == -1)
-		custom_perror(ms, 2, " No such file or directory");
+		custom_perror(ms->err, 2, "No such file or directory",
+			ms->cmd[ms->cmd_now + *f]->line_cmd);
 	else
 	{
 		custom_close(&ms->fd.in_fd);
 		ms->fd.in_fd = fd;
 	}
 	*f = *f + 1;
+	ms->cmd_file_now += 1;
 	return (2);
 }
 
 static int	ver_here(t_ms *ms, int *f)
 {
-	ms->fd.heredoc_fd = open("./.tmp", O_RDWR | O_CREAT, 0644);
-	heredoc(ms, ms->cmd[ms->cmd_file_now + *f]);
+	ms->fd.heredoc_fd = open("./.tmp", O_RDWR | O_CREAT, 0777);
+	heredoc(ms, ms->cmd[ms->cmd_now + *f]);
 	custom_close(&ms->fd.in_fd);
+	custom_close(&ms->fd.heredoc_fd);
+	ms->fd.heredoc_fd = open("./.tmp", O_RDWR | O_CREAT, 0777);
 	ms->fd.in_fd = ms->fd.heredoc_fd;
 	*f = *f + 1;
+	ms->cmd_file_now += 1;
 	return (2);
 }
 
