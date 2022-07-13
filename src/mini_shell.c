@@ -48,6 +48,7 @@ t_bool	mini_shell(int *err)
 		return (TRUE);
 	else if (*r != 0)
 	{
+		history_initialization();
 		history(r);
 		ms = init_struct(r, err);
 		tokeneer(ms, r, 0, NULL);

@@ -19,7 +19,6 @@ ERROS		=	custom_error.c
 HANDLERS	=	exec_command.c	\
 				handler_utils.c	\
 				handlers.c
-
 				heredoc.c		\
 				history.c		\
 				parser.c		\

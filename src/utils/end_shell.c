@@ -18,6 +18,7 @@ void	custom_close(int *fd)
 	char	*tmp;
 
 	err = 0;
+	tmp = NULL;
 	if (*fd != 0 && *fd != -1)
 		err = close(*fd);
 	if (err == -1)

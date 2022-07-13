@@ -1,6 +1,6 @@
 #include "mini_shell.h"
 
-void	change_pipe_final(t_exec *exec, int fd_tmp);
+void	change_pipe_final(t_exec *exec, int fd_tmp)
 {
 	if (fd_tmp != 0)
 		dup_custom(fd_tmp, STDIN_FILENO);

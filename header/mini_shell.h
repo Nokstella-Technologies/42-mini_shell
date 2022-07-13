@@ -117,5 +117,6 @@ char	*get_envp(char *var);
 char	**create_envp(char **envp);
 void	pipe_exit(t_fds *fd, t_exec *exec);
 void	change_pipe_final(t_exec *exec, int fd_tmp);
+void	history_initialization(void);
 
 #endif

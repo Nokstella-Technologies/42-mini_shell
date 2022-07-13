@@ -12,6 +12,27 @@
 
 #include "mini_shell.h"
 
+void	history_initialization(void)
+{
+	char	*history;
+	int		fd;
+	int		i;
+
+	fd = open(".mini_history", O_RDONLY);
+	if (fd == -1)
+		return ;
+	history = get_next_line(fd);
+	i = 0;
+	while(history != NULL)
+	{
+		add_history(history);
+		free_ptr((void **)&history);
+		history = get_next_line(fd);
+		i++;
+	}
+	close(fd);
+}
+
 void	command_history(t_ms *ms)
 {
 	int		fd;
