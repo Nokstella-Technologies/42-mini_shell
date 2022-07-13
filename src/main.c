@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/10 15:24:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/13 13:29:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv, char **envp)
 	*exit_status = 0;
 	g_envp = create_envp(envp);
 	ft_sigaction();
+	history_initialization();
 	while (1)
 	{
 		if (mini_shell(exit_status) == TRUE)

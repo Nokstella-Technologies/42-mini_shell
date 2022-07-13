@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 19:14:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/13 19:00:55 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*read_line(char *prompt, char *s, char *workspacename)
 	char	*r;
 	char	*tmp;
 
+	ft_sigaction();
 	s = get_cwd();
 	tmp = ft_substr(s, ft_strlen(getenv("HOME")), ft_strlen(s));
 	free_ptr((void **)&s);
@@ -48,7 +49,6 @@ t_bool	mini_shell(int *err)
 		return (TRUE);
 	else if (*r != 0)
 	{
-		history_initialization();
 		history(r);
 		ms = init_struct(r, err);
 		tokeneer(ms, r, 0, NULL);

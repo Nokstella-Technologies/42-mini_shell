@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:58:17 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 19:01:49 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/13 19:04:01 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	history_initialization(void)
 {
 	char	*history;
+	char	*tmp;
 	int		fd;
 	int		i;
 
@@ -25,8 +26,10 @@ void	history_initialization(void)
 	i = 0;
 	while(history != NULL)
 	{
-		add_history(history);
+		tmp = ft_substr(history, 0, ft_strlen(history) - 1);
 		free_ptr((void **)&history);
+		add_history(tmp);
+		free_ptr((void **)&tmp);
 		history = get_next_line(fd);
 		i++;
 	}
