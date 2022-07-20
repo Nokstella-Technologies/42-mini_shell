@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 19:04:26 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:48:48 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ static char	*ft_verify_handlers(t_ms *ms, char *s_tmp)
 		return (verify_token(ms, s_tmp + 1, '<'));
 	else if (*(s_tmp) == '|')
 		return (verify_token(ms, s_tmp + 1, '|'));
-	else if (*(s_tmp) == '&' && *(s_tmp + 1) == '&')
-	{
-		add_token(ms, "a");
-		return (s_tmp + 2);
-	}
-	else if (*(s_tmp) == '&')
-		ms->err[0] = -2;
 	return (s_tmp + 1);
 }
 
@@ -38,8 +31,7 @@ static char	*find_next_token(t_ms *ms, char *line)
 	int		a;
 
 	a = 0;
-	while (line[a] != '&' && line[a] != '>'
-		&& line[a] != '<' && line[a] != '|' && line[a] != 0)
+	while (line[a] != '>' && line[a] != '<' && line[a] != '|' && line[a] != 0)
 	{
 		if (line[a] == '\"' || line[a] == '\'')
 		{
@@ -106,7 +98,7 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 	t_cmd	**tmp;
 	char	*cmd;
 
-	while (*read != 0)
+	while (*read != 0 && ms->err[0] == 0)
 	{
 		s_tmp = find_next_token(ms, read);
 		tmp = (t_cmd **)malloc((a + 2) * sizeof(t_cmd *));

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 19:26:19 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:05:05 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char	*verify_quotes(char *text, int i);
 char	*verify_token(t_ms *ms, char *s_tmp, char a);
 int		verify_error(char *handlers, int len, int err);
 void	verify_cmd(t_ms *ms, char *str);
-void	add_token(t_ms *ms, char *token);
+void	add_token(t_ms *ms, char token);
 void	history(char *r);
 void	command_history(t_ms *ms);
 char	**ft_strtok(char *str, char t);

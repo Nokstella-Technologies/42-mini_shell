@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:08:12 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/12 18:57:40 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:52:21 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,13 @@ void	error_token(t_ms *ms)
 	a = 0;
 	while (ms->handlers[a] != 0)
 	{
-		if (a == 0 && (ms->handlers[a] == '|' || ms->handlers[a] == 'o'
-				|| ms->handlers[a] == 'a'))
+		if (a == 0 && (ms->handlers[a] == '|'))
 			return (token_res(ms, &ms->handlers[a]));
 		if ((ms->handlers[a] == '>' || ms->handlers[a] == '<'
 				|| ms->handlers[a] == 't' || ms->handlers[a] == 'h')
 			&& ms->handlers[a + 1] == 0)
 			return (token_res(ms, "newline"));
-		if ((ms->handlers[a] == '|' || ms->handlers[a] == 'o'
-				|| ms->handlers[a] == 'a') && (ms->handlers[a + 1] == '|'
+		if ((ms->handlers[a] == '|') && (ms->handlers[a + 1] == '|'
 				|| ms->handlers[a + 1] == 'o' || ms->handlers[a + 1] == 'a'))
 			return (token_res(ms, &ms->handlers[a + 1]));
 		if ((ms->handlers[a] == '>' || ms->handlers[a] == '<'

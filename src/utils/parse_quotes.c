@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:12:04 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/14 19:04:19 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:09:40 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ char *env_end)
 	{
 		if (*(env_sign + 1) == 0 || *(env_sign + 1) == ' ')
 			final = ft_formatf("%s%s%s", env_start, "$", &env_sign[a]);
-		else
+		else if (*env_start != 0 && env_sign[a] != 0)
 			final = ft_formatf("%s%s", env_start, &env_sign[a]);
+		else
+			return (ft_strdup(""));
 	}
 	free_ptr((void **) &env);
 	return (final);
@@ -38,12 +40,9 @@ static char	*sub_env(char *text, char *tmp, int a)
 	int		env_sign;
 	char	*env_end;
 
-	if (*tmp == 0)
-		return (tmp);
-	text = ft_strchr(&tmp[a], '$');
-	if (text != NULL && ft_strchr(&tmp[a], '$') - tmp >= 0)
+	env_sign = ft_strchr(&tmp[a], '$') - tmp;
+	if (env_sign >= 0)
 	{
-		env_sign = ft_strchr(&tmp[a], '$') - tmp;
 		env_start = ft_substr(tmp, 0, env_sign);
 		env_end = ft_substr(tmp, env_sign + 1,
 				ft_strfstr(&tmp[env_sign + 1], " $") - &tmp[env_sign] - 1);
@@ -55,6 +54,8 @@ static char	*sub_env(char *text, char *tmp, int a)
 		free_ptr((void **)&env_start);
 		free_ptr((void **)&text);
 		free_ptr((void **)&env_end);
+		if (*tmp == 0)
+			return (tmp);
 		return (sub_env(NULL, tmp, env_sign + 1));
 	}
 	return (tmp);

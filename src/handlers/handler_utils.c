@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 18:59:32 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:05:21 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,36 @@ void	pipe_exit(t_fds *fd, t_exec *exec)
 	}
 }
 
-void	add_token(t_ms *ms, char *token)
+void	add_token(t_ms *ms, char token)
 {
 	char	*tmp;
 
 	tmp = ms->handlers;
-	ms->handlers = ft_formatf("%s%s", ms->handlers, token);
+	ms->handlers = ft_formatf("%s%c", ms->handlers, token);
 	free(tmp);
 }
 
 char	*verify_token(t_ms *ms, char *s_tmp, char a)
 {
-	if (*s_tmp == a)
+	if (*s_tmp == a && a != '|')
 	{
-		if (*s_tmp == '|')
-			add_token(ms, "o");
-		else if (*s_tmp == '>')
-			add_token(ms, "t");
+		if (*s_tmp == '>')
+			add_token(ms,'t');
 		else if (*s_tmp == '<')
-			add_token(ms, "h");
+			add_token(ms,'h');
 		return (s_tmp + 1);
 	}
-	else if (*s_tmp == '|' || *s_tmp == '>' || *s_tmp == '<' || *s_tmp == '&')
+	else if (*s_tmp == '|' || *s_tmp == '>' || *s_tmp == '<')
+	{
 		ms->err[0] = -2;
+		add_token(ms, a);
+	}
 	if (a == '|')
-		add_token(ms, "|");
+		add_token(ms,'|');
 	if (a == '>')
-		add_token(ms, ">");
+		add_token(ms,'>');
 	if (a == '<')
-		add_token(ms, "<");
+		add_token(ms,'<');
 	return (s_tmp);
 }
 
@@ -92,11 +93,11 @@ void	verify_cmd(t_ms *ms, char *str)
 			|| ms->handlers[strlen - 1] == 'h'))
 	{
 		ms->cmd_number ++;
-		add_token(ms, "f");
+		add_token(ms, 'f');
 	}
 	else
 	{
 		ms->cmd_number ++;
-		add_token(ms, "c");
+		add_token(ms, 'c');
 	}
 }
