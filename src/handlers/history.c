@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:58:17 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/13 19:04:01 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 10:00:58 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	history_initialization(void)
 	int		fd;
 	int		i;
 
-	fd = open(".mini_history", O_RDONLY);
+	tmp = ft_strjoin(getenv("HOME"), ("/.mini_history"));
+	fd = open(tmp, O_RDONLY);
+	free_ptr((void **) &tmp);
 	if (fd == -1)
 		return ;
 	history = get_next_line(fd);
@@ -43,7 +45,9 @@ void	command_history(t_ms *ms)
 	char	*line;
 
 	(void) ms;
-	fd = open(".mini_history", O_CREAT | O_RDONLY, 0644);
+	line = ft_strjoin(getenv("HOME"), ("/.mini_history"));
+	fd = open(line, O_CREAT | O_RDONLY, 0644);
+	free_ptr((void **) &line);
 	if (fd == -1)
 		return ;
 	line = get_next_line(fd);
@@ -60,12 +64,15 @@ void	command_history(t_ms *ms)
 
 void	history(char *r)
 {
-	int	fd;
-
+	int		fd;
+	char	*tmp;
 	add_history(r);
-	fd = open(".mini_history", O_CREAT | O_RDWR | O_APPEND, 0644);
+
+	tmp = ft_strjoin(getenv("HOME"), ("/.mini_history"));
+	fd = open(tmp, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (fd == -1)
 		return ;
+	free_ptr((void **) &tmp);
 	write(fd, r, ft_strlen(r));
 	write(fd, "\n", 1);
 	close(fd);
