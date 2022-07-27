@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/19 22:05:05 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:39:10 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 
 # define BUFFER 256
 
+typedef struct sigaction	t_sigaction;
+
 typedef struct s_fds
 {
 	int	in_fd;
@@ -50,17 +52,18 @@ typedef struct s_cmd
 
 typedef struct s_ms
 {
-	int		*err;
-	char	*line;
-	int		cmd_now;
-	int		cmd_number;
-	int		cmd_file_now;
-	int		fd_origin[2];
-	int		handlers_counter;
-	char	*handlers;
-	t_fds	fd;
-	t_cmd	**cmd;
-}			t_ms;
+	int			*err;
+	char		*line;
+	int			cmd_now;
+	int			cmd_number;
+	int			cmd_file_now;
+	int			fd_origin[2];
+	int			handlers_counter;
+	char		*handlers;
+	t_sigaction	*sa;
+	t_fds		fd;
+	t_cmd		**cmd;
+}				t_ms;
 
 typedef struct s_exec
 {
@@ -71,22 +74,19 @@ typedef struct s_exec
 
 extern char					**g_envp;
 
-typedef struct sigaction	t_sigaction;
 
 int		testing_access(t_cmd *cmd);
 int		find_cmd(t_cmd *cmd);
-void	ft_sigaction(void);
 int		command_not_found(t_ms *ms, char *err);
 int		dup_custom(int fd1, int fd2);
-t_ms	*init_struct(char *line, int *err);
+t_ms	*init_struct(char *line, int *err, t_sigaction *sa);
 void	error_token(t_ms *ms);
 void	free_all(t_ms **ms);
 void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp);
-t_bool	mini_shell(int *err);
+t_bool	mini_shell(int *err, t_sigaction *sa);
 void	init_sigaction(t_sigaction *sa, void (*hd)(int), int sig);
 void	handler_sig(int sig);
 void	pwd(void);
-void	ms_pipe(t_cmd **cmds, t_fds *fds);
 void	exec_command(t_cmd *cmd, t_ms *ms);
 void	command_cd(t_ms *ms);
 void	command_echo(t_ms *ms);
@@ -102,7 +102,7 @@ void	verify_next_move(t_ms *ms);
 void	custom_close(int *fd);
 void	custom_perror(int *ms_err, int err, char *str, char *cmd);
 void	exec_elf(t_cmd *cmd);
-void	heredoc(t_ms *ms, t_cmd *eof);
+void	heredoc(t_ms *ms, int *eof);
 char	*get_cwd(void);
 char	*verify_text(char *text);
 char	*verify_quotes(char *text, int i);
@@ -118,5 +118,7 @@ char	**create_envp(char **envp);
 void	pipe_exit(t_fds *fd, t_exec *exec);
 void	change_pipe_final(t_exec *exec, int fd_tmp);
 void	history_initialization(void);
-
+void	handler_sig_child(int sig);
+void	handle_child_sig_int_here_doc(int sig);
+void	ft_waitpid(t_ms *ms, int pid);
 #endif

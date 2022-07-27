@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/19 22:05:21 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/26 22:16:05 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	add_token(t_ms *ms, char token)
 
 	tmp = ms->handlers;
 	ms->handlers = ft_formatf("%s%c", ms->handlers, token);
-	free(tmp);
+	free_ptr((void **) &tmp);
 }
 
 char	*verify_token(t_ms *ms, char *s_tmp, char a)

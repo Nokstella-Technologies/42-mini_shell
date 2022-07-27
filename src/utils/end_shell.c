@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:20:06 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/10 16:24:39 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:28:51 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void	end_program(t_ms **ms)
 	dup_custom(ms[0]->fd_origin[1], STDOUT_FILENO);
 	custom_close(&ms[0]->fd_origin[0]);
 	custom_close(&ms[0]->fd_origin[1]);
+	if (ms[0]->fd.heredoc_fd != -1)
+	{
+		if (unlink("./.tmp") != 0)
+			custom_perror(ms[0]->err, errno,
+				"not possible to delete tmp file", ".tmp");
+	}
 	free_all(&ms[0]);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/12 19:25:42 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:36:39 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 {
 	pid_t	pid;
 
-	ft_sigaction();
+	init_sigaction(exec->ms->sa, SIG_IGN, SIGINT);
 	pid = fork();
 	if (pid == -1)
 		custom_perror(exec->ms->err, errno, strerror(errno), "fork");
 	else if (pid == 0)
 	{
+		init_sigaction(exec->ms->sa, handler_sig_child, SIGINT);
+		init_sigaction(exec->ms->sa, handler_sig_child, SIGQUIT);
 		if (testing_access(cmd) == 0)
 		{
 			custom_close(&fd->fd[0]);
@@ -30,13 +32,9 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 		}
 		else
 			exit(command_not_found(exec->ms, cmd->argv[0]));
-		kill(pid, 256);
+		exit(256);
 	}
-	wait4(pid, exec->ms->err, 0, NULL);
-	if (WIFEXITED(*exec->ms->err))
-		*exec->ms->err = WEXITSTATUS(*exec->ms->err);
-	else if (WIFSIGNALED(*exec->ms->err))
-		*exec->ms->err = WTERMSIG(*exec->ms->err) + 128;
+	ft_waitpid(exec->ms, pid);
 	pipe_exit(fd, exec);
 }
 

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:42:11 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/05 19:27:46 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:58:52 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,7 @@ static size_t	count_s(char const *s)
 		while (*tmp != ' ' && *tmp != 0)
 		{
 			if (*(tmp) == '\'' || *(tmp) == '\"')
-			{
 				tmp += verify_quotes(tmp, 0);
-				if (*(tmp) == ' ' || *(tmp - 1) == ' ')
-					count++;
-			}
 			else
 				++tmp;
 		}

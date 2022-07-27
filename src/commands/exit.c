@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:34 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 18:54:49 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:04:52 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	command_exit(t_ms *ms)
 		if (exit_s == 0 && ms->cmd[ms->cmd_now]->argv[1] != NULL)
 			exit_s = ft_atoi(ms->cmd[ms->cmd_now]->argv[1]);
 	}
+	ft_putstr_fd("exit\n", 2);
 	free_g_envp();
 	end_program(&ms);
 	exit(exit_s);

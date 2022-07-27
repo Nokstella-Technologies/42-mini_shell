@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/12 19:07:06 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:43:15 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,22 @@ static int	in_file(t_ms *ms, int *f)
 
 static int	ver_here(t_ms *ms, int *f)
 {
-	ms->fd.heredoc_fd = open("./.tmp", O_RDWR | O_CREAT, 0777);
-	heredoc(ms, ms->cmd[ms->cmd_now + *f]);
+	pid_t	pid;
+
+	init_sigaction(ms->sa, SIG_IGN, SIGINT);
 	custom_close(&ms->fd.in_fd);
+	pid = fork();
+	if (pid == -1)
+		custom_perror(ms->err, errno, strerror(errno), "fork");
+	else if(pid == 0)
+	{
+		dup_custom(dup(ms->fd_origin[0]), STDIN_FILENO);
+		dup_custom(dup(ms->fd_origin[1]), STDOUT_FILENO);
+		ms->fd.heredoc_fd = open("./.tmp", O_RDWR | O_CREAT, 0777);
+		heredoc(ms, f);
+		exit (130);
+	}
+	ft_waitpid(ms, pid);
 	custom_close(&ms->fd.heredoc_fd);
 	ms->fd.heredoc_fd = open("./.tmp", O_RDWR | O_CREAT, 0777);
 	ms->fd.in_fd = ms->fd.heredoc_fd;
