@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/26 21:36:39 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 00:09:19 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 		exit(256);
 	}
 	ft_waitpid(exec->ms, pid);
-	pipe_exit(fd, exec);
 }
 
 static t_bool	pcc(void (*commands)(t_ms *), t_exec *exec, t_ms *ms)
@@ -99,6 +98,4 @@ void	exec_command(t_cmd *cmd, t_ms *ms)
 	change_pipe_final(&exec, exec.ms->fd.in_fd);
 	if (testing_our_commands(cmd, &exec, ms) == FALSE)
 		pipe_change_exc(cmd, &ms->fd, &exec);
-	else
-		pipe_exit(&ms->fd, &exec);
 }

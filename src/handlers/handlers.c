@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/26 23:43:15 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 01:09:03 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	ver_here(t_ms *ms, int *f)
 
 	init_sigaction(ms->sa, SIG_IGN, SIGINT);
 	custom_close(&ms->fd.in_fd);
-	pid = fork();
+	pid =  fork();
 	if (pid == -1)
 		custom_perror(ms->err, errno, strerror(errno), "fork");
 	else if(pid == 0)
@@ -101,15 +101,15 @@ int	verify_next_move_token(t_ms *ms, int h, t_bool was_out, int *f)
 		verify_pipe(ms);
 	}
 	else if (token == 't')
-		verify_next_move_token(ms, h + out_file(ms, token, was_out, f),
+		h = verify_next_move_token(ms, h + out_file(ms, token, was_out, f),
 			was_out, f);
 	else if (token == '<')
-		verify_next_move_token(ms, h + in_file(ms, f), was_out, f);
+		h = verify_next_move_token(ms, h + in_file(ms, f), was_out, f);
 	else if (token == '>')
-		verify_next_move_token(ms, h + out_file(ms, token, was_out, f),
+		h = verify_next_move_token(ms, h + out_file(ms, token, was_out, f),
 			was_out, f);
 	else if (token == 'h')
-		verify_next_move_token(ms, h + ver_here(ms, f), was_out, f);
+		h = verify_next_move_token(ms, h + ver_here(ms, f), was_out, f);
 	else if (token == '|')
 		return (h + 1);
 	return (h);
@@ -126,6 +126,7 @@ void	verify_next_move(t_ms *ms)
 		f = 0;
 		ms->handlers_counter = verify_next_move_token(ms, ms->handlers_counter,
 				FALSE, &f);
+		pipe_exit(&ms->fd, ms);
 		ms->cmd_now += f;
 		i = ms->cmd_now;
 	}

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/26 22:39:10 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 00:11:20 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	command_history(t_ms *ms);
 char	**ft_strtok(char *str, char t);
 char	*get_envp(char *var);
 char	**create_envp(char **envp);
-void	pipe_exit(t_fds *fd, t_exec *exec);
+void	pipe_exit(t_fds *fd, t_ms *ms);
 void	change_pipe_final(t_exec *exec, int fd_tmp);
 void	history_initialization(void);
 void	handler_sig_child(int sig);
