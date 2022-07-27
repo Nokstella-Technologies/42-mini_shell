@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/26 23:59:57 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:29:45 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ char	*read_line(char *prompt, char *s, char *work_space_name)
 	char	*tmp;
 
 	s = get_cwd();
-	tmp = ft_substr(s, ft_strlen(getenv("HOME")), ft_strlen(s));
-	free_ptr((void **)&s);
-	s = ft_strjoin("~", tmp);
-	free_ptr((void **)&tmp);
+	if (!strncmp(s, getenv("HOME"), ft_strlen(getenv("HOME")) + 1))
+	{
+		tmp = ft_substr(s, ft_strlen(getenv("HOME")), ft_strlen(s));
+		free_ptr((void **)&s);
+		s = ft_strjoin("~", tmp);
+		free_ptr((void **)&tmp);
+	}
 	fd = open("/etc/hostname", O_RDONLY, 0644);
 	work_space_name = get_next_line(fd);
 	tmp = ft_strjoin(work_space_name, "\0");
