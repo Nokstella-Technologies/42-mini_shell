@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/26 23:09:24 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 09:47:13 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static char	*find_next_token(t_ms *ms, char *line)
 static t_cmd	**free_tmp(t_cmd **tmp, int a)
 {
 	free_ptr((void **) &tmp[a]->line_cmd);
+	free_ptr((void **) &tmp[a]);
 	free_ptr((void **) &tmp);
 	return ((t_cmd **) 0);
 }
