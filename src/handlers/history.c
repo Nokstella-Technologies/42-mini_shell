@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:58:17 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/27 10:00:58 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:27:05 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	history_initialization(void)
 		return ;
 	history = get_next_line(fd);
 	i = 0;
-	while(history != NULL)
+	while (history != NULL)
 	{
 		tmp = ft_substr(history, 0, ft_strlen(history) - 1);
 		free_ptr((void **)&history);
@@ -66,8 +66,8 @@ void	history(char *r)
 {
 	int		fd;
 	char	*tmp;
-	add_history(r);
 
+	add_history(r);
 	tmp = ft_strjoin(getenv("HOME"), ("/.mini_history"));
 	fd = open(tmp, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (fd == -1)

@@ -16,7 +16,7 @@ static void	change_home(t_ms *ms)
 {
 	char	**tmp;
 
-	tmp = (char	**)malloc(3 * sizeof(char *));
+	tmp = (char **)malloc(3 * sizeof(char *));
 	tmp[0] = ms->cmd[ms->cmd_now]->argv[0];
 	tmp[1] = ft_strdup(getenv("HOME"));
 	tmp[2] = NULL;

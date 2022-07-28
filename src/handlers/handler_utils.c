@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/27 00:10:30 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:26:43 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ char	*verify_token(t_ms *ms, char *s_tmp, char a)
 	if (*s_tmp == a && a != '|')
 	{
 		if (*s_tmp == '>')
-			add_token(ms,'t');
+			add_token(ms, 't');
 		else if (*s_tmp == '<')
-			add_token(ms,'h');
+			add_token(ms, 'h');
 		return (s_tmp + 1);
 	}
 	else if (*s_tmp == '|' || *s_tmp == '>' || *s_tmp == '<')
@@ -60,11 +60,11 @@ char	*verify_token(t_ms *ms, char *s_tmp, char a)
 		add_token(ms, a);
 	}
 	if (a == '|')
-		add_token(ms,'|');
+		add_token(ms, '|');
 	if (a == '>')
-		add_token(ms,'>');
+		add_token(ms, '>');
 	if (a == '<')
-		add_token(ms,'<');
+		add_token(ms, '<');
 	return (s_tmp);
 }
 

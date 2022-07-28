@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/27 18:46:19 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:27:51 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define BUFFER 256
 
+extern char					**g_envp;
 typedef struct sigaction	t_sigaction;
 
 typedef struct s_fds
@@ -73,9 +74,6 @@ typedef struct s_exec
 	t_ms	*ms;
 }			t_exec;
 
-extern char					**g_envp;
-
-
 int		testing_access(t_cmd *cmd);
 int		find_cmd(t_cmd *cmd);
 int		command_not_found(t_ms *ms, char *err);
@@ -93,6 +91,7 @@ void	command_cd(t_ms *ms);
 void	command_echo(t_ms *ms);
 void	command_env(t_ms *ms);
 void	command_exit(t_ms *ms);
+t_cmd	**free_tmp(t_cmd **tmp, int a);
 void	command_export(t_ms *ms);
 void	command_pwd(t_ms *ms);
 void	command_unset(t_ms *ms);

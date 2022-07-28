@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/27 18:48:54 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:28:22 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1)
 	{
 		perror("minishell: many argments\n");
-		return(1);
+		return (1);
 	}	
 	*exit_status = 0;
 	g_envp = create_envp(envp);

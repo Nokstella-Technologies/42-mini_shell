@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:58:20 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/28 11:14:16 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:29:06 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	verify_pipe(t_ms *ms)
 {
-	if	(*ms->err != 2)
+	if (*ms->err != 2)
 	{
 		if (pipe(ms->fd.fd) == -1)
 			custom_perror(ms->err, 2, " error to create the pipe", "pipe");
@@ -55,7 +55,7 @@ static int	in_file(t_ms *ms, int *f)
 	if (*ms->err != 2)
 	{
 		fd = open(ms->cmd[ms->cmd_now + *f]->line_cmd, O_RDONLY, 0644);
-		if (fd == -1 )
+		if (fd == -1)
 		{
 			*ms->err = 2;
 			ms->tmp = ft_strdup(ms->cmd[ms->cmd_now + *f]->line_cmd);
@@ -77,10 +77,10 @@ static int	ver_here(t_ms *ms, int *f)
 
 	init_sigaction(ms->sa, SIG_IGN, SIGINT);
 	custom_close(&ms->fd.in_fd);
-	pid =  fork();
+	pid = fork();
 	if (pid == -1)
 		custom_perror(ms->err, errno, strerror(errno), "fork");
-	else if(pid == 0)
+	else if (pid == 0)
 	{
 		dup_custom(dup(ms->fd_origin[0]), STDIN_FILENO);
 		dup_custom(dup(ms->fd_origin[1]), STDOUT_FILENO);
@@ -112,10 +112,10 @@ int	verify_next_move_token(t_ms *ms, int h, t_bool was_out, int *f)
 		h = verify_next_move_token(ms, h + ver_here(ms, f), was_out, f);
 	else if (token == '>')
 		h = verify_next_move_token(ms, h + out_file(ms, token, was_out, f),
-			was_out, f);
+				was_out, f);
 	else if (token == 't')
 		h = verify_next_move_token(ms, h + out_file(ms, token, was_out, f),
-			was_out, f);
+				was_out, f);
 	else if (token == '<')
 		h = verify_next_move_token(ms, h + in_file(ms, f), was_out, f);
 	else if (token == '|')

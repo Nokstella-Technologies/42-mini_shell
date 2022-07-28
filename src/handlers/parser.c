@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/27 09:47:13 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:28:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,6 @@ static char	*find_next_token(t_ms *ms, char *line)
 	if (line[a] == 0)
 		return (NULL);
 	return (&line[a]);
-}
-
-static t_cmd	**free_tmp(t_cmd **tmp, int a)
-{
-	free_ptr((void **) &tmp[a]->line_cmd);
-	free_ptr((void **) &tmp[a]);
-	free_ptr((void **) &tmp);
-	return ((t_cmd **) 0);
 }
 
 static void	tokeneer_if(t_ms *ms, int a)

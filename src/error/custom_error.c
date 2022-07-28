@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:08:12 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/19 21:52:21 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:27:44 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,12 @@ void	error_token(t_ms *ms)
 			return (token_res(ms, &ms->handlers[a + 1]));
 		a++;
 	}
+}
+
+t_cmd	**free_tmp(t_cmd **tmp, int a)
+{
+	free_ptr((void **) &tmp[a]->line_cmd);
+	free_ptr((void **) &tmp[a]);
+	free_ptr((void **) &tmp);
+	return ((t_cmd **) 0);
 }
