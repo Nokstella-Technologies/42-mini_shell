@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:57:50 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/26 23:42:35 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/28 11:20:02 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	heredoc(t_ms *ms, int *f)
 			ft_strlen(r) + 1) == 0)
 		{
 			free_ptr((void **)&r);
-			exit(0);
+			exit(*ms->err);
 		}
 		else if(ft_strlen(r) != 0)
 			heredoc_helper(ms, NULL, r);

@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/27 00:11:20 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:46:19 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_ms
 	t_sigaction	*sa;
 	t_fds		fd;
 	t_cmd		**cmd;
+	char		*tmp;
 }				t_ms;
 
 typedef struct s_exec

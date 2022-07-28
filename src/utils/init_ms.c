@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:32:05 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/26 18:25:59 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:46:26 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ t_ms	*init_struct(char *line, int *err, t_sigaction *sa)
 	ms->cmd_file_now = 0;
 	ms->handlers_counter = 0;
 	ms->err[0] = 0;
+	ms->tmp = NULL;
 	return (ms);
 }

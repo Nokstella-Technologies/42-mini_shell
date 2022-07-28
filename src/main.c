@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/27 11:33:39 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/07/27 18:48:54 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char **envp)
 	*exit_status = 0;
 	g_envp = create_envp(envp);
 	history_initialization();
-	hile (1)
+	while (1)
 	{
 		init_sigaction(&sa, &handler_sig, SIGINT);
 		init_sigaction(&sa, SIG_IGN, SIGQUIT);
