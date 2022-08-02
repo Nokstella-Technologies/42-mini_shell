@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:20:06 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/26 23:28:51 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:28:06 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	custom_close(int *fd)
 
 void	end_program(t_ms **ms)
 {
+	ms[0]->err[0] = ms[0]->err_tmp;
 	if (ms[0]->fd.fd[0] != 0)
 		custom_close(&ms[0]->fd.fd[0]);
 	if (ms[0]->fd.fd[1] != 0)

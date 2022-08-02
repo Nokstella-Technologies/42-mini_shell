@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 20:33:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/28 11:28:02 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:25:58 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*find_next_token(t_ms *ms, char *line)
 			{
 				if (line[a] == '\0')
 				{
-					ms->err[0] = -3;
+					ms->err_tmp = -3;
 					return (NULL);
 				}
 				a++;
@@ -59,7 +59,7 @@ static void	tokeneer_if(t_ms *ms, int a)
 	if (ms->cmd != NULL && !ft_strncmp(ms->cmd[a]->line_cmd, "", 1)
 		&& !(a == 0 && (*ms->handlers == '>' || *ms->handlers == '<'
 				|| *ms->handlers == 'h' || *ms->handlers == 't')))
-		ms->err[0] = -2;
+		ms->err_tmp = -2;
 }
 
 static t_cmd	**struct_value_to_tokeneer(t_ms *ms, int *a, t_cmd **tmp)
@@ -91,7 +91,7 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 	t_cmd	**tmp;
 	char	*cmd;
 
-	while (*read != 0 && ms->err[0] == 0)
+	while (*read != 0 && ms->err_tmp == 0)
 	{
 		s_tmp = find_next_token(ms, read);
 		tmp = (t_cmd **)malloc((a + 2) * sizeof(t_cmd *));
@@ -109,6 +109,6 @@ void	tokeneer(t_ms *ms, char *read, int a, char *s_tmp)
 		tmp = struct_value_to_tokeneer(ms, &a, tmp);
 		read = ft_verify_handlers(ms, s_tmp);
 	}
-	ms->err[0] = verify_error(ms->handlers, ft_strlen(ms->handlers),
-			ms->err[0]);
+	ms->err_tmp = verify_error(ms->handlers, ft_strlen(ms->handlers),
+			ms->err_tmp);
 }

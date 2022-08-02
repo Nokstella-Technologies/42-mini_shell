@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 18:05:33 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/27 00:09:19 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:21:50 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 	init_sigaction(exec->ms->sa, SIG_IGN, SIGINT);
 	pid = fork();
 	if (pid == -1)
-		custom_perror(exec->ms->err, errno, strerror(errno), "fork");
+		custom_perror(&exec->ms->err_tmp, errno, strerror(errno), "fork");
 	else if (pid == 0)
 	{
 		init_sigaction(exec->ms->sa, handler_sig_child, SIGINT);
@@ -28,7 +28,10 @@ static void	pipe_change_exc(t_cmd *cmd, t_fds *fd, t_exec *exec)
 		{
 			custom_close(&fd->fd[0]);
 			if (execve(cmd->path_cmd, cmd->argv, g_envp) == -1)
-				custom_perror(exec->ms->err, errno, strerror(errno), "execve");
+			{
+				free_all(&exec->ms);
+				custom_perror(&exec->ms->err_tmp, errno, strerror(errno), "execve");
+			}
 		}
 		else
 			exit(command_not_found(exec->ms, cmd->argv[0]));
@@ -77,12 +80,12 @@ t_ms	*fix_quotes(t_cmd *cmd, t_ms *ms)
 	a = 0;
 	while (cmd->argv[a] != NULL)
 	{
-		tmp = verify_quotes(cmd->argv[a], 0);
+		tmp = verify_quotes(cmd->argv[a], 0, ms->err[0]);
 		free_ptr((void **)&cmd->argv[a]);
 		cmd->argv[a] = tmp;
 		a++;
 	}
-	tmp = verify_quotes(cmd->line_cmd, 0);
+	tmp = verify_quotes(cmd->line_cmd, 0, ms->err[0]);
 	free_ptr((void **)&cmd->line_cmd);
 	cmd->line_cmd = tmp;
 	exec_elf(cmd);

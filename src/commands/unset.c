@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:51:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/10 15:24:25 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:29:41 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	command_unset(t_ms *ms)
 	i = 1;
 	while (ms->cmd[ms->cmd_now]->argv[i] != NULL)
 	{
-		text = verify_text(ms->cmd[ms->cmd_now]->argv[i]);
+		text = verify_text(ms->cmd[ms->cmd_now]->argv[i], ms->err[0]);
 		if (text == NULL)
 			printf("minishell: export: close your quotes\n");
 		else if (ft_strchr(text, '='))

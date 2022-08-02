@@ -6,13 +6,14 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:30 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/28 11:28:22 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 11:58:15 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
 char	**g_envp;
+
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -28,6 +29,7 @@ int	main(int argc, char **argv, char **envp)
 	*exit_status = 0;
 	g_envp = create_envp(envp);
 	history_initialization();
+	printf("\033[H\033[J");
 	while (1)
 	{
 		init_sigaction(&sa, &handler_sig, SIGINT);

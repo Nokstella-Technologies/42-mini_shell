@@ -6,13 +6,21 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:28:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/28 11:19:02 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:02:17 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
 
-char	*read_line(char *prompt, char *s, char *work_space_name)
+static char	*tmp_trim(char *r) {
+	char *tmp;
+
+	tmp = ft_strtrim(r, " \t");
+	free(r);
+	return (tmp);
+}
+
+static char	*read_line(char *prompt, char *s, char *work_space_name)
 {
 	int		fd;
 	char	*r;
@@ -31,14 +39,14 @@ char	*read_line(char *prompt, char *s, char *work_space_name)
 	tmp = ft_strjoin(work_space_name, "\0");
 	free_ptr((void **)&work_space_name);
 	work_space_name = ft_strtrim(tmp, "\n");
-	prompt = ft_formatf("%s@%s:%s$ ", getenv("USER"), work_space_name, s);
+	prompt = ft_formatf("\001\033[1;32m\002%s\001\033[0m\002@%s:%s$ ", getenv("USER"), work_space_name, s);
 	r = readline(prompt);
 	free_ptr((void **)&s);
 	free_ptr((void **)&tmp);
 	free_ptr((void **)&work_space_name);
 	free_ptr((void **)&prompt);
 	close(fd);
-	return (r);
+	return (tmp_trim(r));
 }
 
 t_bool	mini_shell(int *err, t_sigaction *sa)
@@ -54,7 +62,7 @@ t_bool	mini_shell(int *err, t_sigaction *sa)
 		history(r);
 		ms = init_struct(r, err, sa);
 		tokeneer(ms, r, 0, NULL);
-		if (ms->err[0] == -2)
+		if (ms->err_tmp == -2)
 		{
 			error_token(ms);
 			free_ptr((void **) &r);

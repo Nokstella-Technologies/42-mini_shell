@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/02 12:17:57 by llima-ce          #+#    #+#             */
+/*   Updated: 2022/08/02 12:19:39 by llima-ce         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:49:11 by vantonie          #+#    #+#             */
@@ -32,7 +44,7 @@ void	command_cd(t_ms *ms)
 	if (!ms->cmd[ms->cmd_now]->argv[1])
 		change_home(ms);
 	else if (ms->cmd[ms->cmd_now]->argv[2] != NULL)
-		custom_perror(ms->err, 1, "too many arguments", "cd");
+		custom_perror(&ms->err_tmp, 1, "too many arguments", "cd");
 	else if (!ms->cmd[ms->cmd_now]->argv[1])
 		return ;
 	else if (strchr(ms->cmd[ms->cmd_now]->argv[1], '~'))
@@ -43,7 +55,7 @@ void	command_cd(t_ms *ms)
 		ms->cmd[ms->cmd_now]->argv[1] = formated;
 	}
 	if (chdir(ms->cmd[ms->cmd_now]->argv[1]) != 0)
-		custom_perror(ms->err, 1, "No such file or directory", "cd");
+		custom_perror(&ms->err_tmp, 1, "No such file or directory", "cd");
 	else
 	{
 		set_env("OLDPWD", getenv("PWD"));

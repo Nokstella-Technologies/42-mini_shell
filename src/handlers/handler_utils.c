@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/28 11:26:43 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:19:39 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pipe_exit(t_fds *fd, t_ms *ms)
 	if (fd->in_fd == fd->heredoc_fd)
 	{
 		if (unlink("./.tmp") != 0)
-			custom_perror(ms->err, errno,
+			custom_perror(&ms->err_tmp, errno,
 				"not possible to delete tmp file", ".tmp");
 		fd->heredoc_fd = -1;
 	}
@@ -56,7 +56,7 @@ char	*verify_token(t_ms *ms, char *s_tmp, char a)
 	}
 	else if (*s_tmp == '|' || *s_tmp == '>' || *s_tmp == '<')
 	{
-		ms->err[0] = -2;
+		ms->err_tmp = -2;
 		add_token(ms, a);
 	}
 	if (a == '|')

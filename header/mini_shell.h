@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 13:29:26 by vantonie          #+#    #+#             */
-/*   Updated: 2022/07/28 11:27:51 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:21:14 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_cmd
 typedef struct s_ms
 {
 	int			*err;
+	int			err_tmp;
 	char		*line;
 	int			cmd_now;
 	int			cmd_number;
@@ -104,8 +105,8 @@ void	custom_perror(int *ms_err, int err, char *str, char *cmd);
 void	exec_elf(t_cmd *cmd);
 void	heredoc(t_ms *ms, int *eof);
 char	*get_cwd(void);
-char	*verify_text(char *text);
-char	*verify_quotes(char *text, int i);
+char	*verify_text(char *text, int err);
+char	*verify_quotes(char *text, int i, int err);
 char	*verify_token(t_ms *ms, char *s_tmp, char a);
 int		verify_error(char *handlers, int len, int err);
 void	verify_cmd(t_ms *ms, char *str);

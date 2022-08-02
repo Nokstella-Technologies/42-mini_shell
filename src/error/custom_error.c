@@ -6,7 +6,7 @@
 /*   By: llima-ce <llima-ce@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:08:12 by llima-ce          #+#    #+#             */
-/*   Updated: 2022/07/28 11:27:44 by llima-ce         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:19:39 by llima-ce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	token_res(t_ms *ms, char *str)
 		tmp = ft_formatf("syntax error near unexpected token `>>'");
 	else
 		tmp = ft_formatf("syntax error near unexpected token `%c'", *str);
-	custom_perror(ms->err, 2, tmp, NULL);
+	custom_perror(&ms->err_tmp, 2, tmp, NULL);
 	free_ptr((void **)& tmp);
 }
 
